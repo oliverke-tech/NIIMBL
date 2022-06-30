@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raman &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Raman</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Tutorial/raman.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section class="tex2jax_ignore mathjax_ignore" id="raman">
+<h1>Raman<a class="headerlink" href="#raman" title="Permalink to this headline"></a></h1>
+<p>Welcome to Raman. <br>
+This package is created for NIIMBL4.1 Case2. <br></p>
+<p>Currently supported input files are:</p>
+<ul class="simple">
+<li><p>.spc</p></li>
+<li><p>.dx</p></li>
+<li><p>.csv</p></li>
+</ul>
+<p>Currently supported a set of routines to execute spectral pre-processing like:<br></p>
+<ul class="simple">
+<li><p>MSC</p></li>
+<li><p>SNV</p></li>
+<li><p>Detrend</p></li>
+<li><p>Savitzky - Golay</p></li>
+<li><p>Derivatives</p></li>
+<li><p>..</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import basic libraries</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span> 
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">model_selection</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RepeatedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_decomposition</span> <span class="kn">import</span> <span class="n">PLSRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="kn">from</span> <span class="nn">src.vLab.RamanAnalytics.ReadSpc</span> <span class="kn">import</span> <span class="n">read_spc</span>
+<span class="kn">from</span> <span class="nn">src.vLab.RamanAnalytics.ReadDx</span> <span class="kn">import</span> <span class="n">ReadDx</span>
+<span class="kn">from</span> <span class="nn">src.vLab.RamanAnalytics.Preprocessing</span> <span class="kn">import</span> <span class="n">msc</span><span class="p">,</span> <span class="n">detrend</span><span class="p">,</span> <span class="n">sav_gol</span><span class="p">,</span> <span class="n">snv</span>
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="read-spc-file">
+<h1>Read .spc file<a class="headerlink" href="#read-spc-file" title="Permalink to this headline"></a></h1>
+<section id="read-a-single-file">
+<h2>Read a single file<a class="headerlink" href="#read-a-single-file" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spc</span> <span class="o">=</span> <span class="n">read_spc</span><span class="p">(</span><span class="s1">&#39;VIAVI/JDSU_Phar_Rotate_S06_1_20171009_1540.spc&#39;</span><span class="p">)</span>
+<span class="n">spc</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;nm&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Abs&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spc</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gx-y(1)
+908.100000    0.123968
+914.294355    0.118613
+920.488710    0.113342
+926.683065    0.108641
+932.877419    0.098678
+dtype: float64
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/163854218-c5a8407e-2d36-4ab2-8a2c-13aef19c5341.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="read-dx-spectral-files">
+<h1>Read .dx spectral files<a class="headerlink" href="#read-dx-spectral-files" title="Permalink to this headline"></a></h1>
+<p>Raman also allows to read the most common .dx file formats</p>
+<section id="read-a-single-dx-file">
+<h2>Read a single .dx file<a class="headerlink" href="#read-a-single-dx-file" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Foss_single</span> <span class="o">=</span> <span class="n">read_dx</span><span class="p">()</span>
+<span class="c1"># Run read method</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">Foss_single</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;../../data/FOSS/FOSS.dx&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/163855034-65caff70-aec4-4fef-b022-9acf08699bbe.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Foss_single</span><span class="o">.</span><span class="n">Samples</span><span class="p">[</span><span class="s1">&#39;29179&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>y
+Conc
+TITLE
+JCAMP_DX
+DATA TYPE
+CLASS
+DATE
+DATA PROCESSING
+XUNITS
+YUNITS
+XFACTOR
+YFACTOR
+FIRSTX
+LASTX
+MINY
+MAXY
+NPOINTS
+FIRSTY
+CONCENTRATIONS
+XYDATA
+X
+Y
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="read-csv-files">
+<h1>Read .csv files<a class="headerlink" href="#read-csv-files" title="Permalink to this headline"></a></h1>
+<p>Raman also allows to read .csv file</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/RamanRaw.csv&#39;</span><span class="p">)</span>
+       
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">301</span><span class="p">:</span><span class="mi">1702</span><span class="p">]]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]]</span>
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="spectra-preprocessing">
+<h1>Spectra preprocessing<a class="headerlink" href="#spectra-preprocessing" title="Permalink to this headline"></a></h1>
+<p>A set of built in classes to perform spectra pre-processing like: <br></p>
+<ul class="simple">
+<li><p>MSC: Multiplicative scattering correction</p></li>
+<li><p>SNV: Standard normal variate</p></li>
+<li><p>Detrend</p></li>
+<li><p>n order derivative</p></li>
+<li><p>Savitzky golay smmothing</p></li>
+</ul>
+<section id="msc">
+<h2>MSC<a class="headerlink" href="#msc" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MSC</span> <span class="o">=</span> <span class="n">msc</span><span class="p">()</span>
+<span class="n">MSC</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_msc</span> <span class="o">=</span> <span class="n">MSC</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Raw spectra&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X_msc</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;MSC spectra&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171699029-aa8b4746-bfcb-4247-b46c-9fc097735107.png" /></p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171699048-d6d2243c-df1e-41e0-a98c-288108596dbb.png" /></p>
+</section>
+<section id="snv-and-detrend">
+<h2>SNV and Detrend<a class="headerlink" href="#snv-and-detrend" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SNV</span> <span class="o">=</span> <span class="n">snv</span><span class="p">()</span>
+<span class="n">X_snv</span> <span class="o">=</span> <span class="n">SNV</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">Detr</span> <span class="o">=</span> <span class="n">detrend</span><span class="p">()</span>
+<span class="n">X_detrend</span> <span class="o">=</span> <span class="n">Detr</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">spc</span><span class="o">=</span><span class="n">X_snv</span><span class="p">,</span> <span class="n">wave</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_snv</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)),</span> <span class="n">deg</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+   
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Raw spectra&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X_snv</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;SNV spectra&quot;</span><span class="p">)</span>
+<span class="c1">#plt.ylim(bottom = 0, top = 2.5 * 10**6)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X_detrend</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;SNV+ Detrend spectra&quot;</span><span class="p">)</span>
+<span class="c1">#plt.ylim(bottom = 0, top = 2.5 * 10**6)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171699288-78f47aa5-fc83-4f61-8f45-9963e89a6d2c.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171699300-667279eb-b849-4e97-a84b-30908a5237e5.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171699311-cdd63bb0-43b4-429a-8fd8-57a413ca28db.png" /></p>
+</section>
+<section id="savitzky-golay">
+<h2>Savitzky - Golay<a class="headerlink" href="#savitzky-golay" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SAV_gol</span> <span class="o">=</span> <span class="n">sav_gol</span><span class="p">()</span>
+<span class="n">X_SAV</span> <span class="o">=</span> <span class="n">SAV_gol</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">deriv</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Raw spectra&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">X_snv</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Savitzky golay smmothing spectra&quot;</span><span class="p">)</span>
+<span class="c1">#plt.ylim(bottom = 0, top = 2.5 * 10**6)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;RamanShift(cm-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171699461-bb22831b-eae5-4ee0-8455-58e1e65f19e2.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171699468-c040a4d3-1036-40b4-8639-2a9ddfadfdea.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="split-the-dataset">
+<h1>Split The Dataset<a class="headerlink" href="#split-the-dataset" title="Permalink to this headline"></a></h1>
+<section id="split-the-dataset-into-training-70-and-testing-30-sets">
+<h2>split the dataset into training (70%) and testing (30%) sets<a class="headerlink" href="#split-the-dataset-into-training-70-and-testing-30-sets" title="Permalink to this headline"></a></h2>
+<p>We now split the samples into a training set and a test set in order to estimate the test error from different methods.
+In this part, we use the pre-processed raman data via SNV and Detrend as example. The concentration of glucose is target variable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_all_train</span><span class="p">,</span> <span class="n">y_all_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_detrend</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">Metabolites</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Lactate&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Glutamine&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;NH4&#39;</span><span class="p">}</span>
+<span class="c1">#0:GLuc; 1: Lac; 2:Gln; 3: NH4;</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span>  <span class="n">y_all_train</span><span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(),</span> <span class="n">y_all_test</span><span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="raman-spectra-data-analysis">
+<h1>Raman Spectra Data Analysis<a class="headerlink" href="#raman-spectra-data-analysis" title="Permalink to this headline"></a></h1>
+<section id="ridge-regression">
+<h2>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline"></a></h2>
+<p>We fit a ridge regression model on the training set. Without given any value of Regularization strength. The function will implement cross validation to find optimal value of it with the smallest validation error.</p>
+<p>The output includings:</p>
+<ol class="arabic simple">
+<li><p>Visualization of regression coefficients</p></li>
+<li><p>Regression results on the training data</p></li>
+<li><p>Regression results on the test data</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rr</span> <span class="o">=</span> <span class="n">RR</span><span class="p">()</span>
+<span class="n">rr</span><span class="o">.</span><span class="n">analysis</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">Metabolites</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171699875-c9d280a8-b8de-4b46-b68d-f9075ab17ea5.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171699890-4a911f36-ea0b-446a-983e-a359679c6046.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171699900-b358d97d-b353-455b-bf2d-cfbee1c67da8.png" /></p>
+</section>
+<section id="lasso-regression">
+<h2>Lasso Regression<a class="headerlink" href="#lasso-regression" title="Permalink to this headline"></a></h2>
+<p>We fit a Lasso regression model on the training set. Without given any value of Regularization strength. The function will implement cross validation to find optimal value of it with the smallest validation error.</p>
+<p>The output includings:</p>
+<ol class="arabic simple">
+<li><p>Visualization of regression coefficients</p></li>
+<li><p>Regression results on the training data</p></li>
+<li><p>Regression results on the test data</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">la</span> <span class="o">=</span> <span class="n">LA</span><span class="p">()</span>
+<span class="n">la</span><span class="o">.</span><span class="n">analysis</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">Metabolites</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171700170-4778cca4-6c95-44b9-9049-df7f8193b5fe.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700186-7e2483e8-bb68-4822-8d20-950ed3688cdf.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700203-dd8e2a40-2502-4a7a-a0a2-fa4564bc3cd9.png" /></p>
+<p>We fit a Elastic Net model on the training set. Without given any value of Regularization strength. The function will implement cross validation to find optimal value of it with the smallest validation error.</p>
+<p>The output includings:</p>
+<ol class="arabic simple">
+<li><p>Visualization of regression coefficients</p></li>
+<li><p>Regression results on the training data</p></li>
+<li><p>Regression results on the test data</p></li>
+</ol>
+</section>
+<section id="elastic-net">
+<h2>Elastic Net<a class="headerlink" href="#elastic-net" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">en</span> <span class="o">=</span> <span class="n">EN</span><span class="p">()</span>
+<span class="n">en</span><span class="o">.</span><span class="n">analysis</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">Metabolites</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171700458-1a1085eb-feed-4d5f-b2d1-5480fe51ebe2.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700466-75d99417-87ce-48d4-b1e0-c8f611c85d32.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700478-999adb98-abaf-468c-893f-9fe2d8bc235c.png" /></p>
+</section>
+<section id="principal-components-regression">
+<h2>Principal Components Regression<a class="headerlink" href="#principal-components-regression" title="Permalink to this headline"></a></h2>
+<p>We fit Principal Components Regression on the training set. Without given any number of principal component to keep. The function will implement cross validation to find optimal value of it with the smallest validation error.</p>
+<p>The output includings:</p>
+<ol class="arabic simple">
+<li><p>Visualization of regression coefficients</p></li>
+<li><p>Regression results on the training data</p></li>
+<li><p>Regression results on the test data</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pcr</span> <span class="o">=</span> <span class="n">PCR</span><span class="p">()</span>
+<span class="n">pcr</span><span class="o">.</span><span class="n">analysis</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">Metabolites</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171700543-24cef100-b61c-48ef-b715-651426fb1b4f.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700551-f124ca12-f5b9-4e1b-8ab6-a8fd2521b1b9.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700560-5a2304df-a26b-4377-8657-22709af790c6.png" /></p>
+</section>
+<section id="partial-least-squares-pls-regression">
+<h2>Partial least-squares (PLS) regression<a class="headerlink" href="#partial-least-squares-pls-regression" title="Permalink to this headline"></a></h2>
+<p>We fit Partial least-squares (PLS) regression on the training set. Without given any number of principal component to keep. The function will implement cross validation to find optimal value of it with the smallest validation error.</p>
+<p>The output includings:</p>
+<ol class="arabic simple">
+<li><p>Visualization of regression coefficients</p></li>
+<li><p>Regression results on the training data</p></li>
+<li><p>Regression results on the test data</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pls</span> <span class="o">=</span> <span class="n">PLS</span><span class="p">()</span>
+<span class="n">pls</span><span class="o">.</span><span class="n">analysis</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">Metabolites</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://user-images.githubusercontent.com/56982084/171700723-4786f9f5-85f4-49d6-9280-8845aff8fc38.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700734-a312b931-dc3f-4029-a67b-5082ff67bad6.png" />
+<img alt="image" src="https://user-images.githubusercontent.com/56982084/171700746-16a423cc-a0e6-4d33-8ee6-57634aee433d.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

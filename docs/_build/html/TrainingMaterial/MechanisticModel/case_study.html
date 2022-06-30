@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study 1: Troubleshooting a Change in the Distribution of Galactosylated Glycoforms &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Case Study 1: Troubleshooting a Change in the Distribution of Galactosylated Glycoforms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/TrainingMaterial/MechanisticModel/case_study.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-1-troubleshooting-a-change-in-the-distribution-of-galactosylated-glycoforms">
+<h1>Case Study 1: Troubleshooting a Change in the Distribution of Galactosylated Glycoforms<a class="headerlink" href="#case-study-1-troubleshooting-a-change-in-the-distribution-of-galactosylated-glycoforms" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>This case study is a troubleshooting scenario in which the distribution of galactosylated glycoforms for a Chinese Hamster Ovary (CHO)-derived recombinant protein changes considerably after switching to a new chemically defined (CD) media. The case study is adapted from a real industrial problem reported by Eli Lilly and Company (McCracken et al., 2014), and the task is to track down which changes in the CD media, nutrients and metabolite resulted in the change of the distribution of galactosylated glycoforms. With this information, the composition of the new CD media can be modified to shift back to being near the original glycosylation profile. This case study requires constructing the relationship between a change in the raw materials (media)/metabolites and a critical quality attribute (the distribution of galactosylated glycoforms (G0F, G1F, and G2F)). This case study considers a fed-batch process and may consider two different length scales (flasks and bioreactors).
+The objective of this case study is to improve the trainees’ understanding of process variation in critical quality attributes (CQAs) and how to identify the critical process parameters (CPPs), infer the causal relationships between CPPs and CQAs, and use process analytical technology (PAT) tools to find the root cause for the CQA variation. The trainees are expected to quantitatively analyze the process variation and its connection to critical process parameters, process variables, and other potential factors. In addition, they can conduct predictive analysis to guide decisions towards achieving specifications on the CQAs.</p>
+</section>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline"></a></h2>
+<p>Cell culture process conditions, including media components and bioreactor operation conditions, have a profound impact on cellular metabolic state and recombinant protein quality attributes. Glycosylation is a complex biological process that can impact activity, immunogenicity, and efficacy of therapies. Considerable changes in the distribution of galactosylated glycoforms (G0F, G1F, and G2F) are observed for a CHO-derived monoclonal antibody when switching to new chemically defined (CD) media, namely, significantly lower G0F and higher G1F and G2F percentages are observed. These changes are of interest as a change in glycosylation can impact the safety and effectiveness of therapeutic proteins.</p>
+</section>
+<section id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Permalink to this headline"></a></h2>
+<p>Understand the root cause of the change and design a strategy for correcting the distribution of galactosylated glycoforms.</p>
+</section>
+<section id="example-experimental-design-at-the-flask-scale-to-generate-data-for-troubleshooting">
+<h2>Example Experimental Design at the Flask Scale to Generate Data for Troubleshooting<a class="headerlink" href="#example-experimental-design-at-the-flask-scale-to-generate-data-for-troubleshooting" title="Permalink to this headline"></a></h2>
+<p>Flasks are seeded with approximately the same cell densities. A fed-batch operation has nutrient feeds entering on predetermined schedule. Culture cell density and viability and metabolites are monitored. Medium, feeds, and stock solutions are known and all cultures are harvested at the same time. Some experimental conditions are repeated to assess reproducibility, whereas others are not, to save time. The experiments are designed with the goal of determining which specific components in the media (such as Sialic Acid, Galactose, etc.), nutrients (glucose) and metabolite (such as ammonia) resulted in the change in the glycosylation profile.</p>
+</section>
+<section id="potential-root-causes">
+<h2>Potential Root Causes<a class="headerlink" href="#potential-root-causes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Feed rate</p></li>
+<li><p>Media and metabolite</p></li>
+<li><p>Mn concentration</p></li>
+<li><p>Ammonia concentration</p></li>
+<li><p>Galactose feed</p></li>
+</ul>
+</section>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Task 1: Use the simulator to generate a data set of glycan profiles with new CD media versus old media.</p></li>
+<li><p>Task 2: Illustrate the distribution difference in the digital twin interface (see figures adapted from McCracken et al., 2014)</p></li>
+<li><p>Task 3: Ask students to troubleshoot the problem.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-3-integrated-process-control-of-the-bioreactor-and-chromatography">
+<h1>Case Study 3: Integrated Process Control of the Bioreactor and Chromatography<a class="headerlink" href="#case-study-3-integrated-process-control-of-the-bioreactor-and-chromatography" title="Permalink to this headline"></a></h1>
+<section id="id1">
+<h2>Introduction<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>In this case, students will study two key unit operations, namely bioreactor and chromatography, in an typical biomanufacturing process. The unit operations will be highly integrated, with automatic material handling and transfer between unit operations. Students are expected to learn various control methods and trouble-shooting analysis in the integrated fed-batch bioreactor and chromatography process and then analyze its impact on the process yield and product purity. The case study is derived from real industrial problems for real-time monitoring of multiple process parameters in bioreactors[2,3,5], and in control of glucose and lactate concentrations[1,4] and chromatographic process[9,10]</p>
+</section>
+<section id="id2">
+<h2>Background<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>One of the objectives in the production of therapeutic proteins is to maximize productivity while respecting required product quality. A key limitation in the cell culture processes is the accumulation of lactate. Since excess glucose can lead to increased lactate production through increased glycolytic activity, online measurements of glucose and lactate concentrations enable both monitoring operational problems and tighter control of glucose and lactate concentrations. In addition, the perturbation in the upstream (caused by sensor noise, raw material, or operation errors) will inevitably impact on the product quality in the downstream. Thus, it is of great interest to quantify the impact and analyze probable root causes.</p>
+<p>In the downstream, chromatography is a critical separation step that is widely used in research and industry as an analytical or preparative tool. Separation can be achieved by differences in affinity, hydrophobicity, surface charge and molecular weight, and other factors. It involves a column which is charged with pulses of the feed solution. While travelling through the column, the more adsorptive species is retained longer by the adsorbent, thus leaving the column after the less adsorptive specie.</p>
+</section>
+<section id="id3">
+<h2>Objective<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>Apply process control for mammalian cell culture bioreactors and downstream chromatography to improve productivity and product quality while ensuring that specifications on CQAs are satisfied.</p>
+</section>
+<section id="example-experimental-design">
+<h2>Example Experimental Design<a class="headerlink" href="#example-experimental-design" title="Permalink to this headline"></a></h2>
+<p>The bioreactors are operated in fed-batch mode using proprietary basal and feed medium formulations. Commercially available chemically defined basal medium (CD) is used in both cell expansion and production stages. A fed-batch operation has nutrient feeds entering on predetermined schedule. Medium, feeds, and stock solutions are known, and all cultures are harvested at the same time. The bioreactors were operated at 37°C. The pH and DO are maintained at 6.94±0.04 and 50% of air saturation, respectively. The bioreactor pH is controlled by addition of CO2 gas to decrease pH and addition of 3 N NaOH base to increase pH as needed. Inoculum conditions and feeding rate of substrate are controlled in order to provide conditions in the bioreactor to achieve a wider range in nutrients, metabolites, and cell densities than would be observed under normal operating conditions, which in turn allows for generation of more robust calibration models. Experiments are run to generate the at-line measurements of the viable cell, glucose, glutamine, lactate, ammonium and monoclonal antibody concentration. The chromatography will be simulated in the digital twin using GRM and SMA. The results of the SMA are in the form of chromatograms. Yields and purities of the desired product can be computed at various points along the simulated model chromatogram.</p>
+</section>
+<section id="id4">
+<h2>Tasks<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Sensitivity/predictive analysis of fermentation to the perturbation of CPPs. The perturbation of critical process parameters will affect the productivity and product quality. The importance of maintaining a proper level of CPPs (e.g. VCD/nitrogen concentration) has been well recognized. The sensitivity of the fermentation to these perturbations has considerable practical importance and is therefore the subject of the case study.</p></li>
+<li><p>Chromatography Optimization. The inlet protein and salt concentration, entering the chromatography columns, are set from the bioreactor upstream to the separation unit. In a chromatography setup, sensors can only be placed at the entrance and exit of the column–not within its interior. This limits the applicability of classical feedback control. For example, if a load solution has an unusually high protein concentration, this will only be detected by premature breakthrough during the loading phase. Even if loading was terminated upon the detection of breakthrough, additional protein would be lost during the wash phase, compromising recovery. To mitigate these effects, open loop optimal control can be used as a control strategy. In this case, measures of the load solution concentration, obtained by UV280 absorbance or Raman spectroscopy, can be used as parameters for the chromatography model. Optimization can then be used to select the operating conditions to be used to achieve optimal process performance.</p></li>
+</ol>
+<p>In the chronography, the column was assumed to operate in a 4-stage bind and elute mode. A total of 6 operating variables were relevant to the problem, listed in table below,</p>
+<p>Table 1: Operating Variable of Chronography</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Stage</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>Protein Conc.</p></th>
+<th class="head"><p>Salt Conc.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Load</p></td>
+<td><p>t_l</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{p,i}^\#\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{p,l}^\#\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Wash</p></td>
+<td><p>t_w</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{s,w}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Purge</p></td>
+<td><p>t_p</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{s,e}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Elute</p></td>
+<td><p>t_e</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{s,e}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>For a chromatographic process with given design parameters, the determination of the optimal operating regime can be posed as a combination of four competing objectives: purity, recovery, concentration, and productivity; see details in [11].</p>
+<p><strong>Reference</strong>:</p>
+<ol class="arabic simple">
+<li><p>Thomas E. Matthews, Brandon N. Berry, John Smelko, Justin Moretto, Brandon Moore, Kelly Wiltberger (Biogen). Closed loop control of lactate concentration in Mammalian cell culture by Raman spectroscopy leads to improve cell density, viability, and biopharmaceutical protein production. Biotechnology and Bioengineering, Vol. 113, No. 11, Pages 2416-2424, November 2016. https://pubmed.ncbi.nlm.nih.gov/27215441/</p></li>
+<li><p>Hamidreza Mehdizadeh, David Lauri, Krizia M. Karry, and Mojgan Moshgbar, Renee Procopio-Melino, and Denis Drapeau (Pfizer). Generic Raman-based calibration models enabling real-time monitoring of cell culture bioreactors. Biotechnology Progress, Vol. 31, No. 4, Pages 1004-1013, July-August 2015. https://pubmed.ncbi.nlm.nih.gov/25825868/</p></li>
+<li><p>Jessica Whelan, Stephen Craven, and Brian Glennon. In situ Raman spectroscopy for simultaneous monitoring of multiple process parameters in Mammalian cell culture bioreactors. Biotechnology Progress, Vol. 28, No. 5, Pages 1355-1362, September-October 2012. https://pubmed.ncbi.nlm.nih.gov/22740438/</p></li>
+<li><p>Stephen Craven, Jessica Whelan, Brian Glennon (Applied Process Company). Glucose concentration control of a fed-batch mammalian cell bioprocess using a nonlinear model predictive controller. Journal of Process Control, Vol. 24, 344-357, 2014.</p></li>
+<li><p>Stephen Goldrick, Alexandra Umprecht, Alison Tang, Roman Zakrzewski, Matthew Cheeks, Richard Turner, Aled Charles, Karolina Les, Martyn Hulley, Chris Spencer, and Suzanne S. Farid (nearly all employees of AstraZeneca). High-throughput Raman spectroscopy combined with innovate data analysis workflow to enhance biopharmaceutical process development. Processes, 8, 1179, 2020.</p></li>
+<li><p>Hua Zheng, Wei Xie, Ilya O. Ryzhov, Dongming Xie (2021). Policy Optimization in Bayesian Network Hybrid Models of Biomanufacturing Processes. https://arxiv.org/pdf/2105.06543.pdf</p></li>
+<li><p>Kornecki, M. and J. Strube. “Process Analytical Technology for Advanced Process Control in Biologics Manufacturing with the Aid of Macroscopic Kinetic Modeling.” Bioengineering (Basel), Vol. 5, No. 1, 2018, doi:10.3390/bioengineering5010025.</p></li>
+<li><p>Shekhawat, L. K., &amp; Rathore, A. S. (2019). An overview of mechanistic modeling of liquid chromatography. Preparative Biochemistry and Biotechnology, 49(6), 623-638.</p></li>
+<li><p>Iyer, H., Tapper, S., Lester, P., Wolk, B., &amp; van Reis, R. (1999). Use of the steric mass action model in ion-exchange chromatographic process development. Journal of Chromatography A, 832(1-2), 1-9.</p></li>
+<li><p>Osberghaus, A., Hepbildikler, S., Nath, S., Haindl, M., Von Lieres, E., &amp; Hubbuch, J. (2012). Optimizing a chromatographic three component separation: A comparison of mechanistic and empiric modeling approaches. Journal of chromatography A, 1237, 86-95.</p></li>
+<li><p>Lu, A. E., Paulson, J. A., Mozdzierz, N. J., Stockdale, A., Versypt, A. N. F., Love, K. R., … &amp; Braatz, R. D. (2015, September). Control systems technology in the advanced manufacturing of biologic drugs. In 2015 IEEE Conference on Control Applications (CCA) (pp. 1505-1515). IEEE.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

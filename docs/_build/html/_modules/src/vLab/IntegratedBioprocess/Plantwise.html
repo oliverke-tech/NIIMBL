@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.vLab.IntegratedBioprocess.Plantwise &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>src.vLab.IntegratedBioprocess.Plantwise</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.vLab.IntegratedBioprocess.Plantwise</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.Bioreactor</span> <span class="kn">import</span> <span class="n">bioreactor</span><span class="p">,</span> <span class="n">bioreactor_julia</span>
+<span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.Chromatography</span> <span class="kn">import</span> <span class="n">chromatography</span><span class="p">,</span> <span class="n">chromatography_julia</span>
+<span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.HarvestTank</span> <span class="kn">import</span> <span class="n">harvest_tank</span>
+<span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.Util</span> <span class="kn">import</span> <span class="n">CellCultureModel</span><span class="p">,</span> <span class="n">ChromatographyModel</span>
+
+
+<div class="viewcode-block" id="plantwise"><a class="viewcode-back" href="../../../../IntegratedBioprocess/Plantwise.html#src.vLab.IntegratedBioprocess.Plantwise.plantwise">[docs]</a><span class="k">def</span> <span class="nf">plantwise</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u_F</span><span class="p">,</span> <span class="n">u_Cin</span><span class="p">,</span> <span class="n">tran</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the derivatives of plantwise simulator, which is a first order ODE system</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \\frac{dx}{dt}(r) = \\text{plantwise}(t, x,\ldots),</span>
+<span class="sd">        x(t0) = x0</span>
+
+<span class="sd">    Here t is a 1-D independent variable (time), y(t) is an</span>
+<span class="sd">    N-D vector-valued function (state), and an N-D</span>
+<span class="sd">    vector-valued function f(t, y) determines the differential equations.</span>
+<span class="sd">    The goal is to find y(t) approximately satisfying the differential</span>
+<span class="sd">    equations, given an initial value y(t0)=y0.</span>
+
+<span class="sd">    :param t: Interval of integration (t0, tf). The solver starts with t=t0 and integrates until it reaches t=tf.</span>
+<span class="sd">    :type t: 2-tuple of floats</span>
+<span class="sd">    :param x: Initial condition on x (can be a vector).</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param u_F: flow rates of bioreactor, harvest tank and chromatograph (load/wash/elute) at time t</span>
+<span class="sd">    :type u_F: array</span>
+<span class="sd">    :param u_Cin: inlet concentrations at time t</span>
+<span class="sd">    :type u_Cin: array</span>
+<span class="sd">    :param tran: Cumulated process time</span>
+<span class="sd">    :type tran: array</span>
+<span class="sd">    :return dxdt: derivatives of plantwise models</span>
+<span class="sd">    :rtype: array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">CellCultureModel</span><span class="p">()</span>
+    <span class="n">theta_C</span> <span class="o">=</span> <span class="n">ChromatographyModel</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">tran</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tran</span><span class="p">[</span><span class="n">tran</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">u_F</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
+    <span class="n">dxBdt</span> <span class="o">=</span> <span class="n">bioreactor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[:</span><span class="mi">7</span><span class="p">],</span> <span class="n">theta</span><span class="p">,</span> <span class="p">[</span><span class="n">u_F</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="n">u_Cin</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">dxHdt</span> <span class="o">=</span> <span class="n">harvest_tank</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+    <span class="n">u_FC</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="n">u_Cin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]]])</span> <span class="o">/</span> <span class="n">u_FC</span>
+    <span class="n">u_Cin</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">u_Cin</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">u_Cin</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">u_Cin</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_FC</span><span class="p">,</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">u_Cin</span><span class="p">)</span>
+    <span class="n">dxdt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dxBdt</span><span class="p">,</span> <span class="n">dxHdt</span><span class="p">,</span> <span class="n">dxCdt</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">dxdt</span></div>
+
+
+<div class="viewcode-block" id="plantwise_julia"><a class="viewcode-back" href="../../../../IntegratedBioprocess/Plantwise.html#src.vLab.IntegratedBioprocess.Plantwise.plantwise_julia">[docs]</a><span class="k">def</span> <span class="nf">plantwise_julia</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Compute the derivatives of plantwise simulator, which is a first order ODE system. Note: The ``plantwise_julia``</span>
+<span class="sd">        support the function format required by diffeqpy</span>
+
+<span class="sd">    :param t: Interval of integration (t0, tf). The solver starts with t=t0 and integrates until it reaches t=tf.</span>
+<span class="sd">    :type t: 2-tuple of floats</span>
+<span class="sd">    :param x: Initial condition on y (can be a vector).</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param data: assembly of (1)  flow rates of bioreactor, harvest tank and chromatograph (load/wash/elute);</span>
+<span class="sd">            (2) inlet concentrations; (3) bioreactor model parameters;  (4) chromatography model parameters;</span>
+<span class="sd">            (5) Cumulated process time.</span>
+<span class="sd">    :type data: ndarray</span>
+<span class="sd">    :return dxdt: derivatives of plantwise models</span>
+<span class="sd">    :rtype: array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">u_F</span><span class="p">,</span> <span class="n">u_Cin</span><span class="p">,</span> <span class="n">theta_M</span><span class="p">,</span> <span class="n">theta_P</span><span class="p">,</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">tran</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">if</span> <span class="n">tran</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tran</span><span class="p">[</span><span class="n">tran</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">u_F</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
+    <span class="n">dxBdt</span> <span class="o">=</span> <span class="n">bioreactor_julia</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[:</span><span class="mi">7</span><span class="p">],</span> <span class="n">theta_M</span><span class="p">,</span> <span class="n">theta_P</span><span class="p">,</span> <span class="p">[</span><span class="n">u_F</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="n">u_Cin</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">dxHdt</span> <span class="o">=</span> <span class="n">harvest_tank</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+    <span class="n">u_FC</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="n">u_Cin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]]])</span> <span class="o">/</span> <span class="n">u_FC</span>
+    <span class="n">u_Cin</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">u_Cin</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">u_Cin</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">u_Cin</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography_julia</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_FC</span><span class="p">,</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">u_Cin</span><span class="p">,</span> <span class="n">theta_C</span><span class="p">)</span>
+    <span class="n">dxdt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dxBdt</span><span class="p">,</span> <span class="n">dxHdt</span><span class="p">,</span> <span class="n">dxCdt</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">dxdt</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

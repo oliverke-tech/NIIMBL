@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.vLab.IntegratedBioprocess.HarvestTank &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>src.vLab.IntegratedBioprocess.HarvestTank</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.vLab.IntegratedBioprocess.HarvestTank</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="harvest_tank"><a class="viewcode-back" href="../../../../IntegratedBioprocess/HarvestTank.html#src.vLab.IntegratedBioprocess.HarvestTank.harvest_tank">[docs]</a><span></span><span class="k">def</span> <span class="nf">harvest_tank</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u_F</span><span class="p">,</span> <span class="n">u_Cin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Compute the derivatives of harvest simulator</span>
+
+<span class="sd">    :param t: time</span>
+<span class="sd">    :type t: float</span>
+<span class="sd">    :param x:  process state at time t</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param u_F: flow rates of bioreactor, harvest tank and chromatograph (load/wash/elute) at time t</span>
+<span class="sd">    :type u_F: array</span>
+<span class="sd">    :param u_Cin: inlet concentrations at time t</span>
+<span class="sd">    :type u_Cin: array</span>
+<span class="sd">    :return: dxdt</span>
+<span class="sd">    :rtype: array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">## States</span>
+    <span class="c1"># P1: product concentration (g/L)</span>
+    <span class="c1"># P2: product concentration (g/L)</span>
+    <span class="c1"># P3: product concentration (g/L)</span>
+    <span class="c1"># V:  Hold tank volume (L)</span>
+    <span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">,</span> <span class="n">P3</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="c1">## Inputs</span>
+    <span class="n">Fin</span><span class="p">,</span> <span class="n">Fout</span> <span class="o">=</span> <span class="n">u_F</span>  <span class="c1"># inlet/outlet flow rate from bioreactor (L/h)</span>
+    <span class="n">P1in</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">P2in</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">P3in</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1">## States equations</span>
+    <span class="n">dP1dt</span> <span class="o">=</span> <span class="n">Fin</span> <span class="o">/</span> <span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="n">P1in</span> <span class="o">-</span> <span class="n">P1</span><span class="p">)</span>
+    <span class="n">dP2dt</span> <span class="o">=</span> <span class="n">Fin</span> <span class="o">/</span> <span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="n">P2in</span> <span class="o">-</span> <span class="n">P2</span><span class="p">)</span>
+    <span class="n">dP3dt</span> <span class="o">=</span> <span class="n">Fin</span> <span class="o">/</span> <span class="n">V</span> <span class="o">*</span> <span class="p">(</span><span class="n">P3in</span> <span class="o">-</span> <span class="n">P3</span><span class="p">)</span>
+    <span class="n">dVdt</span> <span class="o">=</span> <span class="n">Fin</span> <span class="o">-</span> <span class="n">Fout</span>
+
+    <span class="n">dxdt</span> <span class="o">=</span> <span class="p">[</span><span class="n">dP1dt</span><span class="p">,</span> <span class="n">dP2dt</span><span class="p">,</span> <span class="n">dP3dt</span><span class="p">,</span> <span class="n">dVdt</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dxdt</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

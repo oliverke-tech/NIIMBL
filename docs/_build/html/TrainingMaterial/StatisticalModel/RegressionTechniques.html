@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regression Techniques &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Regression Techniques</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/TrainingMaterial/StatisticalModel/RegressionTechniques.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>This section introduces several regression methods, including Least Absolute Shrinkage and Selection Operator (lasso), Ridge Regression (RR), Elastic Net (EN),  Partial Least Squares (PLS), and Principal Component Regression (PCR). After finish learning this section, the students should have ability to choose appropriate methods, tuning the hyperparameters, train the model and interpretate results.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="regression-techniques">
+<h1>Regression Techniques<a class="headerlink" href="#regression-techniques" title="Permalink to this headline"></a></h1>
+<p>The regression models considered are linear models with the general form:</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 x_0 + \beta_1 x_1 + \cdots + \beta_{n-1} x_{n-1} + \epsilon,
+\]</div>
+<p>where the <span class="math notranslate nohighlight">\(y\)</span>,  <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(\beta_i\)</span> represent output, <span class="math notranslate nohighlight">\(i\)</span>-th inputs  and <span class="math notranslate nohighlight">\(i\)</span>-th regression coefficients; <span class="math notranslate nohighlight">\(x_0 = 1\)</span>; <span class="math notranslate nohighlight">\(n\)</span> is the number of inputs and regression coefficients; and <span class="math notranslate nohighlight">\(\epsilon\)</span> denotes the error term. Without loss of generality, this model can be rewritten in matrix form as</p>
+<div class="math notranslate nohighlight">
+\[
+\bf y = \bf X \bf \beta + \bf{\epsilon},
+\]</div>
+<p>where the input data matrix <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span>, the vector of regression coefficients <span class="math notranslate nohighlight">\(\bf{\beta} \in \mathcal{R}^{n \times 1}\)</span>, <span class="math notranslate nohighlight">\(\bf{y} \in \mathcal{R}^{m \times 1}\)</span>, and <span class="math notranslate nohighlight">\(m\)</span> is the number of observations. The elements of <span class="math notranslate nohighlight">\(\bf{X}\)</span> can be any mix of raw input data and transformations of the raw data (aka
+features). The errors <span class="math notranslate nohighlight">\(\bf \epsilon\)</span> are assumed to be homoscedastic, have zero mean, and are uncorrelated.</p>
+<p>Model building involves determining the vector <span class="math notranslate nohighlight">\(\bf \beta\)</span> from the data <span class="math notranslate nohighlight">\(\bf X\)</span> and <span class="math notranslate nohighlight">\(\bf y\)</span> that minimizes the error <span class="math notranslate nohighlight">\(\bf \epsilon\)</span> concerning a defined measure of the error.</p>
+<section id="ordinary-least-squares-regression">
+<h2>Ordinary Least Squares Regression<a class="headerlink" href="#ordinary-least-squares-regression" title="Permalink to this headline"></a></h2>
+<p>The key idea of OLS regression is to find a solution <span class="math notranslate nohighlight">\(\bf \beta\)</span>  that minimizes the L2-norm of the model error <span class="math notranslate nohighlight">\(\bf \epsilon\)</span> (Strang, 2016),</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2
+\]</div>
+<p>Practically, this optimization can be solved and leads to the analytical solution</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta} = \bf X^T (\bf X \bf X ^T)^{-1} \bf y
+\]</div>
+</section>
+<section id="lasso">
+<h2>Lasso<a class="headerlink" href="#lasso" title="Permalink to this headline"></a></h2>
+<p>OLS estimates may have low bias but have very large variance for many real-world data analytics problems, resulting in low prediction accuracy on unseen data. Lasso is a strategy for addressing this problem by adding the L1-norm of the weights as a penalty to the least-squares objective (Tibshirani, 1996),</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2 + \lambda ||\bf{\beta}||_1,
+\]</div>
+<p>For positive values for <span class="math notranslate nohighlight">\(\lambda\)</span>, lasso builds a model in which some weights are zero, i.e., <span class="math notranslate nohighlight">\(\beta_i = 0\)</span>, due to the structure of the optimization. The larger the value of <span class="math notranslate nohighlight">\(\lambda\)</span>, the more weights are forced to zero. Therefore, Lasso can be used to selects a subset of variables to be used in the regression and can potentially lead to increased interpretability of results by removing measurements that are not needed in the model prediction.</p>
+</section>
+<section id="ridge-regression">
+<h2>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline"></a></h2>
+<p>The underlying motivation for Ridge Regression (RR) is identical to lasso. The difference between the methods is that Ridge Regression (RR) adds a L2-norm penalty to the objective function,</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2 + \lambda ||\bf{\beta}||_2^2,
+\]</div>
+<p>Setting the derivative of the objective function to zero leads to the closed-form solution [Hoerl and Kennard, 1970]</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta} =  (\bf X \bf X ^T + \lambda \bf{I})^{-1} \bf X^T \bf y
+\]</div>
+<p>As in lasso, the L2-norm penalty on<span class="math notranslate nohighlight">\(\lambda\)</span> can be rewritten as a constraint. Due to the shape of the constraint in the resulting optimization, the weights <span class="math notranslate nohighlight">\(\beta_i\)</span> in RR will never reach zero although they can be arbitrarily small [James et al., 2021]. Similarly to lasso, RR improves the predictive accuracy of the model by introducing a bias that reduces variance in the estimated parameters [Zou and Hastie, 2005]. However, models produced by RR can be challenging to interpret, since all model inputs are retained in the model even for high values of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+</section>
+<section id="elastic-net">
+<h2>Elastic Net<a class="headerlink" href="#elastic-net" title="Permalink to this headline"></a></h2>
+<p>The Elastic Net (EN) is a combination of lasso and RR,</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2 + \lambda P(\bf{\beta}),
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\bf{\beta}) = \frac{1-\alpha}{2} ||\bf{\beta}||_2^2 + \alpha ||\bf{\beta}||_1
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(\alpha \in (0, 1)\)</span> and non-negative values of <span class="math notranslate nohighlight">\(\lambda\)</span>. The L1-norm provides the ability to set unimportant parameters to zero whereas the L2-norm improves robustness in the selection of which parameters to retain in the model. Lasso and RR are limiting cases of the EN, for <span class="math notranslate nohighlight">\(\alpha\)</span> equal to 1 and 0, respectively.</p>
+</section>
+<section id="pca-and-pcr">
+<h2>PCA and PCR<a class="headerlink" href="#pca-and-pcr" title="Permalink to this headline"></a></h2>
+<p>Principal Component Analysis (PCA) is an approach to manipulating the data matrix <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span>. The idea of PCA is to find a lower dimensional representation of <span class="math notranslate nohighlight">\(\bf X\)</span> while conserving the variations in the data. From an optimization perspective, PCA solves</p>
+<div class="math notranslate nohighlight">
+\[
+max_{||w||_2=1} ||\bf X w||^2_2,
+\]</div>
+<p>for each principal component, with subsequent principal components also required to be orthogonal to the previous principal components. PCA finds a weighted combination of the mean subtracted columns of <span class="math notranslate nohighlight">\(\bf X\)</span> retaining maximal variance. For the first principal component, the constrained optimization is equivalent to the unconstrained optimization:</p>
+<div class="math notranslate nohighlight">
+\[
+w_1 = argmax_w \frac{w^T X^T X w}{w^Tw},
+\]</div>
+<p>The optimization is solved by <span class="math notranslate nohighlight">\(w\)</span> being the eigenvector corresponding to the largest eigenvalue of the positive semidefinite matrix <span class="math notranslate nohighlight">\(\bf{X}^T \bf{X}\)</span>.</p>
+<p>The complete projection step of PCA can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{T} = \bf{X W}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bf{T} \in \mathcal{R}^{m \times n}\)</span> is the PCA score matrix, <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span> is the data matrix, and <span class="math notranslate nohighlight">\(\bf{W} \in \mathcal{R}^{n \times n}\)</span> is a coefficient matrix. The columns of <span class="math notranslate nohighlight">\(\bf{W}\)</span> are called loadings and correspond to the eigenvectors of <span class="math notranslate nohighlight">\(\bf{X^T X}\)</span> in descending order.</p>
+<p>The above equation describes a linear transformation. The loadings form an orthogonal basis, which results in the columns of <span class="math notranslate nohighlight">\(\bf T\)</span> being decorrelated (Bengio et al., 2013). The first <span class="math notranslate nohighlight">\(l &lt; n\)</span> components of <span class="math notranslate nohighlight">\(\bf T\)</span> form the <span class="math notranslate nohighlight">\(l\)</span>-dimensional representation of <span class="math notranslate nohighlight">\(\bf{X}\)</span> preserving most variance and are denoted by <span class="math notranslate nohighlight">\(\bf{T}_l\)</span>.</p>
+<p>By combining the OLS with PCA leads to Principal Component Regression (PCR):</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta}_l = \bf T_l^T (\bf T_l \bf T_l ^T)^{-1} \bf y,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(l\)</span> is the number of principal components. Consequently, the regression coefficients in the original space are constructed
+by:</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta} = \bf{W}_l \bf{\beta}_l,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bf{W}_l\)</span> denotes the first <span class="math notranslate nohighlight">\(l\)</span> columns of the matrix <span class="math notranslate nohighlight">\(\bf{W}\)</span>.</p>
+</section>
+<section id="pls">
+<h2>PLS<a class="headerlink" href="#pls" title="Permalink to this headline"></a></h2>
+<p>Partial Least Squares (PLS) aims to find lower dimensional representations of <span class="math notranslate nohighlight">\(\bf X\)</span> and <span class="math notranslate nohighlight">\(\bf Y\)</span> and is not restricted to scalar objectives. While PCA performs dimensionality reduction in an unsupervised way, PLS incorporates information about the target <span class="math notranslate nohighlight">\(\bf Y\)</span> in the dimensionality reduction scheme. In general, the governing equations for PLS are</p>
+<div class="math notranslate nohighlight">
+\[
+\bf X = \bf{TP}^T + \bf{E},
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\bf Y = \bf{UQ}^T + \bf{F},
+\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span> is the data matrix, and <span class="math notranslate nohighlight">\(\bf{Y} \in \mathcal{R}^{m \times p}\)</span> is the matrix of responses, <span class="math notranslate nohighlight">\(\bf{T} \in \mathcal{R}^{m \times l}\)</span> is the score matrix, <span class="math notranslate nohighlight">\(\bf{P} \in \mathcal{R}^{n \times l}\)</span> is the loading matrix, and <span class="math notranslate nohighlight">\(\bf{E} \in \mathcal{R}^{m \times n}\)</span> is the residual matrix corresponding to <span class="math notranslate nohighlight">\(\bf{X}\)</span>. Similarly for <span class="math notranslate nohighlight">\(\bf{Y}\)</span>, the matrix <span class="math notranslate nohighlight">\(\bf{U} \in \mathcal{R}^{m \times l}\)</span> is its score matrix, <span class="math notranslate nohighlight">\(\bf{Q} \in \mathcal{R}^{p \times l}\)</span> is its loading matrix, and <span class="math notranslate nohighlight">\(\bf{F} \in \mathcal{R}^{m \times p}\)</span> is its residual matrix.</p>
+<p>Similarly to PCA, PLS performs a linear transformation on the input $\bf{X}, with</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{T} = \bf{XW}
+\]</div>
+<p>From an optimization perspective, PLS maximizes the sample covariance between the X scores and the responses (Wold et al., 2001, Boulesteix and Strimmer, 2006). The calculation of the first component can be written in the form of the unconstrained optimization</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{w}_1 = argmax_w \frac{\bf{w}^T \bf{X}^T y y \bf{X} w}{w^Tw},
+\]</div>
+<p>Then the same regression can be applied as PCR.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Gilbert Strang. Introduction to Linear Algebra. Cambridge Press, Wellesley, Massachusetts, fifth edition, 2016. ISBN
+9780980232776.</p></li>
+<li><p>Robert Tibshirani. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society: Series B (Methodological),
+58(1):267–288, 1996. ISSN 0035-9246. doi:10.1111/j.2517-6161.1996.tb02080.x.</p></li>
+<li><p>Hui Zou and Trevor Hastie. Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society. Series
+B: Statistical Methodology, 67(2):301–320, 2005. ISSN 13697412. doi:10.1111/j.1467-9868.2005.00503.x.</p></li>
+<li><p>Arthur E. Hoerl and Robert W. Kennard. Ridge regression: Biased estimation for nonorthogonal problems. Technometrics, 12(1):
+55–67, 1970. ISSN 15372723. doi:10.1080/00401706.1970.10488634.</p></li>
+<li><p>Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani. Linear Model Selection and Regularization. Springer, New
+York, 2021. ISBN 978-1-0716-1417-4. doi:10.1007/978-1-0716-1418-1.</p></li>
+<li><p>Yoshua Bengio, Aaron Courville, and Pascal Vincent. Representation learning: A review and new perspectives. IEEE Transactions
+on Pattern Analysis and Machine Intelligence, 35(8):1798–1828, 2013. doi:10.1109/TPAMI.2013.50.</p></li>
+<li><p>Schaeffer, J., &amp; Braatz, R. (2022). Latent Variable Method Demonstrator–Software for Understanding Multivariate Data Analytics Algorithms. arXiv preprint arXiv:2205.08132.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

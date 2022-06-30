@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlycosylationModelBase.GlycosylationModelParams &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>GlycosylationModelBase.GlycosylationModelParams</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for GlycosylationModelBase.GlycosylationModelParams</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+
+<div class="viewcode-block" id="Network"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.Network">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Network</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Dataa class for enzyme based Glycosylation newtork&quot;&quot;&quot;</span>
+    <span class="n">Man1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: alpha-1,2 mannosidase I</span>
+    <span class="n">Man2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: alpha-1,3/alpha-1,6 mannosidase II</span>
+    <span class="n">GnT1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: alpha-1,3 N-acetylglucosaminyl transferase I</span>
+    <span class="n">GnT2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: alpha-1,6 N-acetylglucosaminyl transferase II</span>
+    <span class="n">FucT</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: alpha-1,6 fucosyltransferase</span>
+    <span class="n">GalT</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: beta-1,4 galactosyltransferase</span>
+    <span class="n">SiaT</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: alpha-1,6 sialyltransferase</span></div>
+
+
+<div class="viewcode-block" id="CellCultureVariables"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables">[docs]</a><span class="nd">@dataclass</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">CellCultureVariables</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Data (static) class for cell culture state of perfusion bioreactor&quot;&quot;&quot;</span>
+    <span class="n">amm</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: Ammonia concentration</span>
+    <span class="n">mn</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: Mn concentration</span>
+    <span class="n">udpgalcyt</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: UDP-Gal balance with external addition of galactosea</span>
+    <span class="n">mabtiter</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: mAb concentratio</span>
+    <span class="n">ncyt</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: Nucleotides in cytosol</span>
+    <span class="n">nscyt</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1">#: Nucleotide sugars in cytosol</span></div>
+
+
+<div class="viewcode-block" id="GlycosylationModelParamClass"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass">[docs]</a><span class="k">class</span> <span class="nc">GlycosylationModelParamClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Static Class for Glycosylation parameters &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">99</span>  <span class="c1">#: Surface area of the Golgi  (SI table 1. um^2)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1">#: Volume of the Golgi apparatus (SI table 1. um^3)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="mf">7.82</span>  <span class="c1">#: Golgi internal diameter (SI table 1. um)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="mf">0.52</span>  <span class="c1"># from delVal (not used)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="mf">1.12</span>  <span class="c1">#: Flow rate through the Golgi (SI table 1 um^3/min)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phopt</span> <span class="o">=</span> <span class="mf">6.6</span>  <span class="c1">#: Optimal Golgi pH (SI table 5)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pka</span> <span class="o">=</span> <span class="mf">7.5</span>  <span class="c1">#: Apparent Golgi pKA (SI table 5)</span>
+
+        <span class="sd">&#39;&#39;&#39;SI table 6&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="mf">2.32</span><span class="p">,</span> <span class="mf">1.41</span><span class="p">,</span> <span class="mf">1.14</span><span class="p">,</span> <span class="mf">.822</span><span class="p">,</span> <span class="mf">1.83</span><span class="p">,</span> <span class="mf">4.00</span><span class="p">,</span>
+             <span class="mf">4.26</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e-1</span>  <span class="c1">#: peak concentration of enzyme (SI Table 7. umol/L; values divided by 10 from delVal).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zmaxj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.55</span><span class="p">,</span> <span class="mf">3.88</span><span class="p">,</span> <span class="mf">3.63</span><span class="p">,</span> <span class="mf">4.95</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">7.76</span><span class="p">,</span>
+                               <span class="mf">7.82</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e-1</span>  <span class="c1">#: localization of peak concentration of each enzyme (SI Table 7 ).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omegaj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.85</span><span class="p">,</span> <span class="mf">5.75</span><span class="p">,</span> <span class="mf">7.83</span><span class="p">,</span> <span class="mf">7.81</span><span class="p">,</span> <span class="mf">7.53</span><span class="p">,</span> <span class="mf">4.50</span><span class="p">,</span>
+                                <span class="mf">3.79</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e-2</span>  <span class="c1">#: width of concentration profile of enzyme (SI Table 6)</span>
+        <span class="k">if</span> <span class="n">is_dynamic</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">omegaj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omegaj</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="c1">#  UDP - GlcNAc / UMP, GDP - Fuc / GMP UDP - Gal / UMP CMP - Neu5Ac / CMP</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tpmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="mf">7.60</span><span class="p">,</span> <span class="mf">3.65</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">8.23</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e-7</span>  <span class="c1">#: peak concentration of transport protein (SI Table 7. umol/dm^2)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zmaxk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="mf">3.69</span><span class="p">,</span> <span class="mf">4.96</span><span class="p">,</span> <span class="mf">7.34</span><span class="p">,</span> <span class="mf">7.91</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e-1</span>  <span class="c1">#: localization of peak concentration of transport protein (SI Table 7 )</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omegak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="mf">6.51</span><span class="p">,</span> <span class="mf">8.43</span><span class="p">,</span> <span class="mf">4.26</span><span class="p">,</span> <span class="mf">5.16</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e-2</span>  <span class="c1">#: width of concentration profile of  transport protein (SI Table 7 )</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kfmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">888</span><span class="p">,</span> <span class="mi">1924</span><span class="p">,</span> <span class="mi">1022</span><span class="p">,</span> <span class="mi">1406</span><span class="p">,</span> <span class="mi">291</span><span class="p">,</span> <span class="mi">872</span><span class="p">,</span> <span class="mi">491</span><span class="p">])</span>
+        <span class="sd">&#39;&#39;&#39; maximum turnover rate for reaction (SI table 8 enzyme kinetic parameters. min^-1)&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">omegaf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.72</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">1.08</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">])</span>
+        <span class="sd">&#39;&#39;&#39; Enzymatic activity parameters determined from literature data (SI table 10)&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kcytns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.13</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">])</span>
+        <span class="sd">&#39;&#39;&#39;Table 3 from delVal. uM&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kgolgin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.135</span><span class="p">,</span> <span class="mf">0.140</span><span class="p">,</span> <span class="mf">0.124</span><span class="p">,</span> <span class="mf">0.133</span><span class="p">])</span>
+        <span class="sd">&#39;&#39;&#39;Table in Figure 3 from delVal. uM&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ktk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1084</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">689</span><span class="p">,</span> <span class="mi">397</span><span class="p">])</span>
+        <span class="sd">&#39;&#39;&#39;Table 3 from delVal. Transport kinetic parameters. 1/min&#39;&#39;&#39;</span>
+
+        <span class="c1"># other constants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mudpgal</span> <span class="o">=</span> <span class="mf">6.16e-2</span>  <span class="c1">#: Maintenance coefficient of UDP-Gal. (Table 3. mmol/L/day)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kudpgal</span> <span class="o">=</span> <span class="mf">5.14e-1</span>  <span class="c1">#: Sugar mediated nucleotide sugar synthesis. (Table 3. 1/day)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">na</span> <span class="o">=</span> <span class="mf">1.45e1</span>  <span class="c1">#: Ammonia associated Golgi pH constant (villiger Table 4. mmol/L)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kgaludpgal</span> <span class="o">=</span> <span class="mf">5.69</span> <span class="o">*</span> <span class="mf">1e1</span>  <span class="c1">#: Equilibrium constant Gal/UDP-Gal (Table 3. mmol/L)</span>
+        <span class="sd">&#39;&#39;&#39;Cell Growth&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mumax</span> <span class="o">=</span> <span class="mf">0.909</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k_amm</span> <span class="o">=</span> <span class="mf">1.86</span>
+
+        <span class="sd">&#39;&#39;&#39;to change if we want to change ammonia specific productivity&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q_amm</span> <span class="o">=</span> <span class="mf">9.36e-2</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdman1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">60.5</span><span class="p">,</span> <span class="mf">110.0</span><span class="p">,</span> <span class="mf">30.8</span><span class="p">,</span> <span class="mf">74.1</span><span class="p">]</span>  <span class="c1"># M9,8,7,6</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdman2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>  <span class="c1"># M5,4,5,4</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdgnt1</span> <span class="o">=</span> <span class="mi">115</span>  <span class="c1"># M5. and matches with villiger. 260 for del val</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt1</span> <span class="o">=</span> <span class="mi">170</span>  <span class="c1"># checked. and matches with villiger.</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdgnt2</span> <span class="o">=</span> <span class="mi">97</span>  <span class="c1"># checked</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt2</span> <span class="o">=</span> <span class="mi">960</span>  <span class="c1"># checked. and matches with del val and villiger.</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdfuct</span> <span class="o">=</span> <span class="mf">43.4</span>  <span class="c1"># checked. and matches with villiger</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdkfuct</span> <span class="o">=</span> <span class="mi">46</span>  <span class="c1"># checked. and matches with del val and villiger.</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdkgalt</span> <span class="o">=</span> <span class="mi">65</span>  <span class="c1"># checked. and matches with del val and villiger.</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdgalt</span> <span class="o">=</span> <span class="mf">1.16e4</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdgalt_f</span> <span class="o">=</span> <span class="mf">1.73e3</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdksiat</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># checked. and matches with del val and villiger.</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdsiat</span> <span class="o">=</span> <span class="mf">3.81e4</span>
+        <span class="sd">&#39;&#39;&#39;SI table 9 - dissociation constants for golgi resident enzymes&#39;&#39;&#39;</span>
+
+        <span class="c1"># mn dependence</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdmngnt</span> <span class="o">=</span> <span class="mf">5.47e-3</span>  <span class="c1">#: Manganese dissociation constant for GnT (Table 3. umol/L)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdmngalt</span> <span class="o">=</span> <span class="mf">3.82e-2</span>  <span class="c1">#: Manganese dissociation constant for GalT (Table 3. umol/L)</span>
+
+        <span class="sd">&#39;&#39;&#39;Concentrations of UDP-GlcNAc, GDP-Fuc, UDP-Gal, CMP-Neu5Ac&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nscyt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.62</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="mf">0.1158</span><span class="p">,</span> <span class="mf">0.040</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e3</span>  <span class="c1"># uM</span>
+
+        <span class="sd">&#39;&#39;&#39;Concentrations of UMP + UDP, GMP+GDP, CMP+CDP&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ncyt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.490</span> <span class="o">+</span> <span class="mf">1.452</span><span class="p">,</span> <span class="mf">0.117</span> <span class="o">+</span> <span class="mf">0.379</span><span class="p">,</span> <span class="mf">0.058</span> <span class="o">+</span> <span class="mf">0.190</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e3</span>  <span class="c1"># uM</span>
+
+        <span class="sd">&#39;&#39;&#39;titer&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mabtiter</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mf">8.03</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">12</span> <span class="o">/</span> <span class="mf">1.12</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">15</span> <span class="o">/</span> <span class="mi">150</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span>  <span class="c1"># umol/L</span>
+
+        <span class="k">if</span> <span class="n">noise</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">phopt</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phopt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">phopt</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pka</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pka</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pka</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">emax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emax</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">zmaxj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zmaxj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zmaxj</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">omegaj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omegaj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omegaj</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tpmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tpmax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tpmax</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">zmaxk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zmaxk</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zmaxk</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">omegak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omegak</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omegak</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kfmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kfmax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kfmax</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">omegaf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omegaf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omegaf</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kcytns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kcytns</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kcytns</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kgolgin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kgolgin</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kgolgin</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ktk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ktk</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ktk</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mudpgal</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mudpgal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mudpgal</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kudpgal</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kudpgal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kudpgal</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">na</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">na</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">na</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kgaludpgal</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kgaludpgal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kgaludpgal</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">mumax</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mumax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mumax</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">k_amm</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_amm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_amm</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">q_amm</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q_amm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_amm</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdman1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdman1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdman1</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdman2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdman2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdman2</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdgnt1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdgnt1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdgnt1</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt1</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdgnt2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdgnt2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdgnt2</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdkgnt2</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdfuct</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdfuct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdfuct</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdkfuct</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdkfuct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdkfuct</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdkgalt</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdkgalt</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdgalt</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdgalt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdgalt</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdgalt_f</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdgalt_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdgalt_f</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdksiat</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdksiat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdksiat</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdsiat</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdsiat</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdmngnt</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdmngnt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdmngnt</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdmngalt</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kdmngalt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdmngalt</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nscyt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nscyt</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nscyt</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ncyt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ncyt</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ncyt</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mabtiter</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mabtiter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mabtiter</span> <span class="o">*</span> <span class="n">noise</span><span class="p">)</span></div>
+
+
+<span class="n">label_matrix_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="s1">&#39;UMP_UDP_Conc&#39;</span><span class="p">,</span> <span class="mi">1942</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;CMP_CDP_Conc&#39;</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;GMP_GDP_Conc&#39;</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;UDP_Glc_Conc&#39;</span><span class="p">,</span> <span class="mi">1620</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;GDP_Fuc_Conc&#39;</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;CMP_Neu_Conc&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;GnTI_Kd&#39;</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mf">0.1840</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;FucT_Kd&#39;</span><span class="p">,</span> <span class="mf">78.6000</span><span class="p">,</span> <span class="mf">0.1610</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;GalT_FA2G0_Kd&#39;</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mf">0.0610</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;GalT_FA2G1_Kd&#39;</span><span class="p">,</span> <span class="mi">4400</span><span class="p">,</span> <span class="mf">0.0240</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;GalT_K_Mn&#39;</span><span class="p">,</span> <span class="mf">0.1181</span><span class="p">,</span> <span class="mf">0.0820</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;Mn_Conc&#39;</span><span class="p">,</span> <span class="mf">0.0100</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;Gal_Conc&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;Amm_Conc &#39;</span><span class="p">,</span> <span class="mf">1.5000</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;qmab&#39;</span><span class="p">,</span> <span class="mf">66.4000</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">]])</span>
+
+<span class="n">label_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="s1">&#39;UMP_UDP_Conc&#39;</span><span class="p">,</span> <span class="mi">1942</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;CMP_CDP_Conc&#39;</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;GMP_GDP_Conc&#39;</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;UDP_Glc_Conc&#39;</span><span class="p">,</span> <span class="mi">1620</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;GDP_Fuc_Conc&#39;</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;CMP_Neu_Conc&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;GnTI_Kd&#39;</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mf">0.1840</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;FucT_Kd&#39;</span><span class="p">,</span> <span class="mf">78.6000</span><span class="p">,</span> <span class="mf">0.1610</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;GalT_FA2G0_Kd&#39;</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mf">0.0610</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;GalT_FA2G1_Kd&#39;</span><span class="p">,</span> <span class="mi">4400</span><span class="p">,</span> <span class="mf">0.0240</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;GalT_K_Mn&#39;</span><span class="p">,</span> <span class="mf">0.1181</span><span class="p">,</span> <span class="mf">0.0820</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;mu_max&#39;</span><span class="p">,</span> <span class="mf">0.9090</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;kgal_udpgal&#39;</span><span class="p">,</span> <span class="mf">56.9000</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;Amm_prod&#39;</span><span class="p">,</span> <span class="mf">0.0936</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;qmab&#39;</span><span class="p">,</span> <span class="mf">66.4000</span><span class="p">,</span> <span class="mf">0.1000</span><span class="p">]</span>
+                         <span class="p">])</span>
+
+<span class="n">default_initial_states</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.80000000000000</span><span class="p">,</span>
+                          <span class="mf">63.6663908285356</span><span class="p">,</span>
+                          <span class="mf">0.161999999999992</span><span class="p">,</span>
+                          <span class="mf">4.76727639704635</span><span class="p">,</span>
+                          <span class="mf">0.408987494319253</span><span class="p">,</span>
+                          <span class="mf">8.99999999999949</span><span class="p">,</span>
+                          <span class="mf">3.59297567587514e-09</span><span class="p">,</span>
+                          <span class="mf">0.000218577287977678</span><span class="p">,</span>
+                          <span class="mf">8.50037601725363e-05</span><span class="p">,</span>
+                          <span class="mf">0.000621135859993949</span><span class="p">,</span>
+                          <span class="mf">0.00869962639240848</span><span class="p">,</span>
+                          <span class="mf">0.00985212908037032</span><span class="p">,</span>
+                          <span class="mf">0.00499724032254945</span><span class="p">,</span>
+                          <span class="mf">0.0886110715709328</span><span class="p">,</span>
+                          <span class="mf">0.000628533413373264</span><span class="p">,</span>
+                          <span class="mf">0.0749560938463601</span><span class="p">,</span>
+                          <span class="mf">0.0131822876661247</span><span class="p">,</span>
+                          <span class="mf">0.275027412331113</span><span class="p">,</span>
+                          <span class="mf">0.00741195243683822</span><span class="p">,</span>
+                          <span class="mf">8.78026225919547</span><span class="p">,</span>
+                          <span class="mf">0.0527983257868376</span><span class="p">,</span>
+                          <span class="mf">0.296699346037757</span><span class="p">,</span>
+                          <span class="mf">0.296699346037757</span><span class="p">,</span>
+                          <span class="mf">0.000132939737207326</span><span class="p">,</span>
+                          <span class="mf">5.92149328027054</span><span class="p">,</span>
+                          <span class="mf">5.92149328027054</span><span class="p">,</span>
+                          <span class="mf">0.000819874801904915</span><span class="p">,</span>
+                          <span class="mf">0.149964716124047</span><span class="p">,</span>
+                          <span class="mf">0.00403812322356789</span><span class="p">,</span>
+                          <span class="mf">0.00403812322356785</span><span class="p">,</span>
+                          <span class="mf">2.45770781499769</span><span class="p">,</span>
+                          <span class="mf">0.0676981380786785</span><span class="p">,</span>
+                          <span class="mf">0.0676981380786783</span><span class="p">,</span>
+                          <span class="mf">0.00122047961684700</span><span class="p">,</span>
+                          <span class="mf">0.00122047961684701</span><span class="p">,</span>
+                          <span class="mf">0.0180467299836550</span><span class="p">,</span>
+                          <span class="mf">0.0180467299836551</span><span class="p">,</span>
+                          <span class="mf">1.44854746452927e-05</span><span class="p">,</span>
+                          <span class="mf">0.000196725070420910</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

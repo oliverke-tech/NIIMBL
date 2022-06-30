@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RamanAnalytics package &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="GlycosylationModelBase package" href="../GlycosylationModelBase/GlycosylationModelBase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RamanAnalytics package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-RamanAnalytics.Analysis">RamanAnalytics.Analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-RamanAnalytics.Preprocessing">RamanAnalytics.Preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-RamanAnalytics.ReadDx">RamanAnalytics.ReadDx module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-RamanAnalytics.ReadSpc">RamanAnalytics.ReadSpc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-RamanAnalytics">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>RamanAnalytics package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/RamanAnalytics/RamanAnalytics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="ramananalytics-package">
+<h1>RamanAnalytics package<a class="headerlink" href="#ramananalytics-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-RamanAnalytics.Analysis">
+<span id="ramananalytics-analysis-module"></span><h2>RamanAnalytics.Analysis module<a class="headerlink" href="#module-RamanAnalytics.Analysis" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.EN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Analysis.</span></span><span class="sig-name descname"><span class="pre">EN</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#EN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.EN" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Elastic Net:</p>
+<p>Minimizes the objective function:</p>
+<div class="math notranslate nohighlight">
+\[||y - Xw||^2_2 + \alpha * r * ||w||_1 + 0.5 * \alpha * (1 - r) * ||w||^2_2\]</div>
+<p>The parameter r is the L1 ratio. r = 1 is the lasso penalty and r = 0 is the ridge regression penalty.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.EN.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Metabolite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#EN.analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.EN.analysis" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> – input data at training set;</p></li>
+<li><p><strong>X_test</strong> – input data at test set;</p></li>
+<li><p><strong>y_train</strong> – output at training set;</p></li>
+<li><p><strong>y_test</strong> – output at test set;</p></li>
+<li><p><strong>Metabolite</strong> – the name of output;</p></li>
+<li><p><strong>def_alpha</strong> – Regularization strength; must be a positive float.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.LA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Analysis.</span></span><span class="sig-name descname"><span class="pre">LA</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#LA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.LA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Lasso:
+Minimizes the objective function:</p>
+<div class="math notranslate nohighlight">
+\[||y - Xw||^2_2 + \alpha * ||w||_1\]</div>
+<p>This model solves a regression model where the loss function is
+the linear least squares function with L1 prior as regularizer (aka the Lasso).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.LA.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Metabolite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#LA.analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.LA.analysis" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> – input data at training set;</p></li>
+<li><p><strong>X_test</strong> – input data at test set;</p></li>
+<li><p><strong>y_train</strong> – output at training set;</p></li>
+<li><p><strong>y_test</strong> – output at test set;</p></li>
+<li><p><strong>Metabolite</strong> – the name of output;</p></li>
+<li><p><strong>def_alpha</strong> – Regularization strength; must be a positive float.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.PCR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Analysis.</span></span><span class="sig-name descname"><span class="pre">PCR</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#PCR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.PCR" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Principal component analysis (PCA) with Linear Regression.</p>
+<p>PCA:
+Linear dimensionality reduction using Singular Value Decomposition of the
+data to project it to a lower dimensional space. The input data is centered
+but not scaled for each feature before applying the SVD.</p>
+<p>Linear Regression:
+LinearRegression fits a linear model with coefficients
+to minimize the residual sum of squares between the observed targets in
+the dataset, and the targets predicted by the linear approximation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.PCR.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Metabolite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def_comp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#PCR.analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.PCR.analysis" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> – input data at training set;</p></li>
+<li><p><strong>X_test</strong> – input data at test set;</p></li>
+<li><p><strong>y_train</strong> – output at training set;</p></li>
+<li><p><strong>y_test</strong> – output at test set;</p></li>
+<li><p><strong>Metabolite</strong> – the name of output;</p></li>
+<li><p><strong>def_comp</strong> – number of components to keep</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.PLS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Analysis.</span></span><span class="sig-name descname"><span class="pre">PLS</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#PLS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.PLS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Partial least squares regression (PLS):
+find the multidimensional direction in the input space that explains
+the maximum multidimensional variance direction in the output space.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.PLS.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Metabolite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def_comp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#PLS.analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.PLS.analysis" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> – input data at training set;</p></li>
+<li><p><strong>X_test</strong> – input data at test set;</p></li>
+<li><p><strong>y_train</strong> – output at training set;</p></li>
+<li><p><strong>y_test</strong> – output at test set;</p></li>
+<li><p><strong>Metabolite</strong> – the name of output;</p></li>
+<li><p><strong>def_comp</strong> – number of components to keep</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.RR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Analysis.</span></span><span class="sig-name descname"><span class="pre">RR</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#RR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.RR" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Ridge Regression:
+Minimizes the objective function:</p>
+<div class="math notranslate nohighlight">
+\[||y - Xw||^2_2 + \alpha * ||w||^2_2\]</div>
+<p>This model solves a regression model where the loss function is
+the linear least squares function with regularization is given by
+the l2-norm.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Analysis.RR.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Metabolite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Analysis.html#RR.analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Analysis.RR.analysis" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> – input data at training set;</p></li>
+<li><p><strong>X_test</strong> – input data at test set;</p></li>
+<li><p><strong>y_train</strong> – output at training set;</p></li>
+<li><p><strong>y_test</strong> – output at test set;</p></li>
+<li><p><strong>Metabolite</strong> – the name of output;</p></li>
+<li><p><strong>def_alpha</strong> – Regularization strength; must be a positive float.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-RamanAnalytics.Preprocessing">
+<span id="ramananalytics-preprocessing-module"></span><h2>RamanAnalytics.Preprocessing module<a class="headerlink" href="#module-RamanAnalytics.Preprocessing" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.GeneralTransformer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Preprocessing.</span></span><span class="sig-name descname"><span class="pre">GeneralTransformer</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#GeneralTransformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.GeneralTransformer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.GeneralTransformer.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#GeneralTransformer.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.GeneralTransformer.fit_transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.derivative">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Preprocessing.</span></span><span class="sig-name descname"><span class="pre">derivative</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.derivative" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#RamanAnalytics.Preprocessing.GeneralTransformer" title="RamanAnalytics.Preprocessing.GeneralTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RamanAnalytics.Preprocessing.GeneralTransformer</span></code></a></p>
+<p>Performs n order derivative transformation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.derivative.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#derivative.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.derivative.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.derivative.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#derivative.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.derivative.fit_transform" title="Permalink to this definition"></a></dt>
+<dd><p>Fit and transform the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spc</strong> – Input  row wise dataframe to calculate derivative</p></li>
+<li><p><strong>d</strong> – Degree of derivative</p></li>
+<li><p><strong>drop</strong> – Drop nan columns after derivation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Calculated derivated dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.detrend">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Preprocessing.</span></span><span class="sig-name descname"><span class="pre">detrend</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#detrend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.detrend" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#RamanAnalytics.Preprocessing.GeneralTransformer" title="RamanAnalytics.Preprocessing.GeneralTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RamanAnalytics.Preprocessing.GeneralTransformer</span></code></a></p>
+<p>Normalizes each row of an input data.frame or matrix by  fitting a second order linear model and returning the fitted residuals.
+The detrend is a row-wise transformation that allows to correct for wavelength-dependent scattering effects (variations in curvilinearity).
+A second-degree polynomial is fit through each spectrum</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.detrend.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#detrend.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.detrend.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.detrend.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wave</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#detrend.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.detrend.fit_transform" title="Permalink to this definition"></a></dt>
+<dd><p>Fit and transform the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spc</strong> – Input  dataframe (row wise) with the Abs of each spectrum</p></li>
+<li><p><strong>wave</strong> – Wavelength array vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return detrended_df</dt>
+<dd class="field-even"><p>spectra array or matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.msc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Preprocessing.</span></span><span class="sig-name descname"><span class="pre">msc</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#msc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.msc" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#RamanAnalytics.Preprocessing.GeneralTransformer" title="RamanAnalytics.Preprocessing.GeneralTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RamanAnalytics.Preprocessing.GeneralTransformer</span></code></a></p>
+<p>This function implements the multiplicative scatter correction method which attempts to remove physical light scatter
+by accounting for additive and multiplicative effects The Multiplicative Scatter Correction (MSC) is a normalization
+method that attempts to account for additive and multiplicative effects by aligning each spectrum (x_i) with an
+ideal reference one (x_r) as follows:</p>
+<div class="math notranslate nohighlight">
+\[x_i = m_i x_r + a_{i}x_{i} = m_i x_r + a_i \text{MSC}(x_i) = a_i - x_{im_{iMSC}}(x_i) = a_i - x_i/m_i\]</div>
+<p>where a_ia_i and m_im_i are the additive and multiplicative terms respectively.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.msc.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#msc.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.msc.fit" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spc</strong> – Row wise input data frame</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.msc.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#msc.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.msc.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.sav_gol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Preprocessing.</span></span><span class="sig-name descname"><span class="pre">sav_gol</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#sav_gol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.sav_gol" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#RamanAnalytics.Preprocessing.GeneralTransformer" title="RamanAnalytics.Preprocessing.GeneralTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RamanAnalytics.Preprocessing.GeneralTransformer</span></code></a></p>
+<p>Performs Savitzky golay smmothing.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.sav_gol.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#sav_gol.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.sav_gol.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.sav_gol.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deriv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#sav_gol.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.sav_gol.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transform the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spc</strong> – Input row wise dataframe of spectra</p></li>
+<li><p><strong>window</strong> – The length of the filter window (i.e., the number of coefficients). window_length must be a positive odd integer.</p></li>
+</ul>
+</dd>
+</dl>
+<p>:param poly:The order of the polynomial used to fit the samples. polyorder must be less than window_length.
+:param deriv: The order of the derivative to compute. This must be a nonnegative integer. The default is 0, which means to filter the data without differentiating.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>smoothed data</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.snv">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.Preprocessing.</span></span><span class="sig-name descname"><span class="pre">snv</span></span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#snv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.snv" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#RamanAnalytics.Preprocessing.GeneralTransformer" title="RamanAnalytics.Preprocessing.GeneralTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RamanAnalytics.Preprocessing.GeneralTransformer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.snv.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#snv.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.snv.fit" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates Standard normal variate transformation by:</p>
+<div class="math notranslate nohighlight">
+\[(x_i - x_{mean})/x_{std}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spc</strong> – row wise dataframe of spectra. Each row is a different sample</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Fitted object  with mean and std.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.Preprocessing.snv.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/Preprocessing.html#snv.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.Preprocessing.snv.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-RamanAnalytics.ReadDx">
+<span id="ramananalytics-readdx-module"></span><h2>RamanAnalytics.ReadDx module<a class="headerlink" href="#module-RamanAnalytics.ReadDx" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="RamanAnalytics.ReadDx.ReadDx">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RamanAnalytics.ReadDx.</span></span><span class="sig-name descname"><span class="pre">ReadDx</span></span><a class="reference internal" href="../_modules/RamanAnalytics/ReadDx.html#ReadDx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.ReadDx.ReadDx" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.ReadDx.ReadDx.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'##TITLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'##END'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/ReadDx.html#ReadDx.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.ReadDx.ReadDx.read" title="Permalink to this definition"></a></dt>
+<dd><p>Read a single file
+:param filename: the dx file’s name
+:return: loaded data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="RamanAnalytics.ReadDx.ReadDx.read_from_dir">
+<span class="sig-name descname"><span class="pre">read_from_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.dx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'##TITLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'##END'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/ReadDx.html#ReadDx.read_from_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.ReadDx.ReadDx.read_from_dir" title="Permalink to this definition"></a></dt>
+<dd><p>#Read all files from directory and create a list, also ensures that the extension of file is correct
+:param Directory: the dx files’ directory
+:return: loaded data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-RamanAnalytics.ReadSpc">
+<span id="ramananalytics-readspc-module"></span><h2>RamanAnalytics.ReadSpc module<a class="headerlink" href="#module-RamanAnalytics.ReadSpc" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="RamanAnalytics.ReadSpc.read_spc">
+<span class="sig-prename descclassname"><span class="pre">RamanAnalytics.ReadSpc.</span></span><span class="sig-name descname"><span class="pre">read_spc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/ReadSpc.html#read_spc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.ReadSpc.read_spc" title="Permalink to this definition"></a></dt>
+<dd><p>Read a single file
+:param filename: the spc file’s name
+:return: loaded data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="RamanAnalytics.ReadSpc.read_spc_dir">
+<span class="sig-prename descclassname"><span class="pre">RamanAnalytics.ReadSpc.</span></span><span class="sig-name descname"><span class="pre">read_spc_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.spc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Row'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/RamanAnalytics/ReadSpc.html#read_spc_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RamanAnalytics.ReadSpc.read_spc_dir" title="Permalink to this definition"></a></dt>
+<dd><p>#Read all files from directory and create a list, also ensures that the extension of file is correct
+:param ext:
+:param directory: the spc files’ directory
+:param orient: the orientation of dataframe, column-wise or row-wise.
+:return: loaded data</p>
+</dd></dl>
+
+</section>
+<section id="module-RamanAnalytics">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-RamanAnalytics" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../GlycosylationModelBase/GlycosylationModelBase.html" class="btn btn-neutral float-left" title="GlycosylationModelBase package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

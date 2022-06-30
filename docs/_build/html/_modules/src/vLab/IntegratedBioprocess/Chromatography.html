@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.vLab.IntegratedBioprocess.Chromatography &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>src.vLab.IntegratedBioprocess.Chromatography</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.vLab.IntegratedBioprocess.Chromatography</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.Util</span> <span class="kn">import</span> <span class="n">repmat</span><span class="p">,</span> <span class="n">ChromatographyModel</span>
+
+
+<div class="viewcode-block" id="chromatography"><a class="viewcode-back" href="../../../../IntegratedBioprocess/Chromatography.html#src.vLab.IntegratedBioprocess.Chromatography.chromatography">[docs]</a><span class="k">def</span> <span class="nf">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">u_F</span><span class="p">,</span> <span class="n">u_Cin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Compute the derivatives of chromatograph simulator</span>
+
+<span class="sd">    :param t: time</span>
+<span class="sd">    :type t: float</span>
+<span class="sd">    :param x:  process state at time t</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param param: chromatography model parameters</span>
+<span class="sd">    :type param: ChromatographyModel</span>
+<span class="sd">    :param u_F: flow rates of bioreactor, harvest tank and chromatograph (load/wash/elute) at time t</span>
+<span class="sd">    :type u_F: array</span>
+<span class="sd">    :param u_Cin: inlet concentrations at time t</span>
+<span class="sd">    :type u_Cin: array</span>
+<span class="sd">    :return: derivout</span>
+<span class="sd">    :rtype: array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># distributed states</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">n</span>  <span class="c1"># discretization has to be fixed due to adjoint structural analysis</span>
+    <span class="n">distributedstates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">[:(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">n</span><span class="p">)],</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>  <span class="c1"># extract distributed states</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distributedstates</span><span class="p">[:</span><span class="mi">7</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># columns liquid phase conc (g/L)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distributedstates</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># columns solid phase conc (g/L)</span>
+
+    <span class="sd">&#39;&#39;&#39; chromatography computed terms &#39;&#39;&#39;</span>
+    <span class="c1"># unit convention [L/h]</span>
+    <span class="n">dz</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># [cm]</span>
+    <span class="n">kdes</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">kads</span> <span class="o">/</span> <span class="n">param</span><span class="o">.</span><span class="n">K</span>  <span class="c1"># [1/h]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u_F</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">/</span> <span class="n">param</span><span class="o">.</span><span class="n">area</span>  <span class="c1"># [cm^2/h]</span>
+    <span class="c1"># u=np.array([repmat(u(1),4,1), repmat(u(2),3,1)])</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(([</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span>
+
+    <span class="c1">## calculation of wall fluxes for 3&lt;=p&lt;=N-2</span>
+    <span class="n">beta03</span> <span class="o">=</span> <span class="mf">13.</span> <span class="o">/</span> <span class="mf">12.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> \
+             <span class="mf">1.</span> <span class="o">/</span> <span class="mf">4.</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">4.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">beta13</span> <span class="o">=</span> <span class="mf">13.</span> <span class="o">/</span> <span class="mf">12.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> \
+             <span class="mf">1.</span> <span class="o">/</span> <span class="mf">4.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">beta23</span> <span class="o">=</span> <span class="mf">13.</span> <span class="o">/</span> <span class="mf">12.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> \
+             <span class="mf">1.</span> <span class="o">/</span> <span class="mf">4.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mf">4.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-16</span>
+
+    <span class="n">alpha0</span> <span class="o">=</span> <span class="mf">3.</span> <span class="o">/</span> <span class="mf">10.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta03</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha1</span> <span class="o">=</span> <span class="mf">6.</span> <span class="o">/</span> <span class="mf">10.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta13</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha2</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">10.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta23</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">sumalpha</span> <span class="o">=</span> <span class="n">alpha0</span> <span class="o">+</span> <span class="n">alpha1</span> <span class="o">+</span> <span class="n">alpha2</span>
+
+    <span class="n">omega0</span> <span class="o">=</span> <span class="n">alpha0</span> <span class="o">/</span> <span class="n">sumalpha</span>
+    <span class="n">omega1</span> <span class="o">=</span> <span class="n">alpha1</span> <span class="o">/</span> <span class="n">sumalpha</span>
+    <span class="n">omega2</span> <span class="o">=</span> <span class="n">alpha2</span> <span class="o">/</span> <span class="n">sumalpha</span>
+
+    <span class="n">ci0atpplushalf</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">5.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:]</span>
+    <span class="n">ci1atpplushalf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mf">5.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ci2atpplushalf</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mf">7.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mf">11.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">ciatpplushalf</span> <span class="o">=</span> <span class="n">omega0</span> <span class="o">*</span> <span class="n">ci0atpplushalf</span> <span class="o">+</span> <span class="n">omega1</span> <span class="o">*</span> <span class="n">ci1atpplushalf</span> <span class="o">+</span> <span class="n">omega2</span> <span class="o">*</span> <span class="n">ci2atpplushalf</span>
+
+    <span class="sd">&#39;&#39;&#39; calculation of wall fluxes for p==2 and p==N-1 &#39;&#39;&#39;</span>
+    <span class="n">beta02pe2</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">beta12pe2</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">beta02penm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">beta12penm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">alpha0pe2</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta02pe2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha1pe2</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta12pe2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">alpha0penm1</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta02penm1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha1penm1</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta12penm1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">omega0pe2</span> <span class="o">=</span> <span class="n">alpha0pe2</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0pe2</span> <span class="o">+</span> <span class="n">alpha1pe2</span><span class="p">)</span>
+    <span class="n">omega1pe2</span> <span class="o">=</span> <span class="n">alpha1pe2</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0pe2</span> <span class="o">+</span> <span class="n">alpha1pe2</span><span class="p">)</span>
+
+    <span class="n">omega0penm1</span> <span class="o">=</span> <span class="n">alpha0penm1</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0penm1</span> <span class="o">+</span> <span class="n">alpha1penm1</span><span class="p">)</span>
+    <span class="n">omega1penm1</span> <span class="o">=</span> <span class="n">alpha1penm1</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0penm1</span> <span class="o">+</span> <span class="n">alpha1penm1</span><span class="p">)</span>
+
+    <span class="n">ci0at2half</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">ci1at2half</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">ci0atnmhalf</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ci1atnmhalf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">ciat2half</span> <span class="o">=</span> <span class="n">omega0pe2</span> <span class="o">*</span> <span class="n">ci0at2half</span> <span class="o">+</span> <span class="n">omega1pe2</span> <span class="o">*</span> <span class="n">ci1at2half</span>
+    <span class="n">ciatnmhalf</span> <span class="o">=</span> <span class="n">omega0penm1</span> <span class="o">*</span> <span class="n">ci0atnmhalf</span> <span class="o">+</span> <span class="n">omega1penm1</span> <span class="o">*</span> <span class="n">ci1atnmhalf</span>
+
+    <span class="n">cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">u_Cin</span><span class="p">,</span> <span class="n">c</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">ciatpplushalf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">cin</span><span class="p">,</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ciat2half</span><span class="p">,</span> <span class="n">ciatpplushalf</span><span class="p">,</span> <span class="n">ciatnmhalf</span><span class="p">,</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+    <span class="c1"># calculation of concentration gradients</span>
+    <span class="n">pcpz</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dz</span>
+    <span class="n">pcpz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pcpz</span><span class="p">,</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="sd">&#39;&#39;&#39; column derivative computation &#39;&#39;&#39;</span>
+
+    <span class="c1"># bilangmuir for A, moderated by a eluant concentration sigmoid on the</span>
+    <span class="c1"># adsorption rate</span>
+    <span class="n">pqptheta1</span> <span class="o">=</span> <span class="n">repmat</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">kads</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">qsi</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">q</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> \
+                <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">param</span><span class="o">.</span><span class="n">elebeta</span> <span class="o">*</span> <span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">elealpha</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:])))</span> <span class="o">-</span> <span class="n">repmat</span><span class="p">(</span><span class="n">kdes</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">pqptheta2</span> <span class="o">=</span> <span class="n">repmat</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">kads</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">qsi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span> <span class="o">-</span> <span class="n">repmat</span><span class="p">(</span><span class="n">kdes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span>
+                                                                                                                  <span class="p">:]</span>
+
+    <span class="n">pcptheta</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">ciatpplushalf</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">ciatpplushalf</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dz</span> <span class="o">/</span> <span class="n">param</span><span class="o">.</span><span class="n">epsilontotal</span> <span class="o">+</span> \
+               <span class="n">param</span><span class="o">.</span><span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="n">pcpz</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">pcpz</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dz</span> <span class="o">/</span> <span class="n">param</span><span class="o">.</span><span class="n">epsilontotal</span>
+
+    <span class="n">pcptheta</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">pcptheta</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">pqptheta1</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">epsilonpore</span> <span class="o">/</span> <span class="n">param</span><span class="o">.</span><span class="n">epsilontotal</span>
+    <span class="n">pcptheta</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">pcptheta</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">pqptheta2</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">epsilonpore</span> <span class="o">/</span> <span class="n">param</span><span class="o">.</span><span class="n">epsilontotal</span>
+
+    <span class="c1"># derivative stacking</span>
+    <span class="n">derivout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">([</span><span class="n">pcptheta</span><span class="p">,</span> <span class="n">pqptheta1</span><span class="p">,</span> <span class="n">pqptheta2</span><span class="p">])</span>
+    <span class="c1"># Matlab flatten matrix in column order. Thus set order=&#39;F&#39; in the following</span>
+    <span class="n">derivout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">derivout</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">),</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">derivout</span></div>
+
+
+<div class="viewcode-block" id="chromatography_julia"><a class="viewcode-back" href="../../../../IntegratedBioprocess/Chromatography.html#src.vLab.IntegratedBioprocess.Chromatography.chromatography_julia">[docs]</a><span class="k">def</span> <span class="nf">chromatography_julia</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u_F</span><span class="p">,</span> <span class="n">u_Cin</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Compute the derivatives of chromatograph simulator for DifferentialEquation.jl.</span>
+<span class="sd">    Note: this function produce the same derivative as ``chromatography(t, x, param, u_F, u_Cin)``.</span>
+
+<span class="sd">    :param t: time</span>
+<span class="sd">    :type t: float</span>
+<span class="sd">    :param x:  process state</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param param: chromatography model parameters</span>
+<span class="sd">    :type param: array</span>
+<span class="sd">    :param u_F: flow rates of bioreactor, harvest tank and chromatograph (load/wash/elute)</span>
+<span class="sd">    :type u_F: array</span>
+<span class="sd">    :param u_Cin: inlet concentrations</span>
+<span class="sd">    :type u_Cin: array</span>
+<span class="sd">    :return: derivout</span>
+<span class="sd">    :rtype: array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">epsilontotal</span><span class="p">,</span> <span class="n">epsilonpore</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">kads</span><span class="p">,</span> <span class="n">qsi</span><span class="p">,</span> <span class="n">elealpha</span><span class="p">,</span> <span class="n">elebeta</span> <span class="o">=</span> <span class="n">param</span>
+    <span class="c1"># distributed states</span>
+    <span class="c1"># n = n  # discretization has to be fixed due to adjoint structural analysis</span>
+    <span class="n">distributedstates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">[:(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">n</span><span class="p">)],</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>  <span class="c1"># extract distributed states</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distributedstates</span><span class="p">[:</span><span class="mi">7</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># columns liquid phase conc (g/L)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distributedstates</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># columns solid phase conc (g/L)</span>
+
+    <span class="sd">&#39;&#39;&#39; chromatography computed terms &#39;&#39;&#39;</span>
+    <span class="c1"># unit convention [L/h]</span>
+    <span class="n">dz</span> <span class="o">=</span> <span class="n">length</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># [cm]</span>
+    <span class="n">kdes</span> <span class="o">=</span> <span class="n">kads</span> <span class="o">/</span> <span class="n">K</span>  <span class="c1"># [1/h]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u_F</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">/</span> <span class="n">area</span>  <span class="c1"># [cm^2/h]</span>
+    <span class="c1"># u=np.array([repmat(u(1),4,1), repmat(u(2),3,1)])</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(([</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span>
+
+    <span class="c1">## calculation of wall fluxes for 3&lt;=p&lt;=N-2</span>
+    <span class="n">beta03</span> <span class="o">=</span> <span class="mf">13.</span> <span class="o">/</span> <span class="mf">12.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> \
+             <span class="mf">1.</span> <span class="o">/</span> <span class="mf">4.</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">4.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">beta13</span> <span class="o">=</span> <span class="mf">13.</span> <span class="o">/</span> <span class="mf">12.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> \
+             <span class="mf">1.</span> <span class="o">/</span> <span class="mf">4.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">beta23</span> <span class="o">=</span> <span class="mf">13.</span> <span class="o">/</span> <span class="mf">12.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> \
+             <span class="mf">1.</span> <span class="o">/</span> <span class="mf">4.</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mf">4.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-16</span>
+
+    <span class="n">alpha0</span> <span class="o">=</span> <span class="mf">3.</span> <span class="o">/</span> <span class="mf">10.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta03</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha1</span> <span class="o">=</span> <span class="mf">6.</span> <span class="o">/</span> <span class="mf">10.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta13</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha2</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">10.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta23</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">sumalpha</span> <span class="o">=</span> <span class="n">alpha0</span> <span class="o">+</span> <span class="n">alpha1</span> <span class="o">+</span> <span class="n">alpha2</span>
+
+    <span class="n">omega0</span> <span class="o">=</span> <span class="n">alpha0</span> <span class="o">/</span> <span class="n">sumalpha</span>
+    <span class="n">omega1</span> <span class="o">=</span> <span class="n">alpha1</span> <span class="o">/</span> <span class="n">sumalpha</span>
+    <span class="n">omega2</span> <span class="o">=</span> <span class="n">alpha2</span> <span class="o">/</span> <span class="n">sumalpha</span>
+
+    <span class="n">ci0atpplushalf</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">5.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:]</span>
+    <span class="n">ci1atpplushalf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mf">5.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ci2atpplushalf</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mf">7.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mf">11.</span> <span class="o">/</span> <span class="mf">6.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">ciatpplushalf</span> <span class="o">=</span> <span class="n">omega0</span> <span class="o">*</span> <span class="n">ci0atpplushalf</span> <span class="o">+</span> <span class="n">omega1</span> <span class="o">*</span> <span class="n">ci1atpplushalf</span> <span class="o">+</span> <span class="n">omega2</span> <span class="o">*</span> <span class="n">ci2atpplushalf</span>
+
+    <span class="sd">&#39;&#39;&#39; calculation of wall fluxes for p==2 and p==N-1 &#39;&#39;&#39;</span>
+    <span class="n">beta02pe2</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">beta12pe2</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">beta02penm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">beta12penm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">alpha0pe2</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta02pe2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha1pe2</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta12pe2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">alpha0penm1</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta02penm1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha1penm1</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">+</span> <span class="n">beta12penm1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">omega0pe2</span> <span class="o">=</span> <span class="n">alpha0pe2</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0pe2</span> <span class="o">+</span> <span class="n">alpha1pe2</span><span class="p">)</span>
+    <span class="n">omega1pe2</span> <span class="o">=</span> <span class="n">alpha1pe2</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0pe2</span> <span class="o">+</span> <span class="n">alpha1pe2</span><span class="p">)</span>
+
+    <span class="n">omega0penm1</span> <span class="o">=</span> <span class="n">alpha0penm1</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0penm1</span> <span class="o">+</span> <span class="n">alpha1penm1</span><span class="p">)</span>
+    <span class="n">omega1penm1</span> <span class="o">=</span> <span class="n">alpha1penm1</span> <span class="o">/</span> <span class="p">(</span><span class="n">alpha0penm1</span> <span class="o">+</span> <span class="n">alpha1penm1</span><span class="p">)</span>
+
+    <span class="n">ci0at2half</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">ci1at2half</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">ci0atnmhalf</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ci1atnmhalf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">ciat2half</span> <span class="o">=</span> <span class="n">omega0pe2</span> <span class="o">*</span> <span class="n">ci0at2half</span> <span class="o">+</span> <span class="n">omega1pe2</span> <span class="o">*</span> <span class="n">ci1at2half</span>
+    <span class="n">ciatnmhalf</span> <span class="o">=</span> <span class="n">omega0penm1</span> <span class="o">*</span> <span class="n">ci0atnmhalf</span> <span class="o">+</span> <span class="n">omega1penm1</span> <span class="o">*</span> <span class="n">ci1atnmhalf</span>
+
+    <span class="n">cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">u_Cin</span><span class="p">,</span> <span class="n">c</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">ciatpplushalf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">cin</span><span class="p">,</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ciat2half</span><span class="p">,</span> <span class="n">ciatpplushalf</span><span class="p">,</span> <span class="n">ciatnmhalf</span><span class="p">,</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+    <span class="c1"># calculation of concentration gradients</span>
+    <span class="n">pcpz</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dz</span>
+    <span class="n">pcpz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">c</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pcpz</span><span class="p">,</span> <span class="n">c</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="sd">&#39;&#39;&#39; column derivative computation &#39;&#39;&#39;</span>
+
+    <span class="c1"># bilangmuir for A, moderated by a eluant concentration sigmoid on the</span>
+    <span class="c1"># adsorption rate</span>
+    <span class="n">pqptheta1</span> <span class="o">=</span> <span class="n">repmat</span><span class="p">(</span><span class="n">kads</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="n">qsi</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">q</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> \
+                <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">elebeta</span> <span class="o">*</span> <span class="p">(</span><span class="n">elealpha</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:])))</span> <span class="o">-</span> <span class="n">repmat</span><span class="p">(</span><span class="n">kdes</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">pqptheta2</span> <span class="o">=</span> <span class="n">repmat</span><span class="p">(</span><span class="n">kads</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="n">qsi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span> <span class="o">-</span> <span class="n">repmat</span><span class="p">(</span><span class="n">kdes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span>
+                                                                                                      <span class="p">:]</span>
+
+    <span class="n">pcptheta</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">ciatpplushalf</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">ciatpplushalf</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dz</span> <span class="o">/</span> <span class="n">epsilontotal</span> <span class="o">+</span> \
+               <span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="n">pcpz</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">pcpz</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dz</span> <span class="o">/</span> <span class="n">epsilontotal</span>
+
+    <span class="n">pcptheta</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">pcptheta</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">pqptheta1</span> <span class="o">*</span> <span class="n">epsilonpore</span> <span class="o">/</span> <span class="n">epsilontotal</span>
+    <span class="n">pcptheta</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">pcptheta</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">pqptheta2</span> <span class="o">*</span> <span class="n">epsilonpore</span> <span class="o">/</span> <span class="n">epsilontotal</span>
+
+    <span class="c1"># derivative stacking</span>
+    <span class="n">derivout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">([</span><span class="n">pcptheta</span><span class="p">,</span> <span class="n">pqptheta1</span><span class="p">,</span> <span class="n">pqptheta2</span><span class="p">])</span>
+    <span class="c1"># Matlab flatten matrix in column order. Thus set order=&#39;F&#39; in the following</span>
+    <span class="n">derivout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">derivout</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">),</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">derivout</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Parameters</span>
+    <span class="c1"># Ks satruation constant (g/L)</span>
+    <span class="n">KS_g</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">KS_m</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="c1"># qm maintenance coefficient (g/g-h)</span>
+    <span class="n">qm_g</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">qm_m</span> <span class="o">=</span> <span class="mf">0.013</span>  <span class="c1"># no influence at high growth rate</span>
+    <span class="c1"># qsmax specific maximum rate of substrate consumption (g/g-h)</span>
+    <span class="n">qSmax_g</span> <span class="o">=</span> <span class="mf">0.37</span>
+    <span class="n">qSmax_m</span> <span class="o">=</span> <span class="mf">0.57</span>
+    <span class="c1"># Yem biomass yield coefficient exclusive maintenance (g/g)</span>
+    <span class="n">Yem_g</span> <span class="o">=</span> <span class="mf">0.7</span>
+    <span class="n">Yem_m</span> <span class="o">=</span> <span class="mf">0.36</span>
+    <span class="n">thetag</span> <span class="o">=</span> <span class="p">[</span><span class="n">KS_g</span><span class="p">,</span> <span class="n">qm_g</span><span class="p">,</span> <span class="n">qSmax_g</span><span class="p">,</span> <span class="n">Yem_g</span><span class="p">]</span>
+    <span class="n">thetam</span> <span class="o">=</span> <span class="p">[</span><span class="n">KS_m</span><span class="p">,</span> <span class="n">qm_m</span><span class="p">,</span> <span class="n">qSmax_m</span><span class="p">,</span> <span class="n">Yem_m</span><span class="p">]</span>
+    <span class="n">theta_M</span> <span class="o">=</span> <span class="p">[</span><span class="n">thetag</span><span class="p">,</span> <span class="n">thetam</span><span class="p">]</span>
+
+    <span class="n">a_g1</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">a_m1</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">a_g2</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">a_m2</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">a_g3</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="n">a_m3</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="n">theta_P</span> <span class="o">=</span> <span class="p">[</span><span class="n">a_g1</span><span class="p">,</span> <span class="n">a_m1</span><span class="p">,</span> <span class="n">a_g2</span><span class="p">,</span> <span class="n">a_m2</span><span class="p">,</span> <span class="n">a_g3</span><span class="p">,</span> <span class="n">a_m3</span><span class="p">]</span>
+
+    <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># typical flow rate (L/h)</span>
+    <span class="n">Sin_g0</span> <span class="o">=</span> <span class="mi">80</span>  <span class="c1"># inlet glycerol concentration (g/L)</span>
+    <span class="n">Sin_m0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># inlet methanol concentration (g/L)</span>
+
+    <span class="n">u_Fg1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_Cing1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># glycerol batch</span>
+    <span class="n">u_Fg2</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_Cing2</span> <span class="o">=</span> <span class="p">[</span><span class="n">Sin_g0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># glycerol perfusion to waste</span>
+    <span class="n">u_Fm1</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_Cinm1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># methanol perfusion to waste</span>
+    <span class="n">u_Fm2</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_Cinm2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># methanol perfusion to tank</span>
+    <span class="n">u_Fl</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_Cinl</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># load</span>
+    <span class="n">u_Fw</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_Cinw</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># wash</span>
+    <span class="n">u_Fe</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">]</span>
+    <span class="n">u_Cine</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># elute</span>
+
+    <span class="n">theta_C</span> <span class="o">=</span> <span class="n">ChromatographyModel</span><span class="p">()</span>
+    <span class="c1"># States</span>
+    <span class="n">X0</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># initial viable biomass concentration (g/L)</span>
+    <span class="n">Sg0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># initial glycerol concentration (g/L)</span>
+    <span class="n">Sm0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial methanol concentration (g/L)</span>
+    <span class="n">P10</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial product conentration (g/L)</span>
+    <span class="n">P20</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">P30</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">VB0</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># initial bioreactor volume (L)</span>
+    <span class="n">VH0</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># initial hold tank volume (L)</span>
+    <span class="n">xC0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">theta_C</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># np.zeros((10 * theta_C.n + 3, 1))</span>
+
+    <span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="n">X0</span><span class="p">,</span> <span class="n">Sg0</span><span class="p">,</span> <span class="n">Sm0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VB0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VH0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xC0</span>
+
+    <span class="c1">## Test</span>
+    <span class="c1"># Time</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tg1</span> <span class="o">=</span> <span class="mi">22</span>  <span class="c1"># glycerol batch period (h)</span>
+    <span class="n">tg2</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># glycerol perfusion period (h)</span>
+    <span class="n">tm1</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># methanol perfusion period (h)</span>
+    <span class="n">tm2</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># methanol perfusion period (h)</span>
+    <span class="n">tl</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># load period (h)</span>
+    <span class="n">tw</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># wash period (h)</span>
+    <span class="n">te</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># elute period (h)</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">tran</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">t0</span><span class="p">,</span> <span class="n">tg1</span><span class="p">,</span> <span class="n">tg2</span><span class="p">,</span> <span class="n">tm1</span><span class="p">,</span> <span class="n">tm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">([</span><span class="n">tl</span><span class="p">,</span> <span class="n">tw</span><span class="p">,</span> <span class="n">te</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">))</span>
+    <span class="n">u_F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_Fg1</span><span class="p">,</span> <span class="n">u_Fg2</span><span class="p">,</span> <span class="n">u_Fm1</span><span class="p">,</span> <span class="n">u_Fm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">u_Fl</span><span class="p">,</span> <span class="n">u_Fw</span><span class="p">,</span> <span class="n">u_Fe</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_Cing1</span><span class="p">,</span> <span class="n">u_Cing2</span><span class="p">,</span> <span class="n">u_Cinm1</span><span class="p">,</span> <span class="n">u_Cinm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">u_Cinl</span><span class="p">,</span> <span class="n">u_Cinw</span><span class="p">,</span> <span class="n">u_Cine</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="n">u_F</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">]</span>
+
+    <span class="n">u_FC</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="n">u_Cin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]]])</span> <span class="o">/</span> <span class="n">u_FC</span>
+    <span class="n">u_Cin</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">u_Cin</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])[</span><span class="mi">11</span><span class="p">:]</span>
+    <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+    <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_FC</span><span class="p">,</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">u_Cin</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

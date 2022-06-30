@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N-linked Glycosylation Simulation &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>N-linked Glycosylation Simulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Tutorial/background.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="n-linked-glycosylation-simulation">
+<h1>N-linked Glycosylation Simulation<a class="headerlink" href="#n-linked-glycosylation-simulation" title="Permalink to this headline"></a></h1>
+<section id="high-level-model-overview">
+<h2>High Level Model Overview<a class="headerlink" href="#high-level-model-overview" title="Permalink to this headline"></a></h2>
+<p>The glycosylation model is based on the cisternal maturation
+assumption with recycling of Golgi resident proteins first proposed
+by Jimenez del Val et al. (2011). The mass balances for the species
+involved were calculated considering the Golgi apparatus as a single
+plug flow reactor operating at steady state according to equations (11)-(13) and the
+reaction scheme reported in the figure below. The effect of the operating conditions on N-glycosylation was simulated
+by linking the kinetics of enzymatic reactions to the availability of
+sugar precursors, and the concentrations of metal ions and  ammonia.</p>
+<p><img alt="img.png" src="../_images/reaction_network1.png" /></p>
+</section>
+<section id="model-description">
+<h2>Model Description<a class="headerlink" href="#model-description" title="Permalink to this headline"></a></h2>
+<p>Mass balance equations for the unstructured cell culture model and the mechanistic glycosylation model adapted from
+Karst et. al. (2017). The modeling framework can be divided in two sections. The first part comprises a simple
+unstructured cell culture model for the estimation of cell  specific parameters (e.g., growth rate, ammonia and antibody
+specific productivities) and process related values (e.g., bleed rate). The mass balances of the perfusion bioreactor
+are based on the assumption of a CSTR reactor (e.g., perfect mixing).</p>
+<p><img alt="img.png" src="../_images/reaction_equations1.png" /></p>
+<p><strong>Reference</strong>: Karst, D. J., Scibona, E., Serra, E., Bielser, J. M., Souquet, J., Stettler, M., … &amp; Villiger, T. K.
+(2017). Modulation and modeling of monoclonal antibody N‐linked glycosylation in mammalian cell perfusion reactors.
+Biotechnology and bioengineering, 114(9), 1978-1990.</p>
+</section>
+<section id="kinetic-reaction-network-column-reactant-row-product-cell-enzyme">
+<h2>Kinetic Reaction Network: column (reactant), row (product), cell (enzyme)<a class="headerlink" href="#kinetic-reaction-network-column-reactant-row-product-cell-enzyme" title="Permalink to this headline"></a></h2>
+<p><img alt="img.png" src="../_images/reactions1.png" /></p>
+</section>
+</section>
+<section id="plantwise-simulation">
+<h1>Plantwise Simulation<a class="headerlink" href="#plantwise-simulation" title="Permalink to this headline"></a></h1>
+<p><img alt="img.png" src="../_images/plantwise_diagram.png" /></p>
+<p><strong>Reference</strong>: Amos E. Lu, Joe A. Paulson, Nicholas J. Mozdzierz, Alan Stockdale, Ashlee N. Ford Versypt,
+Kerry R. Lov, J. Christopher Love, Richard D. Braatz (2015). Control Systems Technology in the Advanced Manufacturing
+of Biologic Drugs. CCA.</p>
+<section id="bioreactor-kinetic-model">
+<h2>Bioreactor Kinetic Model<a class="headerlink" href="#bioreactor-kinetic-model" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dX}{dt}&amp;=-\frac{F_{in}-F_{out}}{V}X+(\mu_g+\mu_m)X\\
+\frac{dS_g}{dt}&amp;=\frac{F_{in}}{V}(S_{in,g}-S_g)-q_{S_g}X\\
+\frac{dS_m}{dt}&amp;=\frac{F_{in}}{V}(S_{i,m}-S_m)-q_{S_m}X\\
+\frac{dP_i}{dt}&amp;=-\frac{F_{in}}{V}P_i+q_{P_i}X\\
+\frac{dV}{dt}&amp;=F_{in}-F_{out}
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="harvest-hold-tank-model">
+<h2>Harvest/Hold Tank Model<a class="headerlink" href="#harvest-hold-tank-model" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dP_i}{dt}&amp;=-\frac{F_{in}}{V}(P_{i,in}-P_i)\\
+\frac{dV}{dt}&amp;=F_{in}-F_{out}
+\end{align*}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(𝑋\)</span>: biomass<br />
+<span class="math notranslate nohighlight">\(𝐹_𝑖𝑛\)</span>: inlet flow rate (L/h)<br />
+<span class="math notranslate nohighlight">\(𝐹_𝑜𝑢𝑡\)</span>: outlet flow rate (L/h)<br />
+<span class="math notranslate nohighlight">\(𝜇_𝑔\)</span>,<span class="math notranslate nohighlight">\(𝜇_𝑚\)</span>: Specific growth rate<br />
+<span class="math notranslate nohighlight">\(𝑆_{𝑖𝑛,𝑔}\)</span>: inlet glycerol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_{𝑖𝑛,𝑚}\)</span>: inlet methanol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_𝑔\)</span>: glycerol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_𝑚\)</span>: methanol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑞_{𝑆_𝑔}\)</span>,<span class="math notranslate nohighlight">\(𝑞_{𝑆_𝑚}\)</span>: Specific rate of substrate consumption (g/g-h)<br />
+<span class="math notranslate nohighlight">\(𝑞_{𝑃_𝑖}\)</span>: Specific product production rate (g/g-h)<br />
+<span class="math notranslate nohighlight">\(𝑃_𝑖\)</span>: protein <span class="math notranslate nohighlight">\(𝑖\)</span><br />
+<span class="math notranslate nohighlight">\(𝑉\)</span>: bioreactor volume (L)</p>
+</section>
+<section id="chromatography-model">
+<h2>Chromatography Model<a class="headerlink" href="#chromatography-model" title="Permalink to this headline"></a></h2>
+<p>Mobile phase (lipid phase)</p>
+<ul class="simple">
+<li><p>Nonideal transport model for the concentration of species <span class="math notranslate nohighlight">\(i\)</span>th species</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C_i}{\partial \theta}\epsilon_{tot}=-\frac{\partial C_i}{dz}+\frac{1}{\text{Pe}}\frac{\partial^2 C_i}{\partial z^2}-\frac{q_i}{\theta}\epsilon_{pore}
+\]</div>
+<ul class="simple">
+<li><p>The mass balance of salt whose concentration is denoted by <span class="math notranslate nohighlight">\(𝐶_{𝑠𝑎𝑙𝑡}\)</span>, is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C_{salt}}{\partial \theta}\epsilon_{tot}=-\frac{\partial C_{salt}}{dz}+\frac{1}{\text{Pe}}\frac{\partial^2 C_{salt}}{\partial z^2}
+\]</div>
+<p>Adsorbed (stationary) phase: the kinetics of the adsorption are</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial q_i}{\partial \theta}=k_{ads,i}C_i \bar{Q}^{v_i}-k_{des,i}q_iC^{v_i}_{salt}.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_i\)</span> is the concentration of species <span class="math notranslate nohighlight">\(i\)</span> in the liquid phase, <span class="math notranslate nohighlight">\(\theta\)</span> is the dimensionless time,
+<span class="math notranslate nohighlight">\(\epsilon_{tot}\)</span> is the total porosity, <span class="math notranslate nohighlight">\(z\in[0,1]\)</span> is the dimensionless length, <span class="math notranslate nohighlight">\(Pe\)</span> is the Peclet number, <span class="math notranslate nohighlight">\(q_i\)</span> is
+the concentration of species <span class="math notranslate nohighlight">\(i\)</span> in the adsorbed phase, and <span class="math notranslate nohighlight">\(\epsilon_pore\)</span> is the particle porosity. <span class="math notranslate nohighlight">\(k_{ads,i}\)</span> is
+the rate constant of adsorption for component <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(Q\)</span> is the number of ligands available for adsorption and desorption,
+<span class="math notranslate nohighlight">\(v_i\)</span> is the characteristic charge of component <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(k_{des,i}\)</span> is the rate constant of desorption for component <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Reference</strong>: Sejergaard, L., Karkov, H. S., Krarup, J. K., Hagel, A. B. B., &amp; Cramer, S. M. (2014). Model‐based process
+development for the purification of a modified human growth hormone using multimodal chromatography. Biotechnology
+Progress,30(5), 1057-1064.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

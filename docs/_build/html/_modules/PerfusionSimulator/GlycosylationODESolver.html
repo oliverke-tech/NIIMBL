@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PerfusionSimulator.GlycosylationODESolver &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>PerfusionSimulator.GlycosylationODESolver</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for PerfusionSimulator.GlycosylationODESolver</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+
+<span class="kn">from</span> <span class="nn">vLab.GlycosylationModelBase.GlycosylationDerivative</span> <span class="kn">import</span> <span class="n">steady_state_inner_derivative</span>
+<span class="kn">from</span> <span class="nn">vLab.PerfusionSimulator.Utils</span> <span class="kn">import</span> <span class="n">compute_species_distribution</span>
+
+
+<div class="viewcode-block" id="ODESolver"><a class="viewcode-back" href="../../PerfusionSimulator/PerfusionSimulator.html#PerfusionSimulator.GlycosylationODESolver.ODESolver">[docs]</a><span class="k">class</span> <span class="nc">ODESolver</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Class for solving the N-linked Glycosylation model</span>
+
+<span class="sd">        :param float z: Golgi dimensionless length</span>
+<span class="sd">        :param array y: state</span>
+<span class="sd">        :param array x: data</span>
+<span class="sd">        :param GlycosylationModelParamClass p: N-linked glycosylation model parameters</span>
+<span class="sd">        :param GlycosylationNetwork fp: N-linked glycosylation network</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y0</span> <span class="o">=</span> <span class="n">y0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">os</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ODESolver.solve"><a class="viewcode-back" href="../../PerfusionSimulator/PerfusionSimulator.html#PerfusionSimulator.GlycosylationODESolver.ODESolver.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :returns HM, FA1G1, FA2G0, FA2G1, FA2G2, SIA: distribution of glycans</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># yout = odeint(inner_derivative, self.y0, self.t, args=(self.x, self.p, self.fp,), rtol=1e-4, atol=1e-7) # h0float, (0: solver-determined), optional</span>
+        <span class="n">yout</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">steady_state_inner_derivative</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;BDF&#39;</span><span class="p">,</span>
+                         <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>  <span class="c1"># h0float, (0: solver-determined), optional</span>
+
+        <span class="n">tres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+        <span class="n">os</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">yout</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">yout</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">tres</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">os</span> <span class="o">=</span> <span class="n">os</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># yout.T[:self.fp.nos, :]</span>
+        <span class="n">HM</span><span class="p">,</span> <span class="n">FA1G1</span><span class="p">,</span> <span class="n">FA2G0</span><span class="p">,</span> <span class="n">FA2G1</span><span class="p">,</span> <span class="n">FA2G2</span><span class="p">,</span> <span class="n">SIA</span> <span class="o">=</span> <span class="n">compute_species_distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">os</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">HM</span><span class="p">,</span> <span class="n">FA1G1</span><span class="p">,</span> <span class="n">FA2G0</span><span class="p">,</span> <span class="n">FA2G1</span><span class="p">,</span> <span class="n">FA2G2</span><span class="p">,</span> <span class="n">SIA</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">vLab.GlycosylationModelBase.GlycosylationNetwork</span> <span class="kn">import</span> <span class="n">GlycosylationNetwork</span>
+    <span class="kn">from</span> <span class="nn">vLab.GlycosylationModelBase.GlycosylationModelParams</span> <span class="kn">import</span> <span class="n">CellCultureVariables</span><span class="p">,</span> \
+        <span class="n">GlycosylationModelParamClass</span>
+
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">GlycosylationNetwork</span><span class="p">(</span><span class="n">network_data_path</span><span class="o">=</span><span class="s1">&#39;../../tests/data/Network Description.csv&#39;</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">GlycosylationModelParamClass</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">CellCultureVariables</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1198</span><span class="p">,</span> <span class="mf">66.3856</span><span class="p">,</span>
+                             <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.490</span> <span class="o">+</span> <span class="mf">1.452</span><span class="p">,</span> <span class="mf">0.117</span> <span class="o">+</span> <span class="mf">0.379</span><span class="p">,</span> <span class="mf">0.058</span> <span class="o">+</span> <span class="mf">0.190</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span>
+                             <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.62</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="mf">0.1158</span><span class="p">,</span> <span class="mf">0.040</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span>
+    <span class="c1"># compute boundary conditions</span>
+    <span class="n">ic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nn</span><span class="p">))</span>
+    <span class="n">ic</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mabtiter</span>  <span class="c1"># umol / L</span>
+    <span class="n">ic</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span><span class="p">:(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">)]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">nscyt</span> <span class="o">*</span> <span class="mi">40</span>  <span class="c1"># nucleotide sugar concentrations in umol / L.third entry is mystery</span>
+    <span class="n">ic</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">udpgalcyt</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">*</span> <span class="mi">40</span>  <span class="c1"># updating with correct UDP-Gal concentration</span>
+    <span class="n">ic</span><span class="p">[(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">):]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">ncyt</span>  <span class="c1"># sum of nucleotide concentrations in umol / L</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># np.linspace(0,1,10001)</span>
+    <span class="n">ode_solver</span> <span class="o">=</span> <span class="n">ODESolver</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ic</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+    <span class="n">HM</span><span class="p">,</span> <span class="n">FA1G1</span><span class="p">,</span> <span class="n">FA2G0</span><span class="p">,</span> <span class="n">FA2G1</span><span class="p">,</span> <span class="n">FA2G2</span><span class="p">,</span> <span class="n">SIA</span> <span class="o">=</span> <span class="n">ode_solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ode_solver</span><span class="o">.</span><span class="n">os</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:10.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

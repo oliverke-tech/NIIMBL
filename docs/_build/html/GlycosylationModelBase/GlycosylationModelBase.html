@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlycosylationModelBase package &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RamanAnalytics package" href="../RamanAnalytics/RamanAnalytics.html" />
+    <link rel="prev" title="DynamicGlycosylationSimulator package" href="../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GlycosylationModelBase package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-GlycosylationModelBase.GlycosylationDerivative">GlycosylationModelBase.GlycosylationDerivative module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-GlycosylationModelBase.GlycosylationModelParams">GlycosylationModelBase.GlycosylationModelParams module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-GlycosylationModelBase.GlycosylationNetwork">GlycosylationModelBase.GlycosylationNetwork module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-GlycosylationModelBase.Reaction">GlycosylationModelBase.Reaction module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-GlycosylationModelBase">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GlycosylationModelBase package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/GlycosylationModelBase/GlycosylationModelBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="glycosylationmodelbase-package">
+<h1>GlycosylationModelBase package<a class="headerlink" href="#glycosylationmodelbase-package" title="Permalink to this headline"></a></h1>
+<p>This module contains base class and shared class for steady-state and dynamic N-linked glycosylation simulation.</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-GlycosylationModelBase.GlycosylationDerivative">
+<span id="glycosylationmodelbase-glycosylationderivative-module"></span><h2>GlycosylationModelBase.GlycosylationDerivative module<a class="headerlink" href="#module-GlycosylationModelBase.GlycosylationDerivative" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationDerivative.steady_state_inner_derivative">
+<span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.GlycosylationDerivative.</span></span><span class="sig-name descname"><span class="pre">steady_state_inner_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationDerivative.html#steady_state_inner_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationDerivative.steady_state_inner_derivative" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the derivative of steady state mechanistic Glycosylation model dy/dz</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>float</em>) – Golgi dimensionless length</p></li>
+<li><p><strong>y</strong> (<em>array</em>) – state (Oligsaccharides, nucleotide sugars in Golgi apparatus and nucleotides in Golgi apparatus)</p></li>
+<li><p><strong>x</strong> (<em>array</em>) – perfusion cell culture related data (ammonium, Manganese chloride and Nucleotide sugar in cytosol)</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass"><em>GlycosylationModelParamClass</em></a>) – N-linked glycosylation model parameters</p></li>
+<li><p><strong>fp</strong> (<a class="reference internal" href="#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork"><em>GlycosylationNetwork</em></a>) – N-linked glycosylation network</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return array deriv</dt>
+<dd class="field-even"><p>derivatives of N-linked glycosylation models</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-GlycosylationModelBase.GlycosylationModelParams">
+<span id="glycosylationmodelbase-glycosylationmodelparams-module"></span><h2>GlycosylationModelBase.GlycosylationModelParams module<a class="headerlink" href="#module-GlycosylationModelBase.GlycosylationModelParams" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.GlycosylationModelParams.</span></span><span class="sig-name descname"><span class="pre">CellCultureVariables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">udpgalcyt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mabtiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncyt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nscyt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationModelParams.html#CellCultureVariables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data (static) class for cell culture state of perfusion bioreactor</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.amm">
+<span class="sig-name descname"><span class="pre">amm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.amm" title="Permalink to this definition"></a></dt>
+<dd><p>Ammonia concentration</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.mabtiter">
+<span class="sig-name descname"><span class="pre">mabtiter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.mabtiter" title="Permalink to this definition"></a></dt>
+<dd><p>mAb concentratio</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.mn">
+<span class="sig-name descname"><span class="pre">mn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.mn" title="Permalink to this definition"></a></dt>
+<dd><p>Mn concentration</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.ncyt">
+<span class="sig-name descname"><span class="pre">ncyt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.ncyt" title="Permalink to this definition"></a></dt>
+<dd><p>Nucleotides in cytosol</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.nscyt">
+<span class="sig-name descname"><span class="pre">nscyt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.nscyt" title="Permalink to this definition"></a></dt>
+<dd><p>Nucleotide sugars in cytosol</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.udpgalcyt">
+<span class="sig-name descname"><span class="pre">udpgalcyt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables.udpgalcyt" title="Permalink to this definition"></a></dt>
+<dd><p>UDP-Gal balance with external addition of galactosea</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.GlycosylationModelParams.</span></span><span class="sig-name descname"><span class="pre">GlycosylationModelParamClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationModelParams.html#GlycosylationModelParamClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Static Class for Glycosylation parameters</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.a">
+<span class="sig-name descname"><span class="pre">a</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.a" title="Permalink to this definition"></a></dt>
+<dd><p>Surface area of the Golgi  (SI table 1. um^2)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.d">
+<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.d" title="Permalink to this definition"></a></dt>
+<dd><p>Golgi internal diameter (SI table 1. um)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.emax">
+<span class="sig-name descname"><span class="pre">emax</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.emax" title="Permalink to this definition"></a></dt>
+<dd><p>peak concentration of enzyme (SI Table 7. umol/L; values divided by 10 from delVal).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.k_amm">
+<span class="sig-name descname"><span class="pre">k_amm</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.k_amm" title="Permalink to this definition"></a></dt>
+<dd><p>to change if we want to change ammonia specific productivity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kcytns">
+<span class="sig-name descname"><span class="pre">kcytns</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kcytns" title="Permalink to this definition"></a></dt>
+<dd><p>Table 3 from delVal. uM</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdfuct">
+<span class="sig-name descname"><span class="pre">kdfuct</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdfuct" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgalt">
+<span class="sig-name descname"><span class="pre">kdgalt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgalt" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgalt_f">
+<span class="sig-name descname"><span class="pre">kdgalt_f</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgalt_f" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgnt1">
+<span class="sig-name descname"><span class="pre">kdgnt1</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgnt1" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgnt2">
+<span class="sig-name descname"><span class="pre">kdgnt2</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdgnt2" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkfuct">
+<span class="sig-name descname"><span class="pre">kdkfuct</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkfuct" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkgalt">
+<span class="sig-name descname"><span class="pre">kdkgalt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkgalt" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkgnt1">
+<span class="sig-name descname"><span class="pre">kdkgnt1</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkgnt1" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkgnt2">
+<span class="sig-name descname"><span class="pre">kdkgnt2</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdkgnt2" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdksiat">
+<span class="sig-name descname"><span class="pre">kdksiat</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdksiat" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdman1">
+<span class="sig-name descname"><span class="pre">kdman1</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdman1" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdman2">
+<span class="sig-name descname"><span class="pre">kdman2</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdman2" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdmngalt">
+<span class="sig-name descname"><span class="pre">kdmngalt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdmngalt" title="Permalink to this definition"></a></dt>
+<dd><p>Concentrations of UDP-GlcNAc, GDP-Fuc, UDP-Gal, CMP-Neu5Ac</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdmngnt">
+<span class="sig-name descname"><span class="pre">kdmngnt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdmngnt" title="Permalink to this definition"></a></dt>
+<dd><p>Manganese dissociation constant for GnT (Table 3. umol/L)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdsiat">
+<span class="sig-name descname"><span class="pre">kdsiat</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kdsiat" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 9 - dissociation constants for golgi resident enzymes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kfmax">
+<span class="sig-name descname"><span class="pre">kfmax</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kfmax" title="Permalink to this definition"></a></dt>
+<dd><p>maximum turnover rate for reaction (SI table 8 enzyme kinetic parameters. min^-1)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kgaludpgal">
+<span class="sig-name descname"><span class="pre">kgaludpgal</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kgaludpgal" title="Permalink to this definition"></a></dt>
+<dd><p>Cell Growth</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kgolgin">
+<span class="sig-name descname"><span class="pre">kgolgin</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kgolgin" title="Permalink to this definition"></a></dt>
+<dd><p>Table in Figure 3 from delVal. uM</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.ktk">
+<span class="sig-name descname"><span class="pre">ktk</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.ktk" title="Permalink to this definition"></a></dt>
+<dd><p>Table 3 from delVal. Transport kinetic parameters. 1/min</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kudpgal">
+<span class="sig-name descname"><span class="pre">kudpgal</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.kudpgal" title="Permalink to this definition"></a></dt>
+<dd><p>Sugar mediated nucleotide sugar synthesis. (Table 3. 1/day)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.mudpgal">
+<span class="sig-name descname"><span class="pre">mudpgal</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.mudpgal" title="Permalink to this definition"></a></dt>
+<dd><p>Maintenance coefficient of UDP-Gal. (Table 3. mmol/L/day)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.na">
+<span class="sig-name descname"><span class="pre">na</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.na" title="Permalink to this definition"></a></dt>
+<dd><p>Ammonia associated Golgi pH constant (villiger Table 4. mmol/L)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.ncyt">
+<span class="sig-name descname"><span class="pre">ncyt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.ncyt" title="Permalink to this definition"></a></dt>
+<dd><p>titer</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.nscyt">
+<span class="sig-name descname"><span class="pre">nscyt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.nscyt" title="Permalink to this definition"></a></dt>
+<dd><p>Concentrations of UMP + UDP, GMP+GDP, CMP+CDP</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.omegaf">
+<span class="sig-name descname"><span class="pre">omegaf</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.omegaf" title="Permalink to this definition"></a></dt>
+<dd><p>Enzymatic activity parameters determined from literature data (SI table 10)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.omegaj">
+<span class="sig-name descname"><span class="pre">omegaj</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.omegaj" title="Permalink to this definition"></a></dt>
+<dd><p>width of concentration profile of enzyme (SI Table 6)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.omegak">
+<span class="sig-name descname"><span class="pre">omegak</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.omegak" title="Permalink to this definition"></a></dt>
+<dd><p>width of concentration profile of  transport protein (SI Table 7 )</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.phopt">
+<span class="sig-name descname"><span class="pre">phopt</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.phopt" title="Permalink to this definition"></a></dt>
+<dd><p>Optimal Golgi pH (SI table 5)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.pka">
+<span class="sig-name descname"><span class="pre">pka</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.pka" title="Permalink to this definition"></a></dt>
+<dd><p>SI table 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.q">
+<span class="sig-name descname"><span class="pre">q</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.q" title="Permalink to this definition"></a></dt>
+<dd><p>Flow rate through the Golgi (SI table 1 um^3/min)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.tpmax">
+<span class="sig-name descname"><span class="pre">tpmax</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.tpmax" title="Permalink to this definition"></a></dt>
+<dd><p>peak concentration of transport protein (SI Table 7. umol/dm^2)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.v">
+<span class="sig-name descname"><span class="pre">v</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.v" title="Permalink to this definition"></a></dt>
+<dd><p>Volume of the Golgi apparatus (SI table 1. um^3)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.zmaxj">
+<span class="sig-name descname"><span class="pre">zmaxj</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.zmaxj" title="Permalink to this definition"></a></dt>
+<dd><p>localization of peak concentration of each enzyme (SI Table 7 ).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.zmaxk">
+<span class="sig-name descname"><span class="pre">zmaxk</span></span><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass.zmaxk" title="Permalink to this definition"></a></dt>
+<dd><p>localization of peak concentration of transport protein (SI Table 7 )</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.GlycosylationModelParams.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Man1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Man2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GnT1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GnT2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FucT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GalT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SiaT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationModelParams.html#Network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataa class for enzyme based Glycosylation newtork</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.FucT">
+<span class="sig-name descname"><span class="pre">FucT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.FucT" title="Permalink to this definition"></a></dt>
+<dd><p>alpha-1,6 fucosyltransferase</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.GalT">
+<span class="sig-name descname"><span class="pre">GalT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.GalT" title="Permalink to this definition"></a></dt>
+<dd><p>beta-1,4 galactosyltransferase</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.GnT1">
+<span class="sig-name descname"><span class="pre">GnT1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.GnT1" title="Permalink to this definition"></a></dt>
+<dd><p>alpha-1,3 N-acetylglucosaminyl transferase I</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.GnT2">
+<span class="sig-name descname"><span class="pre">GnT2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.GnT2" title="Permalink to this definition"></a></dt>
+<dd><p>alpha-1,6 N-acetylglucosaminyl transferase II</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.Man1">
+<span class="sig-name descname"><span class="pre">Man1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.Man1" title="Permalink to this definition"></a></dt>
+<dd><p>alpha-1,2 mannosidase I</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.Man2">
+<span class="sig-name descname"><span class="pre">Man2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.Man2" title="Permalink to this definition"></a></dt>
+<dd><p>alpha-1,3/alpha-1,6 mannosidase II</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationModelParams.Network.SiaT">
+<span class="sig-name descname"><span class="pre">SiaT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#GlycosylationModelBase.GlycosylationModelParams.Network.SiaT" title="Permalink to this definition"></a></dt>
+<dd><p>alpha-1,6 sialyltransferase</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-GlycosylationModelBase.GlycosylationNetwork">
+<span id="glycosylationmodelbase-glycosylationnetwork-module"></span><h2>GlycosylationModelBase.GlycosylationNetwork module<a class="headerlink" href="#module-GlycosylationModelBase.GlycosylationNetwork" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.GlycosylationNetwork.</span></span><span class="sig-name descname"><span class="pre">GlycosylationNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">33</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_data_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data/Network</span> <span class="pre">Description.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationNetwork.html#GlycosylationNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for Glycosylation network. This class will build the network from a network description file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn</strong> (<em>int</em>) – number of nucleotides in the Golgi apparatus</p></li>
+<li><p><strong>nns</strong> (<em>int</em>) – number of nucelotide sugars in the Golgi apparatus</p></li>
+<li><p><strong>nos</strong> (<em>int</em>) – number of oligsaccharides</p></li>
+<li><p><strong>network_data_path</strong> (<em>str</em>) – data path for glycosylation network</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqkmm">
+<span class="sig-name descname"><span class="pre">eqkmm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kfj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sumterm1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sumterm2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationNetwork.html#GlycosylationNetwork.eqkmm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqkmm" title="Permalink to this definition"></a></dt>
+<dd><p>Michealis–Menten kinetics (ManI and ManII) Eq. 25 of Villiger et. al.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqkrobb">
+<span class="sig-name descname"><span class="pre">eqkrobb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kfj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsgolgik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sumterm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngolgik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdnk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationNetwork.html#GlycosylationNetwork.eqkrobb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqkrobb" title="Permalink to this definition"></a></dt>
+<dd><p>Random-order bi-bi kinetics (FucT and SiaT). Eq. 27 of Villiger et. al.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqksobb">
+<span class="sig-name descname"><span class="pre">eqksobb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kfj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsgolgik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdmn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sumterm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">osi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngolgik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdnk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/GlycosylationNetwork.html#GlycosylationNetwork.eqksobb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqksobb" title="Permalink to this definition"></a></dt>
+<dd><p>Sequential-order bi-bi kinetcis with Mn as cofactor (GnTI, GnTII, and GalT). Eq. 26 of Villiger et. al.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-GlycosylationModelBase.Reaction">
+<span id="glycosylationmodelbase-reaction-module"></span><h2>GlycosylationModelBase.Reaction module<a class="headerlink" href="#module-GlycosylationModelBase.Reaction" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="GlycosylationModelBase.Reaction.any_column">
+<span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.Reaction.</span></span><span class="sig-name descname"><span class="pre">any_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/Reaction.html#any_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.Reaction.any_column" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="GlycosylationModelBase.Reaction.compute_stoichiometric_coefficient_reaction">
+<span class="sig-prename descclassname"><span class="pre">GlycosylationModelBase.Reaction.</span></span><span class="sig-name descname"><span class="pre">compute_stoichiometric_coefficient_reaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/GlycosylationModelBase/Reaction.html#compute_stoichiometric_coefficient_reaction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#GlycosylationModelBase.Reaction.compute_stoichiometric_coefficient_reaction" title="Permalink to this definition"></a></dt>
+<dd><p>Compute stoichiometric coefficient and reaction rates of N-linked glycosylation models. It includes Equation
+19-29 from Villiger et. al.</p>
+<p><strong>Reference</strong>: Villiger, T. K., Scibona, E., Stettler, M., Broly, H., Morbidelli, M., &amp; Soos, M. (2016). Controlling
+the time evolution of mAb N‐linked glycosylation‐Part II: Model‐based predictions. Biotechnology progress, 32(5),
+1135-1148.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>array</em>) – state (Oligsaccharides, nucleotide sugars in Golgi apparatus and nucleotides in Golgi apparatus)</p></li>
+<li><p><strong>z</strong> (<em>array</em>) – Golgi dimensionless length</p></li>
+<li><p><strong>x</strong> (<em>array</em>) – cell culture related data (ammonium, Manganese chloride and Nucleotide sugar in cytosol)</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass"><em>GlycosylationModelParamClass</em></a>) – N-linked glycosylation model parameters</p></li>
+<li><p><strong>fp</strong> (<a class="reference internal" href="#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork"><em>GlycosylationNetwork</em></a>) – N-linked glycosylation network</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return list</dt>
+<dd class="field-even"><p>flowrate of Nucleotide sugars into the Golgi, stoichiometric coefficient and reaction rates of N-linked glycosylation models</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-GlycosylationModelBase">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-GlycosylationModelBase" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html" class="btn btn-neutral float-left" title="DynamicGlycosylationSimulator package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../RamanAnalytics/RamanAnalytics.html" class="btn btn-neutral float-right" title="RamanAnalytics package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.tests.IntegratedBioprocessUnitTest &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>src.tests.IntegratedBioprocessUnitTest</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.tests.IntegratedBioprocessUnitTest</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">src.vLab.IntegratedBioprocess.Bioreactor</span> <span class="kn">import</span> <span class="n">bioreactor</span>
+<span class="kn">from</span> <span class="nn">src.vLab.IntegratedBioprocess.Chromatography</span> <span class="kn">import</span> <span class="n">chromatography</span>
+<span class="kn">from</span> <span class="nn">src.vLab.IntegratedBioprocess.Util</span> <span class="kn">import</span> <span class="n">CellCultureModel</span><span class="p">,</span> <span class="n">ChromatographyModel</span>
+
+
+<div class="viewcode-block" id="TestIntegratedBioprocess"><a class="viewcode-back" href="../../../src.tests.html#src.tests.IntegratedBioprocessUnitTest.TestIntegratedBioprocess">[docs]</a><span class="k">class</span> <span class="nc">TestIntegratedBioprocess</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestIntegratedBioprocess.test_chromatography_model"><a class="viewcode-back" href="../../../src.tests.html#src.tests.IntegratedBioprocessUnitTest.TestIntegratedBioprocess.test_chromatography_model">[docs]</a>    <span class="k">def</span> <span class="nf">test_chromatography_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set up Parameters &quot;&quot;&quot;</span>
+        <span class="n">theta_C</span> <span class="o">=</span> <span class="n">ChromatographyModel</span><span class="p">()</span>
+
+        <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># typical flow rate (L/h)</span>
+        <span class="n">Sin_g0</span> <span class="o">=</span> <span class="mi">80</span>  <span class="c1"># inlet glycerol concentration (g/L)</span>
+        <span class="n">Sin_m0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># inlet methanol concentration (g/L)</span>
+
+        <span class="n">u_Fg1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cing1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># glycerol batch</span>
+        <span class="n">u_Fg2</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cing2</span> <span class="o">=</span> <span class="p">[</span><span class="n">Sin_g0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># glycerol perfusion to waste</span>
+        <span class="n">u_Fm1</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinm1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># methanol perfusion to waste</span>
+        <span class="n">u_Fm2</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinm2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># methanol perfusion to tank</span>
+        <span class="n">u_Fl</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinl</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># load</span>
+        <span class="n">u_Fw</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinw</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># wash</span>
+        <span class="n">u_Fe</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">]</span>
+        <span class="n">u_Cine</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># elute</span>
+        <span class="c1"># Initial States</span>
+        <span class="n">X0</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># initial viable biomass concentration (g/L)</span>
+        <span class="n">Sg0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># initial glycerol concentration (g/L)</span>
+        <span class="n">Sm0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial methanol concentration (g/L)</span>
+        <span class="n">P10</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial product conentration (g/L)</span>
+        <span class="n">P20</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">P30</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">VB0</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># initial bioreactor volume (L)</span>
+        <span class="n">VH0</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># initial hold tank volume (L)</span>
+        <span class="n">xC0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">theta_C</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># np.zeros((10 * theta_C.n + 3, 1))</span>
+
+        <span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="n">X0</span><span class="p">,</span> <span class="n">Sg0</span><span class="p">,</span> <span class="n">Sm0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VB0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VH0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xC0</span>
+
+        <span class="c1">## Test</span>
+        <span class="c1"># Time</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">tg1</span> <span class="o">=</span> <span class="mi">22</span>  <span class="c1"># glycerol batch period (h)</span>
+        <span class="n">tg2</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># glycerol perfusion period (h)</span>
+        <span class="n">tm1</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># methanol perfusion period (h)</span>
+        <span class="n">tm2</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># methanol perfusion period (h)</span>
+        <span class="n">tl</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># load period (h)</span>
+        <span class="n">tw</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># wash period (h)</span>
+        <span class="n">te</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># elute period (h)</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">tran</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">t0</span><span class="p">,</span> <span class="n">tg1</span><span class="p">,</span> <span class="n">tg2</span><span class="p">,</span> <span class="n">tm1</span><span class="p">,</span> <span class="n">tm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">([</span><span class="n">tl</span><span class="p">,</span> <span class="n">tw</span><span class="p">,</span> <span class="n">te</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">))</span>
+        <span class="n">u_F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_Fg1</span><span class="p">,</span> <span class="n">u_Fg2</span><span class="p">,</span> <span class="n">u_Fm1</span><span class="p">,</span> <span class="n">u_Fm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">u_Fl</span><span class="p">,</span> <span class="n">u_Fw</span><span class="p">,</span> <span class="n">u_Fe</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_Cing1</span><span class="p">,</span> <span class="n">u_Cing2</span><span class="p">,</span> <span class="n">u_Cinm1</span><span class="p">,</span> <span class="n">u_Cinm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">u_Cinl</span><span class="p">,</span> <span class="n">u_Cinw</span><span class="p">,</span> <span class="n">u_Cine</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="sd">&#39;&#39;&#39;Test Case 1&#39;&#39;&#39;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+        <span class="n">u_F</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">]</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">]</span>
+        <span class="n">u_FC</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="n">u_Cin</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">5</span><span class="p">]]])</span> <span class="o">/</span> <span class="n">u_FC</span>
+        <span class="n">u_Cin</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">u_Cin</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">u_Cin</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_FC</span><span class="p">,</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">u_Cin</span><span class="p">)</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="p">([</span><span class="mf">611.4649681528662</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">299</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxCdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-8</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;chromatography calculation error&quot;</span>
+        <span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39;Test Case 2&#39;&#39;&#39;</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_FC</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]),</span> <span class="n">u_Cin</span><span class="p">)</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="p">([</span><span class="mf">611.4649681528662</span><span class="p">,</span>
+                                              <span class="mf">1.222929936305732e3</span><span class="p">,</span>
+                                              <span class="mf">1.834394904458599e3</span><span class="p">,</span>
+                                              <span class="mf">2.445859872611465e3</span><span class="p">])</span> <span class="o">+</span> <span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">299</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxCdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-8</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;chromatography calculation error&quot;</span>
+        <span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39;Test Case 4&#39;&#39;&#39;</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./data/chromagraphy_test_data.csv&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+        <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_FC</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]),</span> <span class="n">u_Cin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxCdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-8</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;chromatography calculation error&quot;</span>
+        <span class="p">)</span>
+        <span class="sd">&#39;&#39;&#39;Test Case 5&#39;&#39;&#39;</span>
+        <span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./data/x.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">_u_F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">])</span>
+        <span class="n">_u_FC</span> <span class="o">=</span> <span class="mf">0.06</span>
+        <span class="n">_u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./data/dxCdt.txt&#39;</span><span class="p">)</span>
+        <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_u_FC</span><span class="p">,</span> <span class="n">_u_F</span><span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">_u_Cin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxCdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-8</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;chromatography calculation error&quot;</span>
+        <span class="p">)</span>
+        <span class="sd">&#39;&#39;&#39;Test Case 6&#39;&#39;&#39;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">_u_F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">])</span>
+        <span class="n">_u_FC</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="n">_u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./data/dxCdt2.txt&#39;</span><span class="p">)</span>
+        <span class="n">dxCdt</span> <span class="o">=</span> <span class="n">chromatography</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">theta_C</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_u_FC</span><span class="p">,</span> <span class="n">_u_F</span><span class="p">[</span><span class="mi">6</span><span class="p">]]),</span> <span class="n">_u_Cin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxCdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-8</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;chromatography calculation error&quot;</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestIntegratedBioprocess.test_bioreactor_model"><a class="viewcode-back" href="../../../src.tests.html#src.tests.IntegratedBioprocessUnitTest.TestIntegratedBioprocess.test_bioreactor_model">[docs]</a>    <span class="k">def</span> <span class="nf">test_bioreactor_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">CellCultureModel</span><span class="p">()</span>
+        <span class="n">theta_C</span> <span class="o">=</span> <span class="n">ChromatographyModel</span><span class="p">()</span>
+        <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># typical flow rate (L/h)</span>
+        <span class="n">Sin_g0</span> <span class="o">=</span> <span class="mi">80</span>  <span class="c1"># inlet glycerol concentration (g/L)</span>
+        <span class="n">Sin_m0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># inlet methanol concentration (g/L)</span>
+
+        <span class="c1"># CPP</span>
+        <span class="n">u_Fg1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cing1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># glycerol batch</span>
+        <span class="n">u_Fg2</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cing2</span> <span class="o">=</span> <span class="p">[</span><span class="n">Sin_g0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># glycerol perfusion to waste</span>
+        <span class="n">u_Fm1</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinm1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># methanol perfusion to waste</span>
+        <span class="n">u_Fm2</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinm2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># methanol perfusion to tank</span>
+        <span class="n">u_Fl</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinl</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># load</span>
+        <span class="n">u_Fw</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_Cinw</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># wash</span>
+        <span class="n">u_Fe</span> <span class="o">=</span> <span class="p">[</span><span class="n">F0</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">]</span>
+        <span class="n">u_Cine</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Sin_m0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># elute</span>
+
+        <span class="c1"># Initial States</span>
+        <span class="n">X0</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># initial viable biomass concentration (g/L)</span>
+        <span class="n">Sg0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># initial glycerol concentration (g/L)</span>
+        <span class="n">Sm0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial methanol concentration (g/L)</span>
+        <span class="n">P10</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial product conentration (g/L)</span>
+        <span class="n">P20</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">P30</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">VB0</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># initial bioreactor volume (L)</span>
+        <span class="n">VH0</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># initial hold tank volume (L)</span>
+        <span class="n">xC0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">theta_C</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># np.zeros((10 * theta_C.n + 3, 1))</span>
+
+        <span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="n">X0</span><span class="p">,</span> <span class="n">Sg0</span><span class="p">,</span> <span class="n">Sm0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VB0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VH0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xC0</span>
+
+        <span class="c1">## Test</span>
+        <span class="c1"># Time</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">tg1</span> <span class="o">=</span> <span class="mi">22</span>  <span class="c1"># glycerol batch period (h)</span>
+        <span class="n">tg2</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># glycerol perfusion period (h)</span>
+        <span class="n">tm1</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># methanol perfusion period (h)</span>
+        <span class="n">tm2</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># methanol perfusion period (h)</span>
+        <span class="n">tl</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># load period (h)</span>
+        <span class="n">tw</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># wash period (h)</span>
+        <span class="n">te</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># elute period (h)</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">tran</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">t0</span><span class="p">,</span> <span class="n">tg1</span><span class="p">,</span> <span class="n">tg2</span><span class="p">,</span> <span class="n">tm1</span><span class="p">,</span> <span class="n">tm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">([</span><span class="n">tl</span><span class="p">,</span> <span class="n">tw</span><span class="p">,</span> <span class="n">te</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">))</span>
+        <span class="n">u_F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_Fg1</span><span class="p">,</span> <span class="n">u_Fg2</span><span class="p">,</span> <span class="n">u_Fm1</span><span class="p">,</span> <span class="n">u_Fm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">u_Fl</span><span class="p">,</span> <span class="n">u_Fw</span><span class="p">,</span> <span class="n">u_Fe</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_Cing1</span><span class="p">,</span> <span class="n">u_Cing2</span><span class="p">,</span> <span class="n">u_Cinm1</span><span class="p">,</span> <span class="n">u_Cinm2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">u_Cinl</span><span class="p">,</span> <span class="n">u_Cinw</span><span class="p">,</span> <span class="n">u_Cine</span><span class="p">]</span> <span class="o">*</span> <span class="n">rep</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+        <span class="n">u_F</span> <span class="o">=</span> <span class="n">u_F</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">u_Cin</span> <span class="o">=</span> <span class="n">u_Cin</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">dxBdt</span> <span class="o">=</span> <span class="n">bioreactor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[:</span><span class="mi">7</span><span class="p">],</span> <span class="n">theta</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_F</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">2</span><span class="p">]]),</span> <span class="n">u_Cin</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0258</span><span class="p">,</span> <span class="mf">2.3631</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.0003</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="sd">&#39;&#39;&#39;Test Case 1&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxBdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-5</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;bioreactpr gradient calculation error&quot;</span>
+        <span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39;Test Case 2&#39;&#39;&#39;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">5</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+        <span class="n">dxBdt</span> <span class="o">=</span> <span class="n">bioreactor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[:</span><span class="mi">7</span><span class="p">],</span> <span class="n">theta</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_F</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_F</span><span class="p">[</span><span class="mi">2</span><span class="p">]]),</span> <span class="n">u_Cin</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">ground_truth_from_MIT_matlab_code</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.3201</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6919</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.8773</span><span class="p">,</span> <span class="mf">0.0729</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0250</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0041</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dxBdt</span><span class="p">,</span> <span class="n">ground_truth_from_MIT_matlab_code</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">5e-5</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">),</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;bioreactpr gradient calculation error&quot;</span>
+        <span class="p">)</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

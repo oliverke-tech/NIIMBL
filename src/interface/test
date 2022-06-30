@@ -1,0 +1,41 @@
+import sys
+import os
+# curPath = os.path.abspath(os.path.dirname(__file__))
+# rootPath = os.path.split(curPath)[0]
+sys.path.append('/Users/ke.zh/vLab-0.1.0')
+
+from vLab.IntegratedBioprocess.PlantwiseSimulator import PlantwiseSimulator
+
+X0 = 0.1  # initial viable biomass concentration (g/L)
+Sg0 = 40  # initial glycerol concentration (g/L)
+Sm0 = 0  # initial methanol concentration (g/L)
+P10 = 0  # initial product conentration (g/L)
+P20 = 0
+P30 = 0
+VB0 = 0.5  # initial bioreactor volume (L)
+VH0 = 1e-8  # initial hold tank volume (L)
+x0 = [X0, Sg0, Sm0, P10, P20, P30, VB0, P10, P20, P30, VH0]
+xC0 = [0] * (10 * 30 + 3)
+x0 = x0 + xC0
+import time
+
+start_time = time.time()
+solver = PlantwiseSimulator()
+sol = solver.solve(x0)
+elapse_time = time.time() - start_time
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+t = np.array(sol.t)
+x = np.array(sol.x)
+
+plt.plot(t, x[:, 3:6])
+plt.axvline(solver._process_time[1], ls='--', c='k')
+plt.axvline(solver._process_time[2], ls='--', c='k')
+plt.title('Bioreactor', fontsize=14)
+plt.ylabel('Concentration (mg/mL)', fontsize=14)
+plt.xlabel('Time (h)', fontsize=14)
+plt.legend(['Product', 'Impurity 1', 'Impurity 2'], loc='upper left')
+plt.show()

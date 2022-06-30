@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DynamicGlycosylationSimulator package &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GlycosylationModelBase package" href="../GlycosylationModelBase/GlycosylationModelBase.html" />
+    <link rel="prev" title="PerfusionSimulator package" href="../PerfusionSimulator/PerfusionSimulator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DynamicGlycosylationSimulator package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-DynamicGlycosylationSimulator.CellCultureDerivative">DynamicGlycosylationSimulator.CellCultureDerivative module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-DynamicGlycosylationSimulator.DynamicGlycosylationSolver">DynamicGlycosylationSimulator.DynamicGlycosylationSolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-DynamicGlycosylationSimulator.InnerFunction">DynamicGlycosylationSimulator.InnerFunction module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-DynamicGlycosylationSimulator.OuterFunction">DynamicGlycosylationSimulator.OuterFunction module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-DynamicGlycosylationSimulator.Util">DynamicGlycosylationSimulator.Util module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-DynamicGlycosylationSimulator">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DynamicGlycosylationSimulator package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="dynamicglycosylationsimulator-package">
+<h1>DynamicGlycosylationSimulator package<a class="headerlink" href="#dynamicglycosylationsimulator-package" title="Permalink to this headline"></a></h1>
+<p>This package contains the simulation modules for <strong>dynamic</strong> N-linked Glycosylation simulation.</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-DynamicGlycosylationSimulator.CellCultureDerivative">
+<span id="dynamicglycosylationsimulator-cellculturederivative-module"></span><h2>DynamicGlycosylationSimulator.CellCultureDerivative module<a class="headerlink" href="#module-DynamicGlycosylationSimulator.CellCultureDerivative" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DynamicGlycosylationSimulator.CellCultureDerivative.cell_culture_derivative">
+<span class="sig-prename descclassname"><span class="pre">DynamicGlycosylationSimulator.CellCultureDerivative.</span></span><span class="sig-name descname"><span class="pre">cell_culture_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DynamicGlycosylationSimulator/CellCultureDerivative.html#cell_culture_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DynamicGlycosylationSimulator.CellCultureDerivative.cell_culture_derivative" title="Permalink to this definition"></a></dt>
+<dd><p>Solve the dynamic glycosylation model between two samplings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>array</em>) – time interval between two samplings</p></li>
+<li><p><strong>y</strong> (<em>array</em>) – perfusion cell culture state</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass"><em>GlycosylationModelParamClass</em></a>) – N-linked glycosylation model parameters</p></li>
+<li><p><strong>fp</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork"><em>GlycosylationNetwork</em></a>) – N-linked glycosylation network</p></li>
+<li><p><strong>feed</strong> (<em>array</em>) – feeding conditions between two samplings</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns ndarray</dt>
+<dd class="field-even"><p>updated cell culture states [volume, VCD, Mn, Amm, mAb, Galactose] and 33 oligsaccharides</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DynamicGlycosylationSimulator.DynamicGlycosylationSolver">
+<span id="dynamicglycosylationsimulator-dynamicglycosylationsolver-module"></span><h2>DynamicGlycosylationSimulator.DynamicGlycosylationSolver module<a class="headerlink" href="#module-DynamicGlycosylationSimulator.DynamicGlycosylationSolver" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DynamicGlycosylationSimulator.DynamicGlycosylationSolver.DynamicGlycosylationSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DynamicGlycosylationSimulator.DynamicGlycosylationSolver.</span></span><span class="sig-name descname"><span class="pre">DynamicGlycosylationSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feed_profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DynamicGlycosylationSimulator/DynamicGlycosylationSolver.html#DynamicGlycosylationSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DynamicGlycosylationSimulator.DynamicGlycosylationSolver.DynamicGlycosylationSolver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for solving the dynamic N-linked Glycosylation model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_states</strong> (<em>ndarray</em>) – initial proess state</p></li>
+<li><p><strong>feed_profile</strong> (<em>ndarray</em>) – feed strategy including Time [min], Fin/Volume, Bleed blend [%], Mn in feed [uM], Galactose in feed [mM]</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass"><em>GlycosylationModelParamClass</em></a>) – N-linked glycosylation model parameters</p></li>
+<li><p><strong>fp</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork"><em>GlycosylationNetwork</em></a>) – N-linked glycosylation network</p></li>
+<li><p><strong>dt</strong> (<em>int</em>) – sampling time [min]</p></li>
+<li><p><strong>total_time</strong> (<em>int</em>) – total run time [min]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return array deriv</dt>
+<dd class="field-even"><p>derivatives of N-linked glycosylation models</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DynamicGlycosylationSimulator.DynamicGlycosylationSolver.DynamicGlycosylationSolver.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DynamicGlycosylationSimulator/DynamicGlycosylationSolver.html#DynamicGlycosylationSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DynamicGlycosylationSimulator.DynamicGlycosylationSolver.DynamicGlycosylationSolver.solve" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns ndarray</dt>
+<dd class="field-odd"><p>cell culture states [volume, VCD, Mn, Amm, mAb, Galactose] and 33 oligsaccharides</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DynamicGlycosylationSimulator.InnerFunction">
+<span id="dynamicglycosylationsimulator-innerfunction-module"></span><h2>DynamicGlycosylationSimulator.InnerFunction module<a class="headerlink" href="#module-DynamicGlycosylationSimulator.InnerFunction" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DynamicGlycosylationSimulator.InnerFunction.innerFunction">
+<span class="sig-prename descclassname"><span class="pre">DynamicGlycosylationSimulator.InnerFunction.</span></span><span class="sig-name descname"><span class="pre">innerFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feed_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic_states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic_macro_rest</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DynamicGlycosylationSimulator/InnerFunction.html#innerFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DynamicGlycosylationSimulator.InnerFunction.innerFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Solve the dynamic glycosylation model between two samplings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables" title="GlycosylationModelBase.GlycosylationModelParams.CellCultureVariables"><em>CellCultureVariables</em></a>) – perfusion cell culture related data (ammonium, Manganese chloride and Nucleotide sugar in cytosol)</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass"><em>GlycosylationModelParamClass</em></a>) – N-linked glycosylation model parameters</p></li>
+<li><p><strong>fp</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork"><em>GlycosylationNetwork</em></a>) – N-linked glycosylation network</p></li>
+<li><p><strong>t_span</strong> (<em>int</em>) – sampling time [min]</p></li>
+<li><p><strong>feed_cond</strong> (<em>ndarray</em>) – feeding conditions between two samplings</p></li>
+<li><p><strong>ic_states</strong> (<em>array</em>) – initial state including volume, VCD*V, manganese*V, ammonia*V, mab*V, Gal*V</p></li>
+<li><p><strong>ic_macro_rest</strong> (<em>array</em>) – 33 oligsaccharides</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns ndarray</dt>
+<dd class="field-even"><p>updated cell culture states [volume, VCD, Mn, Amm, mAb, Galactose] and 33 oligsaccharides</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DynamicGlycosylationSimulator.OuterFunction">
+<span id="dynamicglycosylationsimulator-outerfunction-module"></span><h2>DynamicGlycosylationSimulator.OuterFunction module<a class="headerlink" href="#module-DynamicGlycosylationSimulator.OuterFunction" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DynamicGlycosylationSimulator.OuterFunction.outerfunction">
+<span class="sig-prename descclassname"><span class="pre">DynamicGlycosylationSimulator.OuterFunction.</span></span><span class="sig-name descname"><span class="pre">outerfunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feed_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic_states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic_macro_rest</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DynamicGlycosylationSimulator/OuterFunction.html#outerfunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DynamicGlycosylationSimulator.OuterFunction.outerfunction" title="Permalink to this definition"></a></dt>
+<dd><p>Solve the dynamic glycosylation model between two samplings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mult</strong> (<em>array</em>) – updated parameters for the perfusion cell culture and the N-glycosylation model from MIT</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass" title="GlycosylationModelBase.GlycosylationModelParams.GlycosylationModelParamClass"><em>GlycosylationModelParamClass</em></a>) – N-linked glycosylation model parameters</p></li>
+<li><p><strong>fp</strong> (<a class="reference internal" href="../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork" title="GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork"><em>GlycosylationNetwork</em></a>) – N-linked glycosylation network</p></li>
+<li><p><strong>t_span</strong> (<em>int</em>) – sampling time [min]</p></li>
+<li><p><strong>feed_cond</strong> (<em>ndarray</em>) – feeding conditions between two samplings</p></li>
+<li><p><strong>ic_states</strong> (<em>array</em>) – initial state including volume, VCD*V, manganese*V, ammonia*V, mab*V, Gal*V</p></li>
+<li><p><strong>ic_macro_rest</strong> (<em>array</em>) – 33 oligsaccharides</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns ndarray</dt>
+<dd class="field-even"><p>updated cell culture states (i.e. volume, VCD, Mn, Amm, mAb, Galactose) and 33 oligsaccharides</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DynamicGlycosylationSimulator.Util">
+<span id="dynamicglycosylationsimulator-util-module"></span><h2>DynamicGlycosylationSimulator.Util module<a class="headerlink" href="#module-DynamicGlycosylationSimulator.Util" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DynamicGlycosylationSimulator.Util.compute_species_distribution">
+<span class="sig-prename descclassname"><span class="pre">DynamicGlycosylationSimulator.Util.</span></span><span class="sig-name descname"><span class="pre">compute_species_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">os</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DynamicGlycosylationSimulator/Util.html#compute_species_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DynamicGlycosylationSimulator.Util.compute_species_distribution" title="Permalink to this definition"></a></dt>
+<dd><p>Summary of Oligsaccharides during the experiment: the distributions of glycan forms over time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>os</strong> (<em>ndarray</em>) – oligosaccharide</p>
+</dd>
+<dt class="field-even">Returns list</dt>
+<dd class="field-even"><p>HM, FA1G1, FA2G0, FA2G1, FA2G2, SIA: percentage of different glycan forms</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DynamicGlycosylationSimulator">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DynamicGlycosylationSimulator" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../PerfusionSimulator/PerfusionSimulator.html" class="btn btn-neutral float-left" title="PerfusionSimulator package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../GlycosylationModelBase/GlycosylationModelBase.html" class="btn btn-neutral float-right" title="GlycosylationModelBase package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

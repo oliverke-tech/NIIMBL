@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vLab: A Digital Twin and Simulation Library for Biopharmaceutical Manufacturing &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>vLab: A Digital Twin and Simulation Library for Biopharmaceutical Manufacturing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section class="tex2jax_ignore mathjax_ignore" id="vlab-a-digital-twin-and-simulation-library-for-biopharmaceutical-manufacturing">
+<h1>vLab: A Digital Twin and Simulation Library for Biopharmaceutical Manufacturing<a class="headerlink" href="#vlab-a-digital-twin-and-simulation-library-for-biopharmaceutical-manufacturing" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://coe.northeastern.edu/people/xie-wei/"><img alt="Join Us" src="https://img.shields.io/badge/vLab-NEU-red" /></a>
+<a class="reference external" href="https://cheme.mit.edu/profile/richard-d-braatz/"><img alt="MIT" src="https://img.shields.io/badge/Sim-MIT-blue" /></a>
+<a class="reference external" href="https://niimbl.force.com/s/"><img alt="NIIMBL" src="https://img.shields.io/badge/Fund-NIIMBL-green" /></a>
+<a class="reference external" href="https://zhenghuazx.github.io/hua.zheng/"><img alt="zheng" src="https://img.shields.io/badge/Author-Zheng.H-yellow" /></a>
+<span class="xref myst"><img alt="wang" src="https://img.shields.io/badge/Contributor-Keqi%20Wang-yellow" /></span></p>
+<p>vLab is a package for biopharmaceutical manufacturing simulation in Python. It utilizes the <code class="docutils literal notranslate"><span class="pre">diffeqpy</span></code>,
+a python wrapper of <a class="reference external" href="http://diffeq.sciml.ai/dev/">DifferentialEquations.jl</a> and scipy built-in ode solver
+for its core routines to give high performance solving of large stiff differential equations, currently
+including:</p>
+<ul class="simple">
+<li><p>N-linked Gycosylation (Perfusion Bioreactor) Simulation</p></li>
+<li><p>Raman Spectrometry and Raman Data Analytics</p></li>
+<li><p>Plantwise Simulation (Cell Culture and Chromatography)</p></li>
+</ul>
+<p>If you have any questions, or just want to chat about using the package,
+please feel free to contact me in the <a class="reference external" href="https://zhenghuazx.github.io/hua.zheng/">Website</a>.
+For bug reports, feature requests, etc., please submit an issue to the email <a class="reference external" href="mailto:zheng&#46;hua1&#37;&#52;&#48;northeastern&#46;edu">mailto:zheng<span>&#46;</span>hua1<span>&#64;</span>northeastern<span>&#46;</span>edu</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="installation-linux-and-mac-os">
+<h1>Installation (Linux and Mac OS)<a class="headerlink" href="#installation-linux-and-mac-os" title="Permalink to this headline"></a></h1>
+<section id="part-i-install-julia-and-differentialequations-jl">
+<h2>Part I: Install Julia and DifferentialEquations.jl<a class="headerlink" href="#part-i-install-julia-and-differentialequations-jl" title="Permalink to this headline"></a></h2>
+<section id="for-linux">
+<h3>For Linux<a class="headerlink" href="#for-linux" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!curl -sSL <span class="s2">&quot;https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.2-linux-x86_64.tar.gz&quot;</span> -o julia.tar.gz
+!tar -xzf julia.tar.gz -C /usr --strip-components <span class="m">1</span>
+!rm -rf julia.tar.gz*
+!julia -e <span class="s1">&#39;using Pkg; pkg&quot;add IJulia; add CuArrays; add Flux; precompile&quot;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="for-mac-os">
+<h3>For Mac OS<a class="headerlink" href="#for-mac-os" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p>Step 1: Download your julia from <a class="reference external" href="https://julialang.org/downloads/">the JuliaLang site</a>.</p></li>
+<li><p>Step 2: Install Julia and set up environment</p>
+<ul>
+<li><p>If you downloaded <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file (for example v1.6), install it and add julia to your PATH environmental variable by</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rm -f /usr/local/bin/julia
+ln -s /Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
+</pre></div>
+</div>
+</li>
+</ul>
+<ul>
+<li><p>If you downloaded <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> file, unzip it first and move it to ~/Applications</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv julia-1.6.0 /Applications/
+tar -xzf julia.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p>then add julia to your PATH environmental variable by</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rm -f /usr/local/bin/julia
+ln -s /Applications/Julia-1.6.0/bin/julia /usr/local/bin/julia
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Step 3: Install Julia packages</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>julia -e <span class="s1">&#39;using Pkg; pkg&quot;add IJulia; add CuArrays; add Flux; precompile&quot;&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 4: Using diffeqpy requires that Julia is installed and in the path, along
+with DifferentialEquations.jl and PyCall.jl. To install Julia packages and PyCall and other dependencies.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import julia; julia.install(); import diffeqpy; diffeqpy.install()&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="test-your-diffeqpy-installation-on-an-ordinary-differential-equation-ode-example">
+<h3>Test your <code class="docutils literal notranslate"><span class="pre">diffeqpy</span></code> Installation on an ordinary differential equation (ODE) example<a class="headerlink" href="#test-your-diffeqpy-installation-on-an-ordinary-differential-equation-ode-example" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffeqpy</span> <span class="kn">import</span> <span class="n">de</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">u</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">tspan</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">de</span><span class="o">.</span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">tspan</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">de</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="part-ii-install-vlab">
+<h2>Part II： Install <code class="docutils literal notranslate"><span class="pre">vLab</span></code><a class="headerlink" href="#part-ii-install-vlab" title="Permalink to this headline"></a></h2>
+<section id="option-1-install-vlab-from-source">
+<h3>Option 1: Install <code class="docutils literal notranslate"><span class="pre">vLab</span></code> from source<a class="headerlink" href="#option-1-install-vlab-from-source" title="Permalink to this headline"></a></h3>
+<p>If you would like to build the library from the source code, then at the root <code class="docutils literal notranslate"><span class="pre">/VirtualLab</span></code>, run</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install build
+python -m build
+</pre></div>
+</div>
+<p>Then install vLab and clean up the directory</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install dist/vLab-0.1.0-py3-none-any.whl 
+rm -r dist
+</pre></div>
+</div>
+</section>
+<section id="option-2-install-vlab-from-distribution">
+<h3>Option 2: Install <code class="docutils literal notranslate"><span class="pre">vLab</span></code> from distribution<a class="headerlink" href="#option-2-install-vlab-from-distribution" title="Permalink to this headline"></a></h3>
+<p>If you already have distribution (<code class="docutils literal notranslate"><span class="pre">*.whl</span></code> file) and don’t wnat to build the library, you can put vLab*.whl file to
+your current directory and then run</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install vLab-0.1.0-py3-none-any.whl 
+</pre></div>
+</div>
+</section>
+<section id="test-your-vlab-installation-by-running-the-plantwise-simulation">
+<h3>Test your <code class="docutils literal notranslate"><span class="pre">vLab</span></code> installation by running the plantwise simulation<a class="headerlink" href="#test-your-vlab-installation-by-running-the-plantwise-simulation" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.PlantwiseSimulator</span> <span class="kn">import</span> <span class="n">PlantwiseSimulator</span>
+
+<span class="n">X0</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># initial viable biomass concentration (g/L)</span>
+<span class="n">Sg0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># initial glycerol concentration (g/L)</span>
+<span class="n">Sm0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial methanol concentration (g/L)</span>
+<span class="n">P10</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial product conentration (g/L)</span>
+<span class="n">P20</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">P30</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">VB0</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># initial bioreactor volume (L)</span>
+<span class="n">VH0</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># initial hold tank volume (L)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="n">X0</span><span class="p">,</span> <span class="n">Sg0</span><span class="p">,</span> <span class="n">Sm0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VB0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VH0</span><span class="p">]</span>
+<span class="n">xC0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="mi">30</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">xC0</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">PlantwiseSimulator</span><span class="p">()</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+<span class="n">elapse_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+</pre></div>
+</div>
+<p>Then plot mAb trajectories.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">_process_time</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">_process_time</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Bioreactor&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mg/mL)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (h)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Product&#39;</span><span class="p">,</span> <span class="s1">&#39;Impurity 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Impurity 2&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="img.png" src="_images/bioreactor.png" /></p>
+<p>You can also simulate the N-linked Glycosylation in a perfusion bioreactor as follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">vLab.PerfusionSimulator.GlycosylationODESolver</span> <span class="kn">import</span> <span class="n">ODESolver</span>
+<span class="kn">from</span> <span class="nn">vLab.GlycosylationModelBase.GlycosylationNetwork</span> <span class="kn">import</span> <span class="n">GlycosylationNetwork</span>
+<span class="kn">from</span> <span class="nn">vLab.GlycosylationModelBase.GlycosylationModelParams</span> <span class="kn">import</span> <span class="n">CellCultureVariables</span><span class="p">,</span> <span class="n">GlycosylationModelParamClass</span>
+
+<span class="n">fp</span> <span class="o">=</span> <span class="n">GlycosylationNetwork</span><span class="p">(</span><span class="n">network_data_path</span><span class="o">=</span><span class="s1">&#39;./data/Network Description.csv&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GlycosylationModelParamClass</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">CellCultureVariables</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1198</span><span class="p">,</span> <span class="mf">66.3856</span><span class="p">,</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.490</span> <span class="o">+</span> <span class="mf">1.452</span><span class="p">,</span> <span class="mf">0.117</span> <span class="o">+</span> <span class="mf">0.379</span><span class="p">,</span> <span class="mf">0.058</span> <span class="o">+</span> <span class="mf">0.190</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.62</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="mf">0.1158</span><span class="p">,</span> <span class="mf">0.040</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span>
+<span class="c1"># compute boundary conditions</span>
+<span class="n">ic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nn</span><span class="p">))</span>
+<span class="n">ic</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mabtiter</span>  <span class="c1"># umol / L</span>
+<span class="n">ic</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span><span class="p">:(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">)]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">nscyt</span> <span class="o">*</span> <span class="mi">40</span>  <span class="c1"># nucleotide sugar concentrations in umol / L.third entry is mystery</span>
+<span class="n">ic</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">udpgalcyt</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">*</span> <span class="mi">40</span>  <span class="c1"># updating with correct UDP-Gal concentration</span>
+<span class="n">ic</span><span class="p">[(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">):]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">ncyt</span>  <span class="c1"># sum of nucleotide concentrations in umol / L</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">ode_solver</span> <span class="o">=</span> <span class="n">ODESolver</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ic</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+<span class="n">HM</span><span class="p">,</span> <span class="n">FA1G1</span><span class="p">,</span> <span class="n">FA2G0</span><span class="p">,</span> <span class="n">FA2G1</span><span class="p">,</span> <span class="n">FA2G2</span><span class="p">,</span> <span class="n">SIA</span> <span class="o">=</span> <span class="n">ode_solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ode_solver</span><span class="o">.</span><span class="n">os</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:10.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="installation-guide-for-windows-users">
+<h1>Installation Guide For Windows Users<a class="headerlink" href="#installation-guide-for-windows-users" title="Permalink to this headline"></a></h1>
+<p>We advise either using a linux virtual machine or use Google Colab (a free Jupyter notebook).</p>
+<ul class="simple">
+<li><p>Step 1: upload “vLab-0.1.0-py3-none-any.whl” to your google drive at “/content/drive/MyDrive”.</p></li>
+<li><p>Step 2: Open google colab by either using your google drive or through the
+<a class="reference external" href="https://colab.research.google.com/">Link Here</a>.</p></li>
+<li><p>Step 3: run the following command in Colab to mount your google drive and set current directory to
+‘/content/drive/MyDrive’ (where you upload vLab package “vLab-0.1.0-py3-none-any.whl”,)</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 4: run the follwing commmand to install diffeqpy and vLab</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install diffeqpy
+!pip install vLab-0.1.0-py3-none-any.whl
+!pip install spc_spectra
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 5: run the follwing commmand to install julia and required packages in julia. (<strong>Ignore them if you encounter some errors. Those errors related to GPU computing.</strong>)</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!curl -sSL &quot;https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz&quot; -o julia.tar.gz
+!tar -xzf julia.tar.gz -C /usr --strip-components 1
+!rm -rf julia.tar.gz*
+!julia -e &#39;using Pkg; pkg&quot;add IJulia; add CuArrays; add Flux; precompile&quot;&#39;
+</pre></div>
+</div>
+<p>Step 6: Install Julia packages from python (Both Mac and Linux)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">diffeqpy</span>
+<span class="n">diffeqpy</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Step 7： Run the following command to turn off Julia compilation cache when your Python interpreter is statically linked to libpython
+(Often happened in Debian-based Linux distribution). See more details <a class="reference external" href="https://pyjulia.readthedocs.io/en/latest/troubleshooting.html">Here</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">julia.api</span> <span class="kn">import</span> <span class="n">Julia</span>
+<span class="n">jl</span> <span class="o">=</span> <span class="n">Julia</span><span class="p">(</span><span class="n">compiled_modules</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Step 8: Great! Now you can use vLab! Run the following plantwise simulation. <strong>Note: the first run will take 15-30 minutes
+to allow the python/julia to download and install all required packages!</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vLab.IntegratedBioprocess.PlantwiseSimulator</span> <span class="kn">import</span> <span class="n">PlantwiseSimulator</span>
+
+<span class="n">X0</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># initial viable biomass concentration (g/L)</span>
+<span class="n">Sg0</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># initial glycerol concentration (g/L)</span>
+<span class="n">Sm0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial methanol concentration (g/L)</span>
+<span class="n">P10</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># initial product conentration (g/L)</span>
+<span class="n">P20</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">P30</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">VB0</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># initial bioreactor volume (L)</span>
+<span class="n">VH0</span> <span class="o">=</span> <span class="mf">1e-8</span>  <span class="c1"># initial hold tank volume (L)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="n">X0</span><span class="p">,</span> <span class="n">Sg0</span><span class="p">,</span> <span class="n">Sm0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VB0</span><span class="p">,</span> <span class="n">P10</span><span class="p">,</span> <span class="n">P20</span><span class="p">,</span> <span class="n">P30</span><span class="p">,</span> <span class="n">VH0</span><span class="p">]</span>
+<span class="n">xC0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="mi">30</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">xC0</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">PlantwiseSimulator</span><span class="p">()</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+<span class="n">elapse_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

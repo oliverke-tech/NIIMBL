@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechanistic Modeling &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Statistical Modeling" href="../StatisticalModel/statistical_model.html" />
+    <link rel="prev" title="Bioprocess Modeling" href="../process_modeling.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../process_modeling.html">Bioprocess Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../process_modeling.html#introduction">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mechanistic Modeling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background">Background</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-use-of-mechanism-models"><strong>The Use of Mechanism Models</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bioreactor-simulation">Bioreactor Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cell-culture-fermentation-modeling-types">Cell Culture Fermentation Modeling Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-approach">General Approach</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perfusion-bioreactor">Perfusion Bioreactor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#chromatography-simulation">Chromatography Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chromatography-modeling">Chromatography Modeling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-mechanistic-model">A Mechanistic Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plantwise-simulation">Plantwise Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diagram">Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-usage">Potential Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#n-linked-glysycolation-simulation">N-linked Glysycolation Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#high-level-model-overview">High Level Model Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-description">Model Description</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#case-study">Case Study</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#case-study-1-troubleshooting-a-change-in-the-distribution-of-galactosylated-glycoforms">Case Study 1: Troubleshooting a Change in the Distribution of Galactosylated Glycoforms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#case-study-3-integrated-process-control-of-the-bioreactor-and-chromatography">Case Study 3: Integrated Process Control of the Bioreactor and Chromatography</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../StatisticalModel/statistical_model.html">Statistical Modeling</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../process_modeling.html">Bioprocess Modeling</a> &raquo;</li>
+      <li>Mechanistic Modeling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/TrainingMaterial/MechanisticModel/mechanistic_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="mechanistic-modeling">
+<h1><a class="toc-backref" href="#id1">Mechanistic Modeling</a><a class="headerlink" href="#mechanistic-modeling" title="Permalink to this headline"></a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#mechanistic-modeling" id="id1">Mechanistic Modeling</a></p>
+<ul>
+<li><p><a class="reference internal" href="#background" id="id2">Background</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
+<li><p><a class="reference internal" href="#the-use-of-mechanism-models" id="id4"><strong>The Use of Mechanism Models</strong></a></p>
+<ul>
+<li><p><a class="reference internal" href="#advantages" id="id5"><strong><strong>Advantages</strong></strong></a></p></li>
+<li><p><a class="reference internal" href="#disadvantages" id="id6"><strong><strong>Disadvantages</strong></strong></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#bioreactor-simulation" id="id7">Bioreactor Simulation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cell-culture-fermentation-modeling-types" id="id8">Cell Culture Fermentation Modeling Types</a></p></li>
+<li><p><a class="reference internal" href="#general-approach" id="id9">General Approach</a></p></li>
+<li><p><a class="reference internal" href="#perfusion-bioreactor" id="id10">Perfusion Bioreactor</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bioreactor-kinetic-model" id="id11">Bioreactor Kinetic Model</a></p></li>
+<li><p><a class="reference internal" href="#harvest-hold-tank-model" id="id12">Harvest/Hold Tank Model</a></p></li>
+<li><p><a class="reference internal" href="#reference" id="id13">Reference</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#chromatography-simulation" id="id14">Chromatography Simulation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#chromatography-modeling" id="id15">Chromatography Modeling</a></p></li>
+<li><p><a class="reference internal" href="#a-mechanistic-model" id="id16">A Mechanistic Model</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mobile-phase-mass-transfer-kinetics" id="id17">Mobile phase (<strong>Mass Transfer Kinetics</strong>)</a></p></li>
+<li><p><a class="reference internal" href="#absored-stationary-phase-kinetics-of-adsorption-desorption" id="id18">Absored/Stationary Phase (<strong>kinetics of adsorption-desorption</strong>)</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#plantwise-simulation" id="id19">Plantwise Simulation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#diagram" id="id20">Diagram</a></p></li>
+<li><p><a class="reference internal" href="#potential-usage" id="id21">Potential Usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reference" id="id22">Reference</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#n-linked-glysycolation-simulation" id="id23">N-linked Glysycolation Simulation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#high-level-model-overview" id="id24">High Level Model Overview</a></p></li>
+<li><p><a class="reference internal" href="#model-description" id="id25">Model Description</a></p>
+<ul>
+<li><p><a class="reference internal" href="#unstructured-cell-culture-model" id="id26">Unstructured cell culture model</a></p></li>
+<li><p><a class="reference internal" href="#structured-model-of-n-linked-glycosylation" id="id27">Structured model of N-linked glycosylation</a></p></li>
+<li><p><a class="reference internal" href="#kinetic-reaction-network-column-reactant-row-product-cell-enzyme" id="id28">Kinetic Reaction Network: column (reactant), row (product), cell (enzyme)</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#case-study" id="id29">Case Study</a></p>
+<ul>
+<li><p><a class="reference internal" href="#case-study-1-troubleshooting-a-change-in-the-distribution-of-galactosylated-glycoforms" id="id30">Case Study 1: Troubleshooting a Change in the Distribution of Galactosylated Glycoforms</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id31">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#background" id="id32">Background</a></p></li>
+<li><p><a class="reference internal" href="#objective" id="id33">Objective</a></p></li>
+<li><p><a class="reference internal" href="#example-experimental-design-at-the-flask-scale-to-generate-data-for-troubleshooting" id="id34">Example Experimental Design at the Flask Scale to Generate Data for Troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#potential-root-causes" id="id35">Potential Root Causes</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id36">Tasks</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#case-study-3-integrated-process-control-of-the-bioreactor-and-chromatography" id="id37">Case Study 3: Integrated Process Control of the Bioreactor and Chromatography</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id38">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id39">Background</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id40">Objective</a></p></li>
+<li><p><a class="reference internal" href="#example-experimental-design" id="id41">Example Experimental Design</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id42">Tasks</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="background">
+<h2><a class="toc-backref" href="#id2">Background</a><a class="headerlink" href="#background" title="Permalink to this headline"></a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h3><a class="toc-backref" href="#id3">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline"></a></h3>
+<p>Mechanism models, also known as first principle models, utilize differential and partial differential equations and biochemical knowledge to model the interactions within an operation. In this section, we will study the model as it pertains to <strong>cell culture</strong> and <strong>chromatography</strong>: how it is formulated, what it represents, how it is applied, as well as the model’s advantages and limitations.</p>
+<p>As introduced in previous modules, the parameters (inputs) that have the most significant effect on the output of the process are called <strong>critical process parameters</strong> (CPPs), and these CPPs ultimately determine the most important measures of the output called <strong>critical quality attributes</strong> (CQAs). Mechanism models aim to model the interaction of these CPPs and their effect on CQAs within an operation by using differential equations.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-use-of-mechanism-models">
+<h3><a class="toc-backref" href="#id4"><strong>The Use of Mechanism Models</strong></a><a class="headerlink" href="#the-use-of-mechanism-models" title="Permalink to this headline"></a></h3>
+<p><strong>Mechanism models</strong> provide an abstract description of underlying mechanisms in the biopharmaceutical process. More specifically, they are used to describe physical interactions like mass transfer, heat transfer, heat flow, and their impact on the chemical reaction taking place using differential equations.</p>
+<p>Mechanism models are developed by combining known physical laws with training data and experiential knowledge of the interactions in a given process. These models commonly have many parameters that were adjusted or created to fit existing data. The result is a model that has a basic understanding of the interaction at hand, but helps to describe CPP impact on CQAs.</p>
+<p>For example, in the cell culture process, first principles models are used to predict how adjusting something like media flow rate (CPP) has an impact on substrate concentration (CQA) in the yield.</p>
+<section id="advantages">
+<h4><a class="toc-backref" href="#id5"><strong><strong>Advantages</strong></strong></a><a class="headerlink" href="#advantages" title="Permalink to this headline"></a></h4>
+<p>The biggest advantage of first principles models is that a model can be tailored to a specific process layout when defining parameters. The use of test data in the construction of a mechanical model will most accurately model your particular machinery. In addition, first principles models can be used to monitor, control, and optimize the process as it’s running.</p>
+</section>
+<section id="disadvantages">
+<h4><a class="toc-backref" href="#id6"><strong><strong>Disadvantages</strong></strong></a><a class="headerlink" href="#disadvantages" title="Permalink to this headline"></a></h4>
+<p>Mechanical models struggle with accuracy. When creating a mechanical model, attempting to add accuracy can quickly make a model extremely complicated. Adding accuracy adds more parameters to the model, making it harder to interact with the model and get easily measurable results. The construction of a first principles model is also labor intensive and time consuming. Collecting test data and gaining the necessary knowledge to create a mechanical model can use many resources, especially for a model that only returns ballpark results.</p>
+</section>
+</section>
+</section>
+<section id="bioreactor-simulation">
+<h2><a class="toc-backref" href="#id7">Bioreactor Simulation</a><a class="headerlink" href="#bioreactor-simulation" title="Permalink to this headline"></a></h2>
+<p>Traditionally, biopharmaceutical researchers/engineers relied on an experimental approach to extract data and information from cell cultures and evaluate how the system inputs such as media formulation, temperature, and pH affect the outputs, i.e., cell growth, cell viability, product titer, and quality, in an intuitive or statistical manner. However, this conventional approach is highly undesirable in industrial settings owing to the cost and time of the required experimentation. In this regard, mathematically representing  the cell culture systems and subsequent analysis for better understanding via appropriate in silico techniques can be considered as a promising approach. Importantly, mathematical models help organize and integrate the existing data in a systematic way. The constructed models can therefore be used to predict cellular responses to various environmental/genetic perturbations, and to identify targets for host cell line engineering to improve culture performance.</p>
+<p><img alt="Bioreactor" src="../../_images/bioreactor1.png" /></p>
+<section id="cell-culture-fermentation-modeling-types">
+<h3><a class="toc-backref" href="#id8">Cell Culture Fermentation Modeling Types</a><a class="headerlink" href="#cell-culture-fermentation-modeling-types" title="Permalink to this headline"></a></h3>
+<p>Bioreactors are modeled similarly to stirred tank chemical reactors</p>
+<p>A mass balance equation can be used as a first principles model to understand the interaction between the CPP’s and CQA’s</p>
+<p>Biological reaction rate models are structured or unstructured, non-segregated or segregated</p>
+<ul class="simple">
+<li><p>Unstructured: Reaction rate depends only on concentrations external to the cell</p></li>
+<li><p>Structured: Reaction rate is also dependent on concentrations in intercellular components</p></li>
+<li><p>Non-segregated: All cells are treated as identical</p></li>
+<li><p>Segregated: Multiple populations of cells with different characteristics</p></li>
+</ul>
+</section>
+<section id="general-approach">
+<h3><a class="toc-backref" href="#id9">General Approach</a><a class="headerlink" href="#general-approach" title="Permalink to this headline"></a></h3>
+<p>Typicaally a kinetic model consists of differential algebraic equations (DAEs) that can be derived from the time-dependent mass balances of participating components with appropriate mechanistic or empirical kinetic equations, e.g., Monod kinetics ,mass action   kinetics, and Michaelis–Menten kinetics. Some models only use ordinary differential equations (ODEs) through simplifying assumptions.</p>
+<p><em>Table</em>: Mass balances for viable cells and nutrients/by-products/meta-bolites/product around the bioreactor as well as unstructured Monod based equations is provided in the following table (Table adopted from [1]).</p>
+<p><img alt="Mass" src="../../_images/mass_balance.png" /></p>
+<p><strong>Notations</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_V\)</span>, viable cell concentration;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span> culture volume;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{IN}\)</span>,flow rate in the culture (for fed-batch or perfusion modes);</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_{V_{IN}}\)</span>, viable cell concentration in the inflow;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{OUT}\)</span>,flow rateout of the bioreactor;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>, specific growth rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_d\)</span>, specific death rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{lys}\)</span>, lysis rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_D\)</span>, non-viable (“dead”) cell concentration;</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_i\)</span>, molar concentration of a nutrient/product/by-product/metabolite (based on context) <span class="math notranslate nohighlight">\(i\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{i_{IN}}\)</span>, molar concentration of <span class="math notranslate nohighlight">\(i\)</span> the inflow;</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i\)</span>, specific consumption/production rate (negative or positive, respectively);</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_i\)</span>, chemical/non-enzymatic degradation rate of <span class="math notranslate nohighlight">\(i\)</span>, if applicable, assuming first-order degradation (negative if <span class="math notranslate nohighlight">\(i\)</span> is degrading, positive if another product is degrading to <span class="math notranslate nohighlight">\(i\)</span>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{max}\)</span>, maximum specific growth rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{C_i}\)</span>, half-velocity constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span>, total number of considered limiting substrates for Equations 4 and 6, and total number of considered toxic products in Equation 5;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{D_{max}}\)</span>, maximum specific death rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_i\)</span>, Hill coefficient;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{D_{C_i}}\)</span>, death-associated half-velocity constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{I_{C_i}}\)</span>, inhibitor-associated half-velocity constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y_{X/C_i}\)</span>, yield of cells to <span class="math notranslate nohighlight">\(C_i\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_i\)</span>, maintenance coefficient.</p></li>
+</ul>
+<p>Mass balances for various cell types (e.g.,cells in distinct apoptotic phases or in different stages of cell cycle) can be distinguished by including transition rates between the different cell populations. The important variables to be de fined in these mass balances are the specific rates, i.e., cell growth (<span class="math notranslate nohighlight">\(m\)</span>), cell death (<span class="math notranslate nohighlight">\(k_D\)</span>), and metabolite production/consumption (<span class="math notranslate nohighlight">\(q_i\)</span>),that dynamically change during the culture process.</p>
+</section>
+<section id="perfusion-bioreactor">
+<h3><a class="toc-backref" href="#id10">Perfusion Bioreactor</a><a class="headerlink" href="#perfusion-bioreactor" title="Permalink to this headline"></a></h3>
+<p>Lu et al. [1] modeled the growth and energy metabolism of Pichia pastoris producing a fusion protein under glycerol and methanol feed using an unstructured, nonsegregated model.</p>
+<p>Biological kinetic models can be classified as unstructured nonsegregated model whose reaction rate depends only on concentrations external to the cell and all cells are taken to be identical. The differential equations are listed as below</p>
+<section id="bioreactor-kinetic-model">
+<h4><a class="toc-backref" href="#id11">Bioreactor Kinetic Model</a><a class="headerlink" href="#bioreactor-kinetic-model" title="Permalink to this headline"></a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dX}{dt}&amp;=-\frac{F_{in}-F_{out}}{V}X+(\mu_g+\mu_m)X\\
+\frac{dS_g}{dt}&amp;=\frac{F_{in}}{V}(S_{in,g}-S_g)-q_{S_g}X\\
+\frac{dS_m}{dt}&amp;=\frac{F_{in}}{V}(S_{i,m}-S_m)-q_{S_m}X\\
+\frac{dP_i}{dt}&amp;=-\frac{F_{in}}{V}P_i+q_{P_i}X\\
+\frac{dV}{dt}&amp;=F_{in}-F_{out}
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="harvest-hold-tank-model">
+<h4><a class="toc-backref" href="#id12">Harvest/Hold Tank Model</a><a class="headerlink" href="#harvest-hold-tank-model" title="Permalink to this headline"></a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dP_i}{dt}&amp;=-\frac{F_{in}}{V}(P_{i,in}-P_i)\\
+\frac{dV}{dt}&amp;=F_{in}-F_{out}
+\end{align*}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(𝑋\)</span>: biomass<br />
+<span class="math notranslate nohighlight">\(𝐹_𝑖𝑛\)</span>: inlet flow rate (L/h)<br />
+<span class="math notranslate nohighlight">\(𝐹_𝑜𝑢𝑡\)</span>: outlet flow rate (L/h)<br />
+<span class="math notranslate nohighlight">\(𝜇_𝑔\)</span>,<span class="math notranslate nohighlight">\(𝜇_𝑚\)</span>: Specific growth rate<br />
+<span class="math notranslate nohighlight">\(𝑆_{𝑖𝑛,𝑔}\)</span>: inlet glycerol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_{𝑖𝑛,𝑚}\)</span>: inlet methanol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_𝑔\)</span>: glycerol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_𝑚\)</span>: methanol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑞_{𝑆_𝑔}\)</span>,<span class="math notranslate nohighlight">\(𝑞_{𝑆_𝑚}\)</span>: Specific rate of substrate consumption (g/g-h)<br />
+<span class="math notranslate nohighlight">\(𝑞_{𝑃_𝑖}\)</span>: Specific product production rate (g/g-h)<br />
+<span class="math notranslate nohighlight">\(𝑃_𝑖\)</span>: protein <span class="math notranslate nohighlight">\(𝑖\)</span><br />
+<span class="math notranslate nohighlight">\(𝑉\)</span>: bioreactor volume (L)</p>
+</section>
+<section id="reference">
+<h4><a class="toc-backref" href="#id13">Reference</a><a class="headerlink" href="#reference" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Kyriakopoulos, S., Ang, K.S., Lakshmanan, M., Huang, Z., Yoon, S., Gunawan, R. and Lee, D.Y., 2018. Kinetic modeling of mammalian cell culture bioprocessing: the quest to advance biomanufacturing. <em>Biotechnology Journal</em>, <em>13</em> (3), p.1700229.</p></li>
+<li><p>Lu, A.E., Paulson, J.A., Mozdzierz, N.J., Stockdale, A., Versypt, A.N.F., Love, K.R., Love, J.C. and Braatz, R.D., 2015, September. Control systems technology in the advanced manufacturing of biologic drugs. In <em>2015 IEEE Conference on Control Applications (CCA)</em>
+(pp. 1505-1515). IEEE.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="chromatography-simulation">
+<h2><a class="toc-backref" href="#id14">Chromatography Simulation</a><a class="headerlink" href="#chromatography-simulation" title="Permalink to this headline"></a></h2>
+<p>The downstream process of biopharma manufacturing typically has multiple purification unit operations, each with a slightly different mechanism and purpose, and end purity goal. Chromatography is arguably the most important unit operation in purification, and here we will introduce and explain a general mechanism model for the process of chromatography.
+<img alt="chromatography" src="../../_images/chromatography.png" /></p>
+<section id="chromatography-modeling">
+<h3><a class="toc-backref" href="#id15">Chromatography Modeling</a><a class="headerlink" href="#chromatography-modeling" title="Permalink to this headline"></a></h3>
+<p>In chromatography, mechanistic modeling can be used to simulate elution profiles under different conditions such as column dimensions, load ratio, flow rate and conductivity.
+Simulations can be performed for both major and minor sample components. The output can then be used to optimize the separation. The following  image shows the elution profiles of capture column
+in three steps.</p>
+<p><img alt="capture" src="../../_images/capture.png" /></p>
+<p><strong>Chromatography simulation model</strong> is built on mechanistic model combining SMA adsorption kinetic models and mass transport models (such as GRM, Thomas model, Transport model).</p>
+<p>General rate model (GRM) is the most comprehensive rate model to date. The solution of GRM requires solving a set of PDEs including mass balance, mass transfer, and adsorption kinetic equations in the column and in the stationary phase. The general rate model of chromatography uses two mass balance equations, <strong>one in the mobile phase outside the particle</strong> and <strong>the other in the stagnant mobile phase inside a particle</strong>, and two kinetic equations, one relating the two mobile phase concentrations (<strong>mass transfer kinetics</strong>) and the other relating the stagnant mobile phase and the stationary phase concentrations (<strong>kinetics of adsorption-desorption</strong>).</p>
+</section>
+<section id="a-mechanistic-model">
+<h3><a class="toc-backref" href="#id16">A Mechanistic Model</a><a class="headerlink" href="#a-mechanistic-model" title="Permalink to this headline"></a></h3>
+<p>We provide a state-of-the-art chromatography modeling example that used the steric mass action (SMA) isotherm with a nonideal transport model.</p>
+<section id="mobile-phase-mass-transfer-kinetics">
+<h4><a class="toc-backref" href="#id17">Mobile phase (<strong>Mass Transfer Kinetics</strong>)</a><a class="headerlink" href="#mobile-phase-mass-transfer-kinetics" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>Nonideal transport model for the concentration of <span class="math notranslate nohighlight">\(i\)</span>th species. The first term on the right-hand side describes the convective transport through the column, the second term the dispersive transport and the third term the interaction between mobile and absorbed phase</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C_i}{\partial t}\varepsilon_{tot}=-\frac{\partial C_i}{\partial z}+\frac{1}{Pe}\frac{\partial^2 C_i}{\partial z^2}-\frac{q_i}{\partial t}\varepsilon_{pore}
+\]</div>
+<ul class="simple">
+<li><p>The mass balance of salt whose concentration is denoted by <span class="math notranslate nohighlight">\(C_{salt}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C_{salt}}{\partial t}\varepsilon_{tot}=-\frac{\partial C_{salt}}{\partial z}+\frac{1}{Pe}\frac{\partial^2 C_{saltt}}{\partial z^2}
+\]</div>
+</section>
+<section id="absored-stationary-phase-kinetics-of-adsorption-desorption">
+<h4><a class="toc-backref" href="#id18">Absored/Stationary Phase (<strong>kinetics of adsorption-desorption</strong>)</a><a class="headerlink" href="#absored-stationary-phase-kinetics-of-adsorption-desorption" title="Permalink to this headline"></a></h4>
+<p>The time dependent change of the concentration of species <span class="math notranslate nohighlight">\(i\)</span> on the adsorbent surface</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial q_i}{dt}=k_{ads,i}C_i \bar{Q}^{v_i}-k_{des,i}q_iC^{v_i}_{salt}
+\]</div>
+<p><strong>Notations</strong>: <span class="math notranslate nohighlight">\(C_i\)</span> is the concentration of species <span class="math notranslate nohighlight">\(i\)</span> in the liquid phase, <span class="math notranslate nohighlight">\(t\)</span> is the time, <span class="math notranslate nohighlight">\(\varepsilon_{tot}\)</span> is the total porosity, <span class="math notranslate nohighlight">\(z\in[0, 1]\)</span> is the dimensionless length, <span class="math notranslate nohighlight">\(Pe\)</span> is the Peclet number, <span class="math notranslate nohighlight">\(q_i\)</span> is the concentration of species <span class="math notranslate nohighlight">\(i\)</span> in the adsorbed phase, and <span class="math notranslate nohighlight">\(\varepsilon_{pore}\)</span> is the particle porosity. <span class="math notranslate nohighlight">\(k_{ads,i}\)</span> is the rate constant of adsorption for component <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(Q\)</span> is the number of ligands available for adsorption and desorption, <span class="math notranslate nohighlight">\(v_i\)</span> is the characteristic charge of component <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(k_{des,i}\)</span> is the rate constant of desorption for component <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Reference</strong>: Sejergaard, L., Karkov, H. S., Krarup, J. K., Hagel, A. B. B., &amp; Cramer, S. M. (2014). Model‐based process development for the purification of a modified human growth hormone using multimodal chromatography. Biotechnology Progress,30(5), 1057-1064.</p>
+</section>
+</section>
+</section>
+<section id="plantwise-simulation">
+<h2><a class="toc-backref" href="#id19">Plantwise Simulation</a><a class="headerlink" href="#plantwise-simulation" title="Permalink to this headline"></a></h2>
+<p>In this lecture, we focus on a perfusion biorecator of Pichia pastoris cells, which includes</p>
+<ol class="arabic simple">
+<li><p>State-of-the-art models in chromatography,</p></li>
+<li><p>Perfusion bioreactors</p></li>
+<li><p>Uuse of models for integrated process simulation and prediction.</p></li>
+</ol>
+<p>The simulation model and implementation is adapted from [1].</p>
+<section class="tex2jax_ignore mathjax_ignore" id="diagram">
+<h3><a class="toc-backref" href="#id20">Diagram</a><a class="headerlink" href="#diagram" title="Permalink to this headline"></a></h3>
+<p>In the bioprocessing industry, most work has revolved around modeling unit operations [11]. Models for bioreactors and chromatography  are mature and will be briefly reviewed in the subsequent subsections. However, the unit operations do not operate in isolation, and changing
+a unit’s operating conditions will impact downstream processing. This motivates integrated plant models.</p>
+<p><img alt="IntegratedBioprocess" src="../../_images/IntegratedBioprocess.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="potential-usage">
+<h3><a class="toc-backref" href="#id21">Potential Usage</a><a class="headerlink" href="#potential-usage" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Consider integrated perfusion bioreactor and chromatograph purification.</p></li>
+<li><p>Conduct long-term predictive analysis, e.g., how the feeding strategy at different times of bioreactor impact on the trajectory and variation of integrated biomanufacturing processes</p></li>
+<li><p>Find the optimal and robust control strategies for this integrated process</p></li>
+</ul>
+<section id="reference">
+<h4><a class="toc-backref" href="#id22">Reference</a><a class="headerlink" href="#reference" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Lu, A.E., Paulson, J.A., Mozdzierz, N.J., Stockdale, A., Versypt, A.N.F., Love, K.R., Love, J.C. and Braatz, R.D., 2015, September. Control systems technology in the advanced manufacturing of biologic drugs. In <em>2015 IEEE Conference on Control Applications (CCA)</em>
+(pp. 1505-1515). IEEE.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="n-linked-glysycolation-simulation">
+<h2><a class="toc-backref" href="#id23">N-linked Glysycolation Simulation</a><a class="headerlink" href="#n-linked-glysycolation-simulation" title="Permalink to this headline"></a></h2>
+<section id="high-level-model-overview">
+<h3><a class="toc-backref" href="#id24">High Level Model Overview</a><a class="headerlink" href="#high-level-model-overview" title="Permalink to this headline"></a></h3>
+<p>The glycosylation model is based on the cisternal maturation
+assumption with recycling of Golgi resident proteins first proposed
+by Jimenez del Val et al. (2011). The mass balances for the species
+involved were calculated considering the Golgi apparatus as a single
+plug flow reactor operating at steady state according to equations (11)-(13) and the
+reaction scheme reported in the figure below. The effect of the operating conditions on N-glycosylation was simulated
+by linking the kinetics of enzymatic reactions to the availability of
+sugar precursors, and the concentrations of metal ions and  ammonia.</p>
+<p><img alt="img.png" src="../../_images/reaction_network.png" /></p>
+</section>
+<section id="model-description">
+<h3><a class="toc-backref" href="#id25">Model Description</a><a class="headerlink" href="#model-description" title="Permalink to this headline"></a></h3>
+<p>Mass balance equations for the unstructured cell culture model and the mechanistic glycosylation model adapted from
+Karst et. al. (2017). The modeling framework can be divided in two sections. The first part comprises a simple
+unstructured cell culture model for the estimation of cell  specific parameters (e.g., growth rate, ammonia and antibody
+specific productivities) and process related values (e.g., bleed rate). The mass balances of the perfusion bioreactor
+are based on the assumption of a CSTR reactor (e.g., perfect mixing).</p>
+<p><img alt="img.png" src="../../_images/reaction_equations.png" /></p>
+<section id="unstructured-cell-culture-model">
+<h4><a class="toc-backref" href="#id26">Unstructured cell culture model</a><a class="headerlink" href="#unstructured-cell-culture-model" title="Permalink to this headline"></a></h4>
+<p>An unstructured cell culture model [1-10] was used to describeviable cell density, specific productivity, ammonia produc-tion,and intracellular nucleotide sugars as shown in Table 1.The initial conditions were taken from measurements at the beginning of the culture.</p>
+</section>
+<section id="structured-model-of-n-linked-glycosylation">
+<h4><a class="toc-backref" href="#id27">Structured model of N-linked glycosylation</a><a class="headerlink" href="#structured-model-of-n-linked-glycosylation" title="Permalink to this headline"></a></h4>
+<p>A dynamic mechanistic model [11-13] of mAb Fc N-linked glyco-sylation was adapted from Del Val et al., describing cisternal maturation of the Golgi apparatus as a single plug flowreactor (PFR) including recycling of Golgi-resident proteins and transport equation for nucleotide sugars.</p>
+</section>
+<section id="kinetic-reaction-network-column-reactant-row-product-cell-enzyme">
+<h4><a class="toc-backref" href="#id28">Kinetic Reaction Network: column (reactant), row (product), cell (enzyme)</a><a class="headerlink" href="#kinetic-reaction-network-column-reactant-row-product-cell-enzyme" title="Permalink to this headline"></a></h4>
+<p>In fact, the reaction network can be represented in a matrix form. The following figure of reaction scheme describes the
+N-glycosylation for the mAb in the mechanistic model. This network defines the reactant (column), product (row) and enzyme (cell) involved
+in each reaction.
+<img alt="img.png" src="../../_images/reactions.png" /></p>
+<p><strong>Reference</strong>:</p>
+<ol class="arabic simple">
+<li><p>Karst, D. J., Scibona, E., Serra, E., Bielser, J. M., Souquet, J., Stettler, M., … &amp; Villiger, T. K.
+(2017). Modulation and modeling of monoclonal antibody N‐linked glycosylation in mammalian cell perfusion reactors.
+Biotechnology and bioengineering, 114(9), 1978-1990.</p></li>
+<li><p>Jimenez del Val, I., Nagy, J. M., &amp; Kontoravdi, C. (2011). A dynamic mathematical model for monoclonal antibody N‐linked glycosylation and nucleotide sugar donor transport within a maturing Golgi apparatus. Biotechnology progress, 27(6), 1730-1743.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="case-study">
+<h2><a class="toc-backref" href="#id29">Case Study</a><a class="headerlink" href="#case-study" title="Permalink to this headline"></a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-1-troubleshooting-a-change-in-the-distribution-of-galactosylated-glycoforms">
+<h3><a class="toc-backref" href="#id30">Case Study 1: Troubleshooting a Change in the Distribution of Galactosylated Glycoforms</a><a class="headerlink" href="#case-study-1-troubleshooting-a-change-in-the-distribution-of-galactosylated-glycoforms" title="Permalink to this headline"></a></h3>
+<section id="introduction">
+<h4><a class="toc-backref" href="#id31">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h4>
+<p>This case study is a troubleshooting scenario in which the distribution of galactosylated glycoforms for a Chinese Hamster Ovary (CHO)-derived recombinant protein changes considerably after switching to a new chemically defined (CD) media. The case study is adapted from a real industrial problem reported by Eli Lilly and Company (McCracken et al., 2014), and the task is to track down which changes in the CD media, nutrients and metabolite resulted in the change of the distribution of galactosylated glycoforms. With this information, the composition of the new CD media can be modified to shift back to being near the original glycosylation profile. This case study requires constructing the relationship between a change in the raw materials (media)/metabolites and a critical quality attribute (the distribution of galactosylated glycoforms (G0F, G1F, and G2F)). This case study considers a fed-batch process and may consider two different length scales (flasks and bioreactors).
+The objective of this case study is to improve the trainees’ understanding of process variation in critical quality attributes (CQAs) and how to identify the critical process parameters (CPPs), infer the causal relationships between CPPs and CQAs, and use process analytical technology (PAT) tools to find the root cause for the CQA variation. The trainees are expected to quantitatively analyze the process variation and its connection to critical process parameters, process variables, and other potential factors. In addition, they can conduct predictive analysis to guide decisions towards achieving specifications on the CQAs.</p>
+</section>
+<section id="background">
+<h4><a class="toc-backref" href="#id32">Background</a><a class="headerlink" href="#background" title="Permalink to this headline"></a></h4>
+<p>Cell culture process conditions, including media components and bioreactor operation conditions, have a profound impact on cellular metabolic state and recombinant protein quality attributes. Glycosylation is a complex biological process that can impact activity, immunogenicity, and efficacy of therapies. Considerable changes in the distribution of galactosylated glycoforms (G0F, G1F, and G2F) are observed for a CHO-derived monoclonal antibody when switching to new chemically defined (CD) media, namely, significantly lower G0F and higher G1F and G2F percentages are observed. These changes are of interest as a change in glycosylation can impact the safety and effectiveness of therapeutic proteins.</p>
+</section>
+<section id="objective">
+<h4><a class="toc-backref" href="#id33">Objective</a><a class="headerlink" href="#objective" title="Permalink to this headline"></a></h4>
+<p>Understand the root cause of the change and design a strategy for correcting the distribution of galactosylated glycoforms.</p>
+</section>
+<section id="example-experimental-design-at-the-flask-scale-to-generate-data-for-troubleshooting">
+<h4><a class="toc-backref" href="#id34">Example Experimental Design at the Flask Scale to Generate Data for Troubleshooting</a><a class="headerlink" href="#example-experimental-design-at-the-flask-scale-to-generate-data-for-troubleshooting" title="Permalink to this headline"></a></h4>
+<p>Flasks are seeded with approximately the same cell densities. A fed-batch operation has nutrient feeds entering on predetermined schedule. Culture cell density and viability and metabolites are monitored. Medium, feeds, and stock solutions are known and all cultures are harvested at the same time. Some experimental conditions are repeated to assess reproducibility, whereas others are not, to save time. The experiments are designed with the goal of determining which specific components in the media (such as Sialic Acid, Galactose, etc.), nutrients (glucose) and metabolite (such as ammonia) resulted in the change in the glycosylation profile.</p>
+</section>
+<section id="potential-root-causes">
+<h4><a class="toc-backref" href="#id35">Potential Root Causes</a><a class="headerlink" href="#potential-root-causes" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>Feed rate</p></li>
+<li><p>Media and metabolite</p></li>
+<li><p>Mn concentration</p></li>
+<li><p>Ammonia concentration</p></li>
+<li><p>Galactose feed</p></li>
+</ul>
+</section>
+<section id="tasks">
+<h4><a class="toc-backref" href="#id36">Tasks</a><a class="headerlink" href="#tasks" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>Task 1: Use the simulator to generate a data set of glycan profiles with new CD media versus old media.</p></li>
+<li><p>Task 2: Illustrate the distribution difference in the digital twin interface (see figures adapted from McCracken et al., 2014)</p></li>
+<li><p>Task 3: Ask students to troubleshoot the problem.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-3-integrated-process-control-of-the-bioreactor-and-chromatography">
+<h3><a class="toc-backref" href="#id37">Case Study 3: Integrated Process Control of the Bioreactor and Chromatography</a><a class="headerlink" href="#case-study-3-integrated-process-control-of-the-bioreactor-and-chromatography" title="Permalink to this headline"></a></h3>
+<section id="id1">
+<h4><a class="toc-backref" href="#id38">Introduction</a><a class="headerlink" href="#id1" title="Permalink to this headline"></a></h4>
+<p>In this case, students will study two key unit operations, namely bioreactor and chromatography, in an typical biomanufacturing process. The unit operations will be highly integrated, with automatic material handling and transfer between unit operations. Students are expected to learn various control methods and trouble-shooting analysis in the integrated fed-batch bioreactor and chromatography process and then analyze its impact on the process yield and product purity. The case study is derived from real industrial problems for real-time monitoring of multiple process parameters in bioreactors[2,3,5], and in control of glucose and lactate concentrations[1,4] and chromatographic process[9,10]</p>
+</section>
+<section id="id2">
+<h4><a class="toc-backref" href="#id39">Background</a><a class="headerlink" href="#id2" title="Permalink to this headline"></a></h4>
+<p>One of the objectives in the production of therapeutic proteins is to maximize productivity while respecting required product quality. A key limitation in the cell culture processes is the accumulation of lactate. Since excess glucose can lead to increased lactate production through increased glycolytic activity, online measurements of glucose and lactate concentrations enable both monitoring operational problems and tighter control of glucose and lactate concentrations. In addition, the perturbation in the upstream (caused by sensor noise, raw material, or operation errors) will inevitably impact on the product quality in the downstream. Thus, it is of great interest to quantify the impact and analyze probable root causes.</p>
+<p>In the downstream, chromatography is a critical separation step that is widely used in research and industry as an analytical or preparative tool. Separation can be achieved by differences in affinity, hydrophobicity, surface charge and molecular weight, and other factors. It involves a column which is charged with pulses of the feed solution. While travelling through the column, the more adsorptive species is retained longer by the adsorbent, thus leaving the column after the less adsorptive specie.</p>
+</section>
+<section id="id3">
+<h4><a class="toc-backref" href="#id40">Objective</a><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<p>Apply process control for mammalian cell culture bioreactors and downstream chromatography to improve productivity and product quality while ensuring that specifications on CQAs are satisfied.</p>
+</section>
+<section id="example-experimental-design">
+<h4><a class="toc-backref" href="#id41">Example Experimental Design</a><a class="headerlink" href="#example-experimental-design" title="Permalink to this headline"></a></h4>
+<p>The bioreactors are operated in fed-batch mode using proprietary basal and feed medium formulations. Commercially available chemically defined basal medium (CD) is used in both cell expansion and production stages. A fed-batch operation has nutrient feeds entering on predetermined schedule. Medium, feeds, and stock solutions are known, and all cultures are harvested at the same time. The bioreactors were operated at 37°C. The pH and DO are maintained at 6.94±0.04 and 50% of air saturation, respectively. The bioreactor pH is controlled by addition of CO2 gas to decrease pH and addition of 3 N NaOH base to increase pH as needed. Inoculum conditions and feeding rate of substrate are controlled in order to provide conditions in the bioreactor to achieve a wider range in nutrients, metabolites, and cell densities than would be observed under normal operating conditions, which in turn allows for generation of more robust calibration models. Experiments are run to generate the at-line measurements of the viable cell, glucose, glutamine, lactate, ammonium and monoclonal antibody concentration. The chromatography will be simulated in the digital twin using GRM and SMA. The results of the SMA are in the form of chromatograms. Yields and purities of the desired product can be computed at various points along the simulated model chromatogram.</p>
+</section>
+<section id="id4">
+<h4><a class="toc-backref" href="#id42">Tasks</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Sensitivity/predictive analysis of fermentation to the perturbation of CPPs. The perturbation of critical process parameters will affect the productivity and product quality. The importance of maintaining a proper level of CPPs (e.g. VCD/nitrogen concentration) has been well recognized. The sensitivity of the fermentation to these perturbations has considerable practical importance and is therefore the subject of the case study.</p></li>
+<li><p>Chromatography Optimization. The inlet protein and salt concentration, entering the chromatography columns, are set from the bioreactor upstream to the separation unit. In a chromatography setup, sensors can only be placed at the entrance and exit of the column–not within its interior. This limits the applicability of classical feedback control. For example, if a load solution has an unusually high protein concentration, this will only be detected by premature breakthrough during the loading phase. Even if loading was terminated upon the detection of breakthrough, additional protein would be lost during the wash phase, compromising recovery. To mitigate these effects, open loop optimal control can be used as a control strategy. In this case, measures of the load solution concentration, obtained by UV280 absorbance or Raman spectroscopy, can be used as parameters for the chromatography model. Optimization can then be used to select the operating conditions to be used to achieve optimal process performance.</p></li>
+</ol>
+<p>In the chronography, the column was assumed to operate in a 4-stage bind and elute mode. A total of 6 operating variables were relevant to the problem, listed in table below,</p>
+<p>Table 1: Operating Variable of Chronography</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Stage</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>Protein Conc.</p></th>
+<th class="head"><p>Salt Conc.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Load</p></td>
+<td><p>t_l</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{p,i}^\#\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{p,l}^\#\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Wash</p></td>
+<td><p>t_w</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{s,w}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Purge</p></td>
+<td><p>t_p</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{s,e}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Elute</p></td>
+<td><p>t_e</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(c_{s,e}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>For a chromatographic process with given design parameters, the determination of the optimal operating regime can be posed as a combination of four competing objectives: purity, recovery, concentration, and productivity; see details in [11].</p>
+<p><strong>Reference</strong>:</p>
+<ol class="arabic simple">
+<li><p>Thomas E. Matthews, Brandon N. Berry, John Smelko, Justin Moretto, Brandon Moore, Kelly Wiltberger (Biogen). Closed loop control of lactate concentration in Mammalian cell culture by Raman spectroscopy leads to improve cell density, viability, and biopharmaceutical protein production. Biotechnology and Bioengineering, Vol. 113, No. 11, Pages 2416-2424, November 2016. https://pubmed.ncbi.nlm.nih.gov/27215441/</p></li>
+<li><p>Hamidreza Mehdizadeh, David Lauri, Krizia M. Karry, and Mojgan Moshgbar, Renee Procopio-Melino, and Denis Drapeau (Pfizer). Generic Raman-based calibration models enabling real-time monitoring of cell culture bioreactors. Biotechnology Progress, Vol. 31, No. 4, Pages 1004-1013, July-August 2015. https://pubmed.ncbi.nlm.nih.gov/25825868/</p></li>
+<li><p>Jessica Whelan, Stephen Craven, and Brian Glennon. In situ Raman spectroscopy for simultaneous monitoring of multiple process parameters in Mammalian cell culture bioreactors. Biotechnology Progress, Vol. 28, No. 5, Pages 1355-1362, September-October 2012. https://pubmed.ncbi.nlm.nih.gov/22740438/</p></li>
+<li><p>Stephen Craven, Jessica Whelan, Brian Glennon (Applied Process Company). Glucose concentration control of a fed-batch mammalian cell bioprocess using a nonlinear model predictive controller. Journal of Process Control, Vol. 24, 344-357, 2014.</p></li>
+<li><p>Stephen Goldrick, Alexandra Umprecht, Alison Tang, Roman Zakrzewski, Matthew Cheeks, Richard Turner, Aled Charles, Karolina Les, Martyn Hulley, Chris Spencer, and Suzanne S. Farid (nearly all employees of AstraZeneca). High-throughput Raman spectroscopy combined with innovate data analysis workflow to enhance biopharmaceutical process development. Processes, 8, 1179, 2020.</p></li>
+<li><p>Hua Zheng, Wei Xie, Ilya O. Ryzhov, Dongming Xie (2021). Policy Optimization in Bayesian Network Hybrid Models of Biomanufacturing Processes. https://arxiv.org/pdf/2105.06543.pdf</p></li>
+<li><p>Kornecki, M. and J. Strube. “Process Analytical Technology for Advanced Process Control in Biologics Manufacturing with the Aid of Macroscopic Kinetic Modeling.” Bioengineering (Basel), Vol. 5, No. 1, 2018, doi:10.3390/bioengineering5010025.</p></li>
+<li><p>Shekhawat, L. K., &amp; Rathore, A. S. (2019). An overview of mechanistic modeling of liquid chromatography. Preparative Biochemistry and Biotechnology, 49(6), 623-638.</p></li>
+<li><p>Iyer, H., Tapper, S., Lester, P., Wolk, B., &amp; van Reis, R. (1999). Use of the steric mass action model in ion-exchange chromatographic process development. Journal of Chromatography A, 832(1-2), 1-9.</p></li>
+<li><p>Osberghaus, A., Hepbildikler, S., Nath, S., Haindl, M., Von Lieres, E., &amp; Hubbuch, J. (2012). Optimizing a chromatographic three component separation: A comparison of mechanistic and empiric modeling approaches. Journal of chromatography A, 1237, 86-95.</p></li>
+<li><p>Lu, A. E., Paulson, J. A., Mozdzierz, N. J., Stockdale, A., Versypt, A. N. F., Love, K. R., … &amp; Braatz, R. D. (2015, September). Control systems technology in the advanced manufacturing of biologic drugs. In 2015 IEEE Conference on Control Applications (CCA) (pp. 1505-1515). IEEE.</p></li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../process_modeling.html" class="btn btn-neutral float-left" title="Bioprocess Modeling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../StatisticalModel/statistical_model.html" class="btn btn-neutral float-right" title="Statistical Modeling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

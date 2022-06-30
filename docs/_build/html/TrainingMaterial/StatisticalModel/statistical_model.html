@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistical Modeling &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tutorial" href="../../Tutorial/tutorial.html" />
+    <link rel="prev" title="Mechanistic Modeling" href="../MechanisticModel/mechanistic_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../process_modeling.html">Bioprocess Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../process_modeling.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MechanisticModel/mechanistic_model.html">Mechanistic Modeling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Statistical Modeling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background">Background</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regression-model">Regression Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#regression-techniques">Regression Techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regression-techniques">Regression Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bayesian-network">Bayesian Network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bayesian-network">Bayesian Network</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#case-study">Case Study</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#case-study-2-real-time-process-monitoring-for-fed-batch-mammalian-cell-culture-bioreactors-using-an-in-line-raman-spectroscopy-prob">Case Study 2: Real-time Process Monitoring for Fed-Batch Mammalian Cell Culture Bioreactors Using an In-Line Raman Spectroscopy Prob</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../process_modeling.html">Bioprocess Modeling</a> &raquo;</li>
+      <li>Statistical Modeling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/TrainingMaterial/StatisticalModel/statistical_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="statistical-modeling">
+<h1><a class="toc-backref" href="#id1">Statistical Modeling</a><a class="headerlink" href="#statistical-modeling" title="Permalink to this headline"></a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#statistical-modeling" id="id1">Statistical Modeling</a></p>
+<ul>
+<li><p><a class="reference internal" href="#background" id="id2">Background</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
+<li><p><a class="reference internal" href="#regression-model" id="id4">Regression Model</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#regression-techniques" id="id5">Regression Techniques</a></p>
+<ul>
+<li><p><a class="reference internal" href="#regression-techniques" id="id6">Regression Techniques</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ordinary-least-squares-regression" id="id7">Ordinary Least Squares Regression</a></p></li>
+<li><p><a class="reference internal" href="#lasso" id="id8">Lasso</a></p></li>
+<li><p><a class="reference internal" href="#ridge-regression" id="id9">Ridge Regression</a></p></li>
+<li><p><a class="reference internal" href="#elastic-net" id="id10">Elastic Net</a></p></li>
+<li><p><a class="reference internal" href="#pca-and-pcr" id="id11">PCA and PCR</a></p></li>
+<li><p><a class="reference internal" href="#pls" id="id12">PLS</a></p></li>
+<li><p><a class="reference internal" href="#reference" id="id13">Reference</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#bayesian-network" id="id14">Bayesian Network</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bayesian-network" id="id15">Bayesian Network</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#case-study" id="id16">Case Study</a></p>
+<ul>
+<li><p><a class="reference internal" href="#case-study-2-real-time-process-monitoring-for-fed-batch-mammalian-cell-culture-bioreactors-using-an-in-line-raman-spectroscopy-prob" id="id17">Case Study 2: Real-time Process Monitoring for Fed-Batch Mammalian Cell Culture Bioreactors Using an In-Line Raman Spectroscopy Prob</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id18">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#background" id="id19">Background</a></p></li>
+<li><p><a class="reference internal" href="#objective" id="id20">Objective</a></p></li>
+<li><p><a class="reference internal" href="#pat-methodology" id="id21">PAT Methodology</a></p></li>
+<li><p><a class="reference internal" href="#example-experimental-design" id="id22">Example Experimental Design</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id23">References</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="background">
+<h2><a class="toc-backref" href="#id2">Background</a><a class="headerlink" href="#background" title="Permalink to this headline"></a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h3><a class="toc-backref" href="#id3">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline"></a></h3>
+<p><strong>Data analysis</strong> is essential in biopharmaceutical manufacturing. This involves correlating measured data with existing <strong>statistical models</strong>. These math models propose a relationship between two or more variables so that the properties of the model can be compared with those of the experimental system.</p>
+<p>It is not possible to know if there is a particular relationship between variables. It is only possible to disprove hypotheses by showing that experimental data does not fit the model. As a result, it is important to test multiple relationships and determine the <strong>best fit</strong>, or the better representation, of the data.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="regression-model">
+<h3><a class="toc-backref" href="#id4">Regression Model</a><a class="headerlink" href="#regression-model" title="Permalink to this headline"></a></h3>
+<p>Given Biopharmaceutical Manufacturing’s inherent reliance on monitoring output in relation to time, a base knowledge of <strong>linear regression</strong> is essential. Linear regression can be defined as the use of a mathematical equation to model the linear relation between <strong>independent and dependent variables</strong>. This is often done by graphing data points and then finding an equation that fits it correctly. This provides the modeler with a way to <strong>anticipate the behavior</strong> of the given process if it were to be repeated in the future.</p>
+<p>Regression models are often applied to Biopharmaceutical Manufacturing in the form of <strong>Cell Culture/Fermentation modeling</strong>. The interaction between <strong>CPPs (Critical Process Parameters)</strong> and <strong>CQAs (Critical Quality Attributes)</strong> can be clearly demonstrated using mathematical models. By taking measurements of CQAs at varying CPP levels, we can graph our data and apply a mathematical model that fits best. This can then be used to <strong>estimate</strong> what the CQA output would be with <strong>CPP inputs</strong> that have not yet been measured.</p>
+</section>
+</section>
+<section id="regression-techniques">
+<h2><a class="toc-backref" href="#id5">Regression Techniques</a><a class="headerlink" href="#regression-techniques" title="Permalink to this headline"></a></h2>
+<p>This section introduces several regression methods, including Least Absolute Shrinkage and Selection Operator (lasso), Ridge Regression (RR), Elastic Net (EN),  Partial Least Squares (PLS), and Principal Component Regression (PCR). After finish learning this section, the students should have ability to choose appropriate methods, tuning the hyperparameters, train the model and interpretate results.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="regression-techniques">
+<h3><a class="toc-backref" href="#id6">Regression Techniques</a><a class="headerlink" href="#regression-techniques" title="Permalink to this headline"></a></h3>
+<p>The regression models considered are linear models with the general form:</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 x_0 + \beta_1 x_1 + \cdots + \beta_{n-1} x_{n-1} + \epsilon,
+\]</div>
+<p>where the <span class="math notranslate nohighlight">\(y\)</span>,  <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(\beta_i\)</span> represent output, <span class="math notranslate nohighlight">\(i\)</span>-th inputs  and <span class="math notranslate nohighlight">\(i\)</span>-th regression coefficients; <span class="math notranslate nohighlight">\(x_0 = 1\)</span>; <span class="math notranslate nohighlight">\(n\)</span> is the number of inputs and regression coefficients; and <span class="math notranslate nohighlight">\(\epsilon\)</span> denotes the error term. Without loss of generality, this model can be rewritten in matrix form as</p>
+<div class="math notranslate nohighlight">
+\[
+\bf y = \bf X \bf \beta + \bf{\epsilon},
+\]</div>
+<p>where the input data matrix <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span>, the vector of regression coefficients <span class="math notranslate nohighlight">\(\bf{\beta} \in \mathcal{R}^{n \times 1}\)</span>, <span class="math notranslate nohighlight">\(\bf{y} \in \mathcal{R}^{m \times 1}\)</span>, and <span class="math notranslate nohighlight">\(m\)</span> is the number of observations. The elements of <span class="math notranslate nohighlight">\(\bf{X}\)</span> can be any mix of raw input data and transformations of the raw data (aka
+features). The errors <span class="math notranslate nohighlight">\(\bf \epsilon\)</span> are assumed to be homoscedastic, have zero mean, and are uncorrelated.</p>
+<p>Model building involves determining the vector <span class="math notranslate nohighlight">\(\bf \beta\)</span> from the data <span class="math notranslate nohighlight">\(\bf X\)</span> and <span class="math notranslate nohighlight">\(\bf y\)</span> that minimizes the error <span class="math notranslate nohighlight">\(\bf \epsilon\)</span> concerning a defined measure of the error.</p>
+<section id="ordinary-least-squares-regression">
+<h4><a class="toc-backref" href="#id7">Ordinary Least Squares Regression</a><a class="headerlink" href="#ordinary-least-squares-regression" title="Permalink to this headline"></a></h4>
+<p>The key idea of OLS regression is to find a solution <span class="math notranslate nohighlight">\(\bf \beta\)</span>  that minimizes the L2-norm of the model error <span class="math notranslate nohighlight">\(\bf \epsilon\)</span> (Strang, 2016),</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2
+\]</div>
+<p>Practically, this optimization can be solved and leads to the analytical solution</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta} = \bf X^T (\bf X \bf X ^T)^{-1} \bf y
+\]</div>
+</section>
+<section id="lasso">
+<h4><a class="toc-backref" href="#id8">Lasso</a><a class="headerlink" href="#lasso" title="Permalink to this headline"></a></h4>
+<p>OLS estimates may have low bias but have very large variance for many real-world data analytics problems, resulting in low prediction accuracy on unseen data. Lasso is a strategy for addressing this problem by adding the L1-norm of the weights as a penalty to the least-squares objective (Tibshirani, 1996),</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2 + \lambda ||\bf{\beta}||_1,
+\]</div>
+<p>For positive values for <span class="math notranslate nohighlight">\(\lambda\)</span>, lasso builds a model in which some weights are zero, i.e., <span class="math notranslate nohighlight">\(\beta_i = 0\)</span>, due to the structure of the optimization. The larger the value of <span class="math notranslate nohighlight">\(\lambda\)</span>, the more weights are forced to zero. Therefore, Lasso can be used to selects a subset of variables to be used in the regression and can potentially lead to increased interpretability of results by removing measurements that are not needed in the model prediction.</p>
+</section>
+<section id="ridge-regression">
+<h4><a class="toc-backref" href="#id9">Ridge Regression</a><a class="headerlink" href="#ridge-regression" title="Permalink to this headline"></a></h4>
+<p>The underlying motivation for Ridge Regression (RR) is identical to lasso. The difference between the methods is that Ridge Regression (RR) adds a L2-norm penalty to the objective function,</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2 + \lambda ||\bf{\beta}||_2^2,
+\]</div>
+<p>Setting the derivative of the objective function to zero leads to the closed-form solution [Hoerl and Kennard, 1970]</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta} =  (\bf X \bf X ^T + \lambda \bf{I})^{-1} \bf X^T \bf y
+\]</div>
+<p>As in lasso, the L2-norm penalty on<span class="math notranslate nohighlight">\(\lambda\)</span> can be rewritten as a constraint. Due to the shape of the constraint in the resulting optimization, the weights <span class="math notranslate nohighlight">\(\beta_i\)</span> in RR will never reach zero although they can be arbitrarily small [James et al., 2021]. Similarly to lasso, RR improves the predictive accuracy of the model by introducing a bias that reduces variance in the estimated parameters [Zou and Hastie, 2005]. However, models produced by RR can be challenging to interpret, since all model inputs are retained in the model even for high values of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+</section>
+<section id="elastic-net">
+<h4><a class="toc-backref" href="#id10">Elastic Net</a><a class="headerlink" href="#elastic-net" title="Permalink to this headline"></a></h4>
+<p>The Elastic Net (EN) is a combination of lasso and RR,</p>
+<div class="math notranslate nohighlight">
+\[
+min_\bf \beta || \bf y - \bf X \bf \beta||_2^2 + \lambda P(\bf{\beta}),
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\bf{\beta}) = \frac{1-\alpha}{2} ||\bf{\beta}||_2^2 + \alpha ||\bf{\beta}||_1
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(\alpha \in (0, 1)\)</span> and non-negative values of <span class="math notranslate nohighlight">\(\lambda\)</span>. The L1-norm provides the ability to set unimportant parameters to zero whereas the L2-norm improves robustness in the selection of which parameters to retain in the model. Lasso and RR are limiting cases of the EN, for <span class="math notranslate nohighlight">\(\alpha\)</span> equal to 1 and 0, respectively.</p>
+</section>
+<section id="pca-and-pcr">
+<h4><a class="toc-backref" href="#id11">PCA and PCR</a><a class="headerlink" href="#pca-and-pcr" title="Permalink to this headline"></a></h4>
+<p>Principal Component Analysis (PCA) is an approach to manipulating the data matrix <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span>. The idea of PCA is to find a lower dimensional representation of <span class="math notranslate nohighlight">\(\bf X\)</span> while conserving the variations in the data. From an optimization perspective, PCA solves</p>
+<div class="math notranslate nohighlight">
+\[
+max_{||w||_2=1} ||\bf X w||^2_2,
+\]</div>
+<p>for each principal component, with subsequent principal components also required to be orthogonal to the previous principal components. PCA finds a weighted combination of the mean subtracted columns of <span class="math notranslate nohighlight">\(\bf X\)</span> retaining maximal variance. For the first principal component, the constrained optimization is equivalent to the unconstrained optimization:</p>
+<div class="math notranslate nohighlight">
+\[
+w_1 = argmax_w \frac{w^T X^T X w}{w^Tw},
+\]</div>
+<p>The optimization is solved by <span class="math notranslate nohighlight">\(w\)</span> being the eigenvector corresponding to the largest eigenvalue of the positive semidefinite matrix <span class="math notranslate nohighlight">\(\bf{X}^T \bf{X}\)</span>.</p>
+<p>The complete projection step of PCA can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{T} = \bf{X W}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bf{T} \in \mathcal{R}^{m \times n}\)</span> is the PCA score matrix, <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span> is the data matrix, and <span class="math notranslate nohighlight">\(\bf{W} \in \mathcal{R}^{n \times n}\)</span> is a coefficient matrix. The columns of <span class="math notranslate nohighlight">\(\bf{W}\)</span> are called loadings and correspond to the eigenvectors of <span class="math notranslate nohighlight">\(\bf{X^T X}\)</span> in descending order.</p>
+<p>The above equation describes a linear transformation. The loadings form an orthogonal basis, which results in the columns of <span class="math notranslate nohighlight">\(\bf T\)</span> being decorrelated (Bengio et al., 2013). The first <span class="math notranslate nohighlight">\(l &lt; n\)</span> components of <span class="math notranslate nohighlight">\(\bf T\)</span> form the <span class="math notranslate nohighlight">\(l\)</span>-dimensional representation of <span class="math notranslate nohighlight">\(\bf{X}\)</span> preserving most variance and are denoted by <span class="math notranslate nohighlight">\(\bf{T}_l\)</span>.</p>
+<p>By combining the OLS with PCA leads to Principal Component Regression (PCR):</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta}_l = \bf T_l^T (\bf T_l \bf T_l ^T)^{-1} \bf y,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(l\)</span> is the number of principal components. Consequently, the regression coefficients in the original space are constructed
+by:</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{\beta} = \bf{W}_l \bf{\beta}_l,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bf{W}_l\)</span> denotes the first <span class="math notranslate nohighlight">\(l\)</span> columns of the matrix <span class="math notranslate nohighlight">\(\bf{W}\)</span>.</p>
+</section>
+<section id="pls">
+<h4><a class="toc-backref" href="#id12">PLS</a><a class="headerlink" href="#pls" title="Permalink to this headline"></a></h4>
+<p>Partial Least Squares (PLS) aims to find lower dimensional representations of <span class="math notranslate nohighlight">\(\bf X\)</span> and <span class="math notranslate nohighlight">\(\bf Y\)</span> and is not restricted to scalar objectives. While PCA performs dimensionality reduction in an unsupervised way, PLS incorporates information about the target <span class="math notranslate nohighlight">\(\bf Y\)</span> in the dimensionality reduction scheme. In general, the governing equations for PLS are</p>
+<div class="math notranslate nohighlight">
+\[
+\bf X = \bf{TP}^T + \bf{E},
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\bf Y = \bf{UQ}^T + \bf{F},
+\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(\bf{X} \in \mathcal{R}^{m \times n}\)</span> is the data matrix, and <span class="math notranslate nohighlight">\(\bf{Y} \in \mathcal{R}^{m \times p}\)</span> is the matrix of responses, <span class="math notranslate nohighlight">\(\bf{T} \in \mathcal{R}^{m \times l}\)</span> is the score matrix, <span class="math notranslate nohighlight">\(\bf{P} \in \mathcal{R}^{n \times l}\)</span> is the loading matrix, and <span class="math notranslate nohighlight">\(\bf{E} \in \mathcal{R}^{m \times n}\)</span> is the residual matrix corresponding to <span class="math notranslate nohighlight">\(\bf{X}\)</span>. Similarly for <span class="math notranslate nohighlight">\(\bf{Y}\)</span>, the matrix <span class="math notranslate nohighlight">\(\bf{U} \in \mathcal{R}^{m \times l}\)</span> is its score matrix, <span class="math notranslate nohighlight">\(\bf{Q} \in \mathcal{R}^{p \times l}\)</span> is its loading matrix, and <span class="math notranslate nohighlight">\(\bf{F} \in \mathcal{R}^{m \times p}\)</span> is its residual matrix.</p>
+<p>Similarly to PCA, PLS performs a linear transformation on the input $\bf{X}, with</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{T} = \bf{XW}
+\]</div>
+<p>From an optimization perspective, PLS maximizes the sample covariance between the X scores and the responses (Wold et al., 2001, Boulesteix and Strimmer, 2006). The calculation of the first component can be written in the form of the unconstrained optimization</p>
+<div class="math notranslate nohighlight">
+\[
+\bf{w}_1 = argmax_w \frac{\bf{w}^T \bf{X}^T y y \bf{X} w}{w^Tw},
+\]</div>
+<p>Then the same regression can be applied as PCR.</p>
+</section>
+<section id="reference">
+<h4><a class="toc-backref" href="#id13">Reference</a><a class="headerlink" href="#reference" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Gilbert Strang. Introduction to Linear Algebra. Cambridge Press, Wellesley, Massachusetts, fifth edition, 2016. ISBN
+9780980232776.</p></li>
+<li><p>Robert Tibshirani. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society: Series B (Methodological),
+58(1):267–288, 1996. ISSN 0035-9246. doi:10.1111/j.2517-6161.1996.tb02080.x.</p></li>
+<li><p>Hui Zou and Trevor Hastie. Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society. Series
+B: Statistical Methodology, 67(2):301–320, 2005. ISSN 13697412. doi:10.1111/j.1467-9868.2005.00503.x.</p></li>
+<li><p>Arthur E. Hoerl and Robert W. Kennard. Ridge regression: Biased estimation for nonorthogonal problems. Technometrics, 12(1):
+55–67, 1970. ISSN 15372723. doi:10.1080/00401706.1970.10488634.</p></li>
+<li><p>Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani. Linear Model Selection and Regularization. Springer, New
+York, 2021. ISBN 978-1-0716-1417-4. doi:10.1007/978-1-0716-1418-1.</p></li>
+<li><p>Yoshua Bengio, Aaron Courville, and Pascal Vincent. Representation learning: A review and new perspectives. IEEE Transactions
+on Pattern Analysis and Machine Intelligence, 35(8):1798–1828, 2013. doi:10.1109/TPAMI.2013.50.</p></li>
+<li><p>Schaeffer, J., &amp; Braatz, R. (2022). Latent Variable Method Demonstrator–Software for Understanding Multivariate Data Analytics Algorithms. arXiv preprint arXiv:2205.08132.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="bayesian-network">
+<h2><a class="toc-backref" href="#id14">Bayesian Network</a><a class="headerlink" href="#bayesian-network" title="Permalink to this headline"></a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="bayesian-network">
+<h3><a class="toc-backref" href="#id15">Bayesian Network</a><a class="headerlink" href="#bayesian-network" title="Permalink to this headline"></a></h3>
+<p>TODO</p>
+</section>
+</section>
+<section id="case-study">
+<h2><a class="toc-backref" href="#id16">Case Study</a><a class="headerlink" href="#case-study" title="Permalink to this headline"></a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-2-real-time-process-monitoring-for-fed-batch-mammalian-cell-culture-bioreactors-using-an-in-line-raman-spectroscopy-prob">
+<h3><a class="toc-backref" href="#id17">Case Study 2: Real-time Process Monitoring for Fed-Batch Mammalian Cell Culture Bioreactors Using an In-Line Raman Spectroscopy Prob</a><a class="headerlink" href="#case-study-2-real-time-process-monitoring-for-fed-batch-mammalian-cell-culture-bioreactors-using-an-in-line-raman-spectroscopy-prob" title="Permalink to this headline"></a></h3>
+<section id="introduction">
+<h4><a class="toc-backref" href="#id18">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h4>
+<p>Raman spectroscopy measures the amount of light scattered inelastically at different frequencies by molecular vibrations, which results in a linear combination of individual molecular fingerprints (aka single - component spectra) with high chemical specificity.
+An in-situ Raman spectroscopy probe or instrument can be used to online monitor cell culture process parameters simultaneously and continuously, including cell nutrients and metabolites (e.g., glucose, lactate, ammonium, viable cell density, and whole cell density).
+In this case study, students will learn how to build multivariate statistical models for relating Raman spectra to glucose and lactate concentrations and the use of such models in troubleshooting of operational problems. The case study is derived from real industrial problems in which Raman spectroscopy is used for real-time monitoring of multiple process parameters in bioreactors[2,3,5],and in control of glucose and lactate concentrations [1,4]</p>
+</section>
+<section id="background">
+<h4><a class="toc-backref" href="#id19">Background</a><a class="headerlink" href="#background" title="Permalink to this headline"></a></h4>
+<p>One of the objectives in the production of therapeutic proteins is to maximize cell culture productivity. A key limitation in the cell culture processes is the accumulation of lactate. Since excess glucose can lead to increased lactate production through increased glycolytic activity, online Raman spectroscopic measurements of glucose and lactate concentrations enable both monitoring operational problems and tighter control of glucose and lactate concentrations [1].</p>
+<p>The Raman spectra are correlated with glucose, glutamine, glutamate, lactate, ammonium, viable cell density (VCD), and total cell density (TCD) using multivariate statistical analysis. This case study will educate the trainees on how to use in-situ Raman spectroscopy data and build cell culture models to support real-time bioprocess monitoring, prediction, and control.</p>
+</section>
+<section id="objective">
+<h4><a class="toc-backref" href="#id20">Objective</a><a class="headerlink" href="#objective" title="Permalink to this headline"></a></h4>
+<p>Apply Raman spectroscopy for in-line monitoring for mammalian cell culture bioreactorsto ensure the specifications on CQAs are satisfied.</p>
+</section>
+<section id="pat-methodology">
+<h4><a class="toc-backref" href="#id21">PAT Methodology</a><a class="headerlink" href="#pat-methodology" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Raman spectroscopic analysis and cell culture process modeling</strong>. Mechanistic and hybrid models can be used to characterize interactions between cells and extracellular environments, and improve understanding, support reliable prediction, and guide process control. The specific steps are</p>
+<ol class="arabic simple">
+<li><p>Calibrate the models for nutrients, metabolites, and cell densities, with a focus on glucose and lactate concentrations and viable cell density[2,3,5].</p></li>
+<li><p>Preprocess Raman spectra by applying standard normalization and the second derivative to distinguish peaks and eliminate baseline shift [2,3,5].</p></li>
+<li><p>Process Raman spectroscopy by applying multivariate statistical (aka chemometric) models to provide in-situ process state measurement and quantify the measurement errors.</p></li>
+<li><p>Construct a cell culture process mechanistic model characterizing the dynamic evolution of state and inherent stochasticity.</p></li>
+</ol>
+</li>
+<li><p>Model-based bioprocess prediction: Use the bioprocess mechanistic model to provide insightful predictions on how the effect of inputs (e.g., glucose and lactate concentrations and feeding strategy) affect cell culture process dynamics.</p></li>
+<li><p>Model Evaluation: The model performance is evaluated by using cross-validation method and prediction on an independent test set. The statistical metrics will include root mean square errors and square correlation coefficients (R2) for calibration, cross-validation, and prediction.</p></li>
+</ol>
+</section>
+<section id="example-experimental-design">
+<h4><a class="toc-backref" href="#id22">Example Experimental Design</a><a class="headerlink" href="#example-experimental-design" title="Permalink to this headline"></a></h4>
+<p>The bioreactors are operated in fed-batch mode using proprietary basal and feed medium formulations. Commercially available chemically defined basal medium (CD) is used in both cell expansion and production stages. A fed-batch operation has nutrient feeds entering on predetermined schedule. Medium, feeds, and stock solutions are known, and all cultures are harvested at the same time. The bioreactors were operated at 37°C. The pH and DO are maintained at 6.94±0.04 and 50% of air saturation, respectively. The bioreactor pH
+is controlled by addition of CO2 gas to decrease pH and addition of 3N NaOH base to increase pH as needed. Inoculum conditions and feeding rate of substrate are controlled in order to provide conditions in the bioreactor to achieve a wider range in nutrients, metabolites, and cell densities than would be observed under normal operating conditions, which in turn allows for generation of more robust calibration models. Experiments are run to generate the at-line measurements of glucose, glutamine, glutamate, lactate, ammonium, viable cell density (VCD), and total cell density (TCD). Cell densities and viability are measured at-line. Culture samples are also analyzed at-line to monitor pH, pCO2, pO2, glucose, glutamine, glutamate, lactate, and/or ammonium.</p>
+</section>
+<section id="references">
+<h4><a class="toc-backref" href="#id23">References</a><a class="headerlink" href="#references" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>Thomas E. Matthews, Brandon N. Berry, John Smelko, Justin Moretto, Brandon Moore, Kelly Wiltberger (Biogen). Closed loop control of lactate concentration in Mammalian cell culture by Raman spectroscopy leads to improve cell density, viability, and biopharmaceutical protein production. Biotechnology and Bioengineering, Vol. 113, No. 11, Pages 2416-2424, November 2016. https://pubmed.ncbi.nlm.nih.gov/27215441/</p></li>
+<li><p>Hamidreza Mehdizadeh, David Lauri, Krizia M. Karry, and Mojgan Moshgbar, Renee Procopio-Melino, and Denis Drapeau (Pfizer). Generic Raman-based calibration models enabling real-timemonitoring of cell culture bioreactors. Biotechnology Progress, Vol. 31, No. 4, Pages 1004-1013, July-August 2015. https://pubmed.ncbi.nlm.nih.gov/25825868/</p></li>
+<li><p>Jessica Whelan, Stephen Craven, and Brian Glennon. In situ Raman spectroscopy for simultaneous monitoring of multiple process parameters in Mammalian cell culture bioreactors. Biotechnology Progress, Vol. 28, No. 5, Pages 1355-1362, September-October 2012.https://pubmed.ncbi.nlm.nih.gov/22740438/</p></li>
+<li><p>Stephen Craven, Jessica Whelan, Brian Glennon (Applied Process Company). Glucose concentration control of a fed-batch mammalian cell bioprocess using a nonlinear model predictive controller. Journal of Process Control, Vol.24,344-357, 2014.</p></li>
+<li><p>Stephen Goldrick, Alexandra Umprecht, Alison Tang, Roman Zakrzewski, Matthew Cheeks, Richard Turner, Aled Charles, Karolina Les, Martyn Hulley, Chris Spencer, and Suzanne S. Farid(nearly all employees of AstraZeneca). High-throughput Raman spectroscopy combined with innovate data analysis workflow to enhance biopharmaceutical process development. Processes, 8, 1179, 2020.</p></li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../MechanisticModel/mechanistic_model.html" class="btn btn-neutral float-left" title="Mechanistic Modeling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Tutorial/tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlycosylationModelBase.Reaction &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>GlycosylationModelBase.Reaction</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for GlycosylationModelBase.Reaction</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="any_column"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.Reaction.any_column">[docs]</a><span class="k">def</span> <span class="nf">any_column</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">any_by_col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">any_by_col</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="compute_stoichiometric_coefficient_reaction"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.Reaction.compute_stoichiometric_coefficient_reaction">[docs]</a><span class="k">def</span> <span class="nf">compute_stoichiometric_coefficient_reaction</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Compute stoichiometric coefficient and reaction rates of N-linked glycosylation models. It includes Equation</span>
+<span class="sd">    19-29 from Villiger et. al.</span>
+
+<span class="sd">    **Reference**: Villiger, T. K., Scibona, E., Stettler, M., Broly, H., Morbidelli, M., &amp; Soos, M. (2016). Controlling</span>
+<span class="sd">    the time evolution of mAb N‐linked glycosylation‐Part II: Model‐based predictions. Biotechnology progress, 32(5),</span>
+<span class="sd">    1135-1148.</span>
+
+<span class="sd">    :param array y: state (Oligsaccharides, nucleotide sugars in Golgi apparatus and nucleotides in Golgi apparatus)</span>
+<span class="sd">    :param array z: Golgi dimensionless length</span>
+<span class="sd">    :param array x: cell culture related data (ammonium, Manganese chloride and Nucleotide sugar in cytosol)</span>
+<span class="sd">    :param GlycosylationModelParamClass p: N-linked glycosylation model parameters</span>
+<span class="sd">    :param GlycosylationNetwork fp: N-linked glycosylation network</span>
+<span class="sd">    :return list: flowrate of Nucleotide sugars into the Golgi, stoichiometric coefficient and reaction rates of N-linked glycosylation models</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">os</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span><span class="p">]</span>  <span class="c1"># oligosaccharides</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span><span class="p">:(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">)]</span>  <span class="c1"># nucleotide sugars</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">y</span><span class="p">[(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">):(</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nns</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">nn</span><span class="p">)]</span>  <span class="c1"># nucleotides</span>
+
+    <span class="c1"># Cell internal calculation</span>
+    <span class="n">ph</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">pka</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">amm</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">na</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">amm</span><span class="p">))</span>  <span class="c1"># equation 15 from karst supplement</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">kfmax</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+        <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">ph</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">phopt</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">omegaf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># equation 19 from karst supplement; units are per minute</span>
+
+    <span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">emax</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">z</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">zmaxj</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">omegaj</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># equation 22 from karst supplement; units are umol/L</span>
+    <span class="n">tp</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">tpmax</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+        <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">z</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">zmaxk</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">omegak</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># equation 21 from karst supplement; units are umol / dm ^ 2</span>
+
+    <span class="n">man1sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">Man1</span><span class="p">)]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman1</span><span class="p">)</span>
+    <span class="n">man2sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">Man2</span><span class="p">)]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman2</span><span class="p">)</span>
+    <span class="n">gnt1sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">GnT1</span><span class="p">)]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgnt1</span><span class="p">)</span>
+    <span class="n">gnt2sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">GnT2</span><span class="p">)]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgnt2</span><span class="p">)</span>
+
+    <span class="n">fuctsum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">FucT</span><span class="p">)]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdfuct</span><span class="p">)</span>
+    <span class="n">galtsum</span> <span class="o">=</span> <span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">GalT</span><span class="p">)]</span>
+    <span class="n">galtsum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">galtsum</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgalt_f</span> <span class="o">+</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">galtsum</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">galtsum</span><span class="p">[</span><span class="mi">4</span><span class="p">:]))</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgalt</span>
+
+    <span class="n">siatsum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">os</span><span class="p">[</span><span class="n">any_column</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">SiaT</span><span class="p">)]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">)</span>
+
+    <span class="n">vos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fp</span><span class="o">.</span><span class="n">nos</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">nr</span><span class="p">))</span>  <span class="c1"># number of species by number of reactions</span>
+    <span class="n">vns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fp</span><span class="o">.</span><span class="n">nns</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">nr</span><span class="p">))</span>  <span class="c1"># number of nucelotide sugars by number of reactions</span>
+    <span class="n">vn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fp</span><span class="o">.</span><span class="n">nn</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">nr</span><span class="p">))</span>  <span class="c1"># number of nucleotides by number of reactions</span>
+
+    <span class="n">n_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">n</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+    <span class="n">denominator_ft</span> <span class="o">=</span> <span class="n">n_list</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">kgolgin</span> <span class="o">+</span> <span class="n">n_list</span><span class="p">)</span>
+    <span class="n">ft</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">v</span> <span class="o">*</span> <span class="mf">1e5</span> <span class="o">*</span> <span class="n">p</span><span class="o">.</span><span class="n">ktk</span> <span class="o">*</span> <span class="n">tp</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">nscyt</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">kcytns</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">nscyt</span><span class="p">))</span> <span class="o">*</span> <span class="n">denominator_ft</span>  <span class="c1"># um^2 / um^3 * um/dm * 1/min * umol/dm^2 = umol/L/min</span>
+
+    <span class="c1"># Reactions</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">nr</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">nr</span><span class="p">):</span>
+        <span class="n">enzyme_idx</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">man1sum2</span> <span class="o">=</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">man1sum2</span> <span class="o">=</span> <span class="n">man1sum2</span> <span class="o">+</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman1</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqkmm</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                            <span class="n">p</span><span class="o">.</span><span class="n">kdman1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                            <span class="n">man1sum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                            <span class="n">man1sum2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">man2sum2</span> <span class="o">=</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman2</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="n">man2sum2</span> <span class="o">=</span> <span class="n">man2sum2</span> <span class="o">+</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman1</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">3</span><span class="p">]</span>
+
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqkmm</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                            <span class="n">p</span><span class="o">.</span><span class="n">kdman2</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">4</span><span class="p">],</span>
+                            <span class="n">man2sum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdman2</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">4</span><span class="p">],</span>
+                            <span class="n">man2sum2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># gnt1</span>
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqksobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                              <span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                              <span class="n">x</span><span class="o">.</span><span class="n">mn</span><span class="p">,</span>
+                              <span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdmngnt</span><span class="p">,</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdkgnt1</span><span class="p">,</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdgnt1</span><span class="p">,</span>
+                              <span class="n">gnt1sum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgnt1</span><span class="p">,</span>
+                              <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                              <span class="mf">1e6</span><span class="p">,</span>
+                              <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdkgnt1</span><span class="p">)</span>
+            <span class="n">vns</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">vn</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># gnt2</span>
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqksobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                              <span class="n">e</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                              <span class="n">x</span><span class="o">.</span><span class="n">mn</span><span class="p">,</span>
+                              <span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdmngnt</span><span class="p">,</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdkgnt2</span><span class="p">,</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdgnt2</span><span class="p">,</span>
+                              <span class="n">gnt2sum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgnt2</span><span class="p">,</span>
+                              <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                              <span class="mf">1e6</span><span class="p">,</span>
+                              <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdkgnt1</span><span class="p">)</span>
+            <span class="n">vns</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">vn</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># fuct</span>
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqkrobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                              <span class="n">e</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                              <span class="n">ns</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                              <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdkfuct</span><span class="p">,</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdfuct</span><span class="p">,</span>
+                              <span class="n">fuctsum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdfuct</span><span class="p">,</span>
+                              <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                              <span class="mf">1e6</span><span class="p">,</span>
+                              <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                              <span class="n">p</span><span class="o">.</span><span class="n">kdkfuct</span><span class="p">)</span>
+            <span class="n">vns</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">vn</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># galt</span>
+            <span class="k">if</span> <span class="mi">17</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqksobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                                  <span class="n">e</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                                  <span class="n">x</span><span class="o">.</span><span class="n">mn</span><span class="p">,</span>
+                                  <span class="n">ns</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdmngalt</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdgalt_f</span><span class="p">,</span>
+                                  <span class="n">galtsum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgalt_f</span><span class="p">,</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdgalt</span><span class="p">,</span>
+                                  <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">)</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># dividing this because these reactions have same substrate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqksobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                                  <span class="n">e</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                                  <span class="n">x</span><span class="o">.</span><span class="n">mn</span><span class="p">,</span>
+                                  <span class="n">ns</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdmngalt</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdgalt</span><span class="p">,</span>
+                                  <span class="n">galtsum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgalt</span><span class="p">,</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                                  <span class="mf">1e6</span><span class="p">,</span>
+                                  <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="mi">15</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">16</span><span class="p">:</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqksobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                                  <span class="n">e</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                                  <span class="n">x</span><span class="o">.</span><span class="n">mn</span><span class="p">,</span>
+                                  <span class="n">ns</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdmngalt</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdgalt_f</span><span class="p">,</span>
+                                  <span class="n">galtsum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdgalt_f</span><span class="p">,</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                                  <span class="mf">1e6</span><span class="p">,</span>
+                                  <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdkgalt</span><span class="p">)</span>
+            <span class="n">vns</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">vn</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">enzyme_idx</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>  <span class="c1"># siat</span>
+            <span class="k">if</span> <span class="mi">35</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">38</span><span class="p">:</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqkrobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+                                  <span class="n">e</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+                                  <span class="n">ns</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdksiat</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">,</span>
+                                  <span class="n">siatsum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">,</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">,</span>
+                                  <span class="n">n</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdksiat</span><span class="p">)</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">eqkrobb</span><span class="p">(</span><span class="n">kf</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+                                  <span class="n">e</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+                                  <span class="n">ns</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdksiat</span><span class="p">,</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">,</span>
+                                  <span class="n">siatsum</span> <span class="o">-</span> <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">kdsiat</span><span class="p">,</span>
+                                  <span class="n">os</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                                  <span class="mf">1e6</span><span class="p">,</span>
+                                  <span class="n">n</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">p</span><span class="o">.</span><span class="n">kdksiat</span><span class="p">)</span>
+            <span class="n">vns</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">vn</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">vos</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">vos</span><span class="p">[</span><span class="n">fp</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ft</span><span class="p">,</span> <span class="n">vos</span><span class="p">,</span> <span class="n">vns</span><span class="p">,</span> <span class="n">vn</span><span class="p">,</span> <span class="n">r</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

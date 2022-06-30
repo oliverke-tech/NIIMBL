@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cell Culture Fermentation Modeling Types &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Cell Culture Fermentation Modeling Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/TrainingMaterial/MechanisticModel/bioreactor.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>Traditionally, biopharmaceutical researchers/engineers relied on an experimental approach to extract data and information from cell cultures and evaluate how the system inputs such as media formulation, temperature, and pH affect the outputs, i.e., cell growth, cell viability, product titer, and quality, in an intuitive or statistical manner. However, this conventional approach is highly undesirable in industrial settings owing to the cost and time of the required experimentation. In this regard, mathematically representing  the cell culture systems and subsequent analysis for better understanding via appropriate in silico techniques can be considered as a promising approach. Importantly, mathematical models help organize and integrate the existing data in a systematic way. The constructed models can therefore be used to predict cellular responses to various environmental/genetic perturbations, and to identify targets for host cell line engineering to improve culture performance.</p>
+<p><img alt="Bioreactor" src="../../_images/bioreactor1.png" /></p>
+<section id="cell-culture-fermentation-modeling-types">
+<h1>Cell Culture Fermentation Modeling Types<a class="headerlink" href="#cell-culture-fermentation-modeling-types" title="Permalink to this headline"></a></h1>
+<p>Bioreactors are modeled similarly to stirred tank chemical reactors</p>
+<p>A mass balance equation can be used as a first principles model to understand the interaction between the CPP’s and CQA’s</p>
+<p>Biological reaction rate models are structured or unstructured, non-segregated or segregated</p>
+<ul class="simple">
+<li><p>Unstructured: Reaction rate depends only on concentrations external to the cell</p></li>
+<li><p>Structured: Reaction rate is also dependent on concentrations in intercellular components</p></li>
+<li><p>Non-segregated: All cells are treated as identical</p></li>
+<li><p>Segregated: Multiple populations of cells with different characteristics</p></li>
+</ul>
+</section>
+<section id="general-approach">
+<h1>General Approach<a class="headerlink" href="#general-approach" title="Permalink to this headline"></a></h1>
+<p>Typicaally a kinetic model consists of differential algebraic equations (DAEs) that can be derived from the time-dependent mass balances of participating components with appropriate mechanistic or empirical kinetic equations, e.g., Monod kinetics ,mass action   kinetics, and Michaelis–Menten kinetics. Some models only use ordinary differential equations (ODEs) through simplifying assumptions.</p>
+<p><em>Table</em>: Mass balances for viable cells and nutrients/by-products/meta-bolites/product around the bioreactor as well as unstructured Monod based equations is provided in the following table (Table adopted from [1]).</p>
+<p><img alt="Mass" src="../../_images/mass_balance.png" /></p>
+<p><strong>Notations</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_V\)</span>, viable cell concentration;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span> culture volume;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{IN}\)</span>,flow rate in the culture (for fed-batch or perfusion modes);</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_{V_{IN}}\)</span>, viable cell concentration in the inflow;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{OUT}\)</span>,flow rateout of the bioreactor;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>, specific growth rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_d\)</span>, specific death rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{lys}\)</span>, lysis rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_D\)</span>, non-viable (“dead”) cell concentration;</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_i\)</span>, molar concentration of a nutrient/product/by-product/metabolite (based on context) <span class="math notranslate nohighlight">\(i\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{i_{IN}}\)</span>, molar concentration of <span class="math notranslate nohighlight">\(i\)</span> the inflow;</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i\)</span>, specific consumption/production rate (negative or positive, respectively);</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_i\)</span>, chemical/non-enzymatic degradation rate of <span class="math notranslate nohighlight">\(i\)</span>, if applicable, assuming first-order degradation (negative if <span class="math notranslate nohighlight">\(i\)</span> is degrading, positive if another product is degrading to <span class="math notranslate nohighlight">\(i\)</span>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{max}\)</span>, maximum specific growth rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{C_i}\)</span>, half-velocity constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span>, total number of considered limiting substrates for Equations 4 and 6, and total number of considered toxic products in Equation 5;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{D_{max}}\)</span>, maximum specific death rate;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_i\)</span>, Hill coefficient;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{D_{C_i}}\)</span>, death-associated half-velocity constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{I_{C_i}}\)</span>, inhibitor-associated half-velocity constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y_{X/C_i}\)</span>, yield of cells to <span class="math notranslate nohighlight">\(C_i\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_i\)</span>, maintenance coefficient.</p></li>
+</ul>
+<p>Mass balances for various cell types (e.g.,cells in distinct apoptotic phases or in different stages of cell cycle) can be distinguished by including transition rates between the different cell populations. The important variables to be de fined in these mass balances are the specific rates, i.e., cell growth (<span class="math notranslate nohighlight">\(m\)</span>), cell death (<span class="math notranslate nohighlight">\(k_D\)</span>), and metabolite production/consumption (<span class="math notranslate nohighlight">\(q_i\)</span>),that dynamically change during the culture process.</p>
+</section>
+<section id="perfusion-bioreactor">
+<h1>Perfusion Bioreactor<a class="headerlink" href="#perfusion-bioreactor" title="Permalink to this headline"></a></h1>
+<p>Lu et al. [1] modeled the growth and energy metabolism of Pichia pastoris producing a fusion protein under glycerol and methanol feed using an unstructured, nonsegregated model.</p>
+<p>Biological kinetic models can be classified as unstructured nonsegregated model whose reaction rate depends only on concentrations external to the cell and all cells are taken to be identical. The differential equations are listed as below</p>
+<section id="bioreactor-kinetic-model">
+<h2>Bioreactor Kinetic Model<a class="headerlink" href="#bioreactor-kinetic-model" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dX}{dt}&amp;=-\frac{F_{in}-F_{out}}{V}X+(\mu_g+\mu_m)X\\
+\frac{dS_g}{dt}&amp;=\frac{F_{in}}{V}(S_{in,g}-S_g)-q_{S_g}X\\
+\frac{dS_m}{dt}&amp;=\frac{F_{in}}{V}(S_{i,m}-S_m)-q_{S_m}X\\
+\frac{dP_i}{dt}&amp;=-\frac{F_{in}}{V}P_i+q_{P_i}X\\
+\frac{dV}{dt}&amp;=F_{in}-F_{out}
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="harvest-hold-tank-model">
+<h2>Harvest/Hold Tank Model<a class="headerlink" href="#harvest-hold-tank-model" title="Permalink to this headline"></a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dP_i}{dt}&amp;=-\frac{F_{in}}{V}(P_{i,in}-P_i)\\
+\frac{dV}{dt}&amp;=F_{in}-F_{out}
+\end{align*}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(𝑋\)</span>: biomass<br />
+<span class="math notranslate nohighlight">\(𝐹_𝑖𝑛\)</span>: inlet flow rate (L/h)<br />
+<span class="math notranslate nohighlight">\(𝐹_𝑜𝑢𝑡\)</span>: outlet flow rate (L/h)<br />
+<span class="math notranslate nohighlight">\(𝜇_𝑔\)</span>,<span class="math notranslate nohighlight">\(𝜇_𝑚\)</span>: Specific growth rate<br />
+<span class="math notranslate nohighlight">\(𝑆_{𝑖𝑛,𝑔}\)</span>: inlet glycerol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_{𝑖𝑛,𝑚}\)</span>: inlet methanol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_𝑔\)</span>: glycerol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑆_𝑚\)</span>: methanol concentration (g/L)<br />
+<span class="math notranslate nohighlight">\(𝑞_{𝑆_𝑔}\)</span>,<span class="math notranslate nohighlight">\(𝑞_{𝑆_𝑚}\)</span>: Specific rate of substrate consumption (g/g-h)<br />
+<span class="math notranslate nohighlight">\(𝑞_{𝑃_𝑖}\)</span>: Specific product production rate (g/g-h)<br />
+<span class="math notranslate nohighlight">\(𝑃_𝑖\)</span>: protein <span class="math notranslate nohighlight">\(𝑖\)</span><br />
+<span class="math notranslate nohighlight">\(𝑉\)</span>: bioreactor volume (L)</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Kyriakopoulos, S., Ang, K.S., Lakshmanan, M., Huang, Z., Yoon, S., Gunawan, R. and Lee, D.Y., 2018. Kinetic modeling of mammalian cell culture bioprocessing: the quest to advance biomanufacturing. <em>Biotechnology Journal</em>, <em>13</em> (3), p.1700229.</p></li>
+<li><p>Lu, A.E., Paulson, J.A., Mozdzierz, N.J., Stockdale, A., Versypt, A.N.F., Love, K.R., Love, J.C. and Braatz, R.D., 2015, September. Control systems technology in the advanced manufacturing of biologic drugs. In <em>2015 IEEE Conference on Control Applications (CCA)</em>
+(pp. 1505-1515). IEEE.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

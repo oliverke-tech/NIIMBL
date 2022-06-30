@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlycosylationModelBase.GlycosylationNetwork &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../TrainingMaterial/process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>GlycosylationModelBase.GlycosylationNetwork</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for GlycosylationModelBase.GlycosylationNetwork</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">vLab.GlycosylationModelBase.GlycosylationModelParams</span> <span class="kn">import</span> <span class="n">Network</span>
+<span class="kn">from</span> <span class="nn">vLab.PerfusionSimulator.Utils</span> <span class="kn">import</span> <span class="n">SIA_INDEX</span>
+
+
+<div class="viewcode-block" id="GlycosylationNetwork"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork">[docs]</a><span class="k">class</span> <span class="nc">GlycosylationNetwork</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Class for Glycosylation network. This class will build the network from a network description file</span>
+
+<span class="sd">        :param int nn: number of nucleotides in the Golgi apparatus</span>
+<span class="sd">        :param int nns: number of nucelotide sugars in the Golgi apparatus</span>
+<span class="sd">        :param int nos: number of oligsaccharides</span>
+<span class="sd">        :param str network_data_path: data path for glycosylation network</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nn</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nns</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nos</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> <span class="n">network_data_path</span><span class="o">=</span><span class="s1">&#39;data/Network Description.csv&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Construct the Glycosylation network. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nn</span> <span class="o">=</span> <span class="n">nn</span>  <span class="c1"># number of species</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nns</span> <span class="o">=</span> <span class="n">nns</span>  <span class="c1"># number of nucelotide sugars</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nos</span> <span class="o">=</span> <span class="n">nos</span>  <span class="c1"># number of golgi species</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Man1&#39;</span><span class="p">,</span> <span class="s1">&#39;Man2&#39;</span><span class="p">,</span> <span class="s1">&#39;GnT1&#39;</span><span class="p">,</span> <span class="s1">&#39;GnT2&#39;</span><span class="p">,</span> <span class="s1">&#39;FucT&#39;</span><span class="p">,</span> <span class="s1">&#39;GalT&#39;</span><span class="p">,</span> <span class="s1">&#39;SiaT&#39;</span><span class="p">]</span>  <span class="c1"># List the enzymes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_network</span><span class="p">(</span><span class="n">network_data_path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_build_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">network_data_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Build the network from the provided data&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">network_data_path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="n">network_for_individual_enzyme</span> <span class="o">=</span> <span class="p">[(</span><span class="n">enzyme</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="n">enzyme</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span> <span class="k">for</span> <span class="n">enzyme</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elist</span><span class="p">]</span>
+        <span class="n">network_for_individual_enzyme</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">network_for_individual_enzyme</span><span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39; build the network&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;Man1&#39;</span><span class="p">],</span>
+                               <span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;Man2&#39;</span><span class="p">],</span>
+                               <span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;GnT1&#39;</span><span class="p">],</span>
+                               <span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;GnT2&#39;</span><span class="p">],</span>
+                               <span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;FucT&#39;</span><span class="p">],</span>
+                               <span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;GalT&#39;</span><span class="p">],</span>
+                               <span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="s1">&#39;SiaT&#39;</span><span class="p">])</span>
+        <span class="n">enzyme_idx</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elist</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">elist</span><span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39;build the network index ndarray&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">enzyme</span> <span class="ow">in</span> <span class="n">enzyme_idx</span><span class="p">:</span>
+            <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">network_for_individual_enzyme</span><span class="p">[</span><span class="n">enzyme</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span><span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39;build the reaction labels&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reaction_label</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;R</span><span class="si">{0}</span><span class="s1"> OS</span><span class="si">{1}</span><span class="s1"> OS</span><span class="si">{2}</span><span class="s1"> </span><span class="si">{3}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                                             <span class="bp">self</span><span class="o">.</span><span class="n">networkidx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr</span><span class="p">)]</span>
+
+        <span class="sd">&#39;&#39;&#39;create the labels for species&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;OS</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nos</span><span class="p">)]</span>
+
+        <span class="c1"># nucleotidesugars</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;UDP-GlcNAc&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;GDP-Fuc&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;UDP-Gal&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;CMP-Neu5Ac&#39;</span><span class="p">)</span>
+
+        <span class="c1"># nucleotides</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;UDP&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;GDP&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;CMP&#39;</span><span class="p">)</span>
+
+        <span class="c1"># add labels for reactions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">reaction_label</span>
+        <span class="c1"># add labels for enzymes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">elist</span>
+
+        <span class="c1"># add labels for transport proteins between nucleotide sugars and nucleotides</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;TP GDP-GlcNAc/UMP&#39;</span><span class="p">,</span> <span class="s1">&#39;TP GDP-Fuc/GMP&#39;</span><span class="p">,</span> <span class="s1">&#39;TP UDP-Gal/UMP&#39;</span><span class="p">,</span> <span class="s1">&#39;TP CMP-Neu5Ac/CMP&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Labeled as high mannose structures</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; HM&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; HM&#39;</span>
+
+        <span class="c1"># label structure 13 as fa2g0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; FA2G0&#39;</span>
+
+        <span class="c1"># label structure 14 and 15 as fa2g1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; FA2G1&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; FA2G1&#39;</span>
+
+        <span class="c1"># label structure 24 as FA2G2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; FA2G2&#39;</span>
+
+        <span class="c1"># label structure 17,20,22,23,25:33 as SIA</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">SIA_INDEX</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; SIA&#39;</span>
+
+<div class="viewcode-block" id="GlycosylationNetwork.eqkmm"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqkmm">[docs]</a>    <span class="k">def</span> <span class="nf">eqkmm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kfj</span><span class="p">,</span> <span class="n">ej</span><span class="p">,</span> <span class="n">osi</span><span class="p">,</span> <span class="n">kdi</span><span class="p">,</span> <span class="n">sumterm1</span><span class="p">,</span> <span class="n">sumterm2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Michealis–Menten kinetics (ManI and ManII) Eq. 25 of Villiger et. al.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kfj</span> <span class="o">*</span> <span class="n">ej</span> <span class="o">*</span> <span class="n">osi</span> <span class="o">/</span> <span class="n">kdi</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sumterm1</span> <span class="o">+</span> <span class="n">sumterm2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlycosylationNetwork.eqksobb"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqksobb">[docs]</a>    <span class="k">def</span> <span class="nf">eqksobb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kfj</span><span class="p">,</span> <span class="n">ej</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">nsgolgik</span><span class="p">,</span> <span class="n">osi</span><span class="p">,</span> <span class="n">kdmn</span><span class="p">,</span> <span class="n">kdk</span><span class="p">,</span> <span class="n">kdi</span><span class="p">,</span> <span class="n">sumterm</span><span class="p">,</span> <span class="n">osi1</span><span class="p">,</span> <span class="n">kdi1</span><span class="p">,</span> <span class="n">ngolgik</span><span class="p">,</span> <span class="n">kdnk</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sequential-order bi-bi kinetcis with Mn as cofactor (GnTI, GnTII, and GalT). Eq. 26 of Villiger et. al. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kfj</span> <span class="o">*</span> <span class="n">ej</span> <span class="o">*</span> <span class="n">mn</span> <span class="o">*</span> <span class="n">nsgolgik</span> <span class="o">*</span> <span class="n">osi</span> <span class="o">/</span> <span class="n">kdmn</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">/</span> <span class="n">kdi</span> <span class="o">/</span> \
+               <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mn</span> <span class="o">/</span> <span class="n">kdmn</span> <span class="o">+</span> <span class="n">mn</span> <span class="o">/</span> <span class="n">kdmn</span> <span class="o">*</span> <span class="n">nsgolgik</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">+</span> <span class="n">mn</span> <span class="o">/</span> <span class="n">kdmn</span> <span class="o">*</span> <span class="n">nsgolgik</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">*</span> <span class="n">osi</span> <span class="o">/</span> <span class="n">kdi</span> <span class="o">+</span>
+                <span class="n">mn</span> <span class="o">/</span> <span class="n">kdmn</span> <span class="o">*</span> <span class="n">nsgolgik</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">*</span> <span class="n">sumterm</span> <span class="o">+</span> <span class="n">osi1</span> <span class="o">/</span> <span class="n">kdi1</span> <span class="o">*</span> <span class="n">ngolgik</span> <span class="o">/</span> <span class="n">kdnk</span> <span class="o">+</span> <span class="n">ngolgik</span> <span class="o">/</span> <span class="n">kdnk</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlycosylationNetwork.eqkrobb"><a class="viewcode-back" href="../../GlycosylationModelBase/GlycosylationModelBase.html#GlycosylationModelBase.GlycosylationNetwork.GlycosylationNetwork.eqkrobb">[docs]</a>    <span class="k">def</span> <span class="nf">eqkrobb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kfj</span><span class="p">,</span> <span class="n">ej</span><span class="p">,</span> <span class="n">nsgolgik</span><span class="p">,</span> <span class="n">osi</span><span class="p">,</span> <span class="n">kdk</span><span class="p">,</span> <span class="n">kdi</span><span class="p">,</span> <span class="n">sumterm</span><span class="p">,</span> <span class="n">osi1</span><span class="p">,</span> <span class="n">kdi1</span><span class="p">,</span> <span class="n">ngolgik</span><span class="p">,</span> <span class="n">kdnk</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Random-order bi-bi kinetics (FucT and SiaT). Eq. 27 of Villiger et. al. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kfj</span> <span class="o">*</span> <span class="n">ej</span> <span class="o">*</span> <span class="n">nsgolgik</span> <span class="o">*</span> <span class="n">osi</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">/</span> <span class="n">kdi</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">nsgolgik</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">+</span> <span class="n">osi</span> <span class="o">/</span> <span class="n">kdi</span> <span class="o">+</span>
+                                                        <span class="n">sumterm</span> <span class="o">+</span> <span class="n">nsgolgik</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">*</span> <span class="n">osi</span> <span class="o">/</span> <span class="n">kdi</span> <span class="o">+</span> <span class="n">nsgolgik</span> <span class="o">/</span> <span class="n">kdk</span> <span class="o">*</span> <span class="n">sumterm</span> <span class="o">+</span>
+                                                        <span class="n">ngolgik</span> <span class="o">/</span> <span class="n">kdnk</span> <span class="o">*</span> <span class="n">osi1</span> <span class="o">/</span> <span class="n">kdi1</span> <span class="o">+</span> <span class="n">ngolgik</span> <span class="o">/</span> <span class="n">kdnk</span> <span class="o">+</span> <span class="n">osi1</span> <span class="o">/</span> <span class="n">kdi1</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

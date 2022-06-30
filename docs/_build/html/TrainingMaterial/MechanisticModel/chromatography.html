@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chromatography Modeling &mdash; vLab 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "tags": "ams", "useLabelIds": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> vLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../process_modeling.html">Bioprocess Modeling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Bioprocess</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Bioreactor.html">Bioreactor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Chromatography.html">Chromatography module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/HarvestTank.html">HarvestTank module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/ODESolver.html">ODESolver module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Plantwise.html">Plantwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/PlantwiseSimulator.html">PlantwiseSimulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../IntegratedBioprocess/Util.html">Util module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Steady-State Glycosylation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../PerfusionSimulator/PerfusionSimulator.html">PerfusionSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dynamic Glycosylation Simulator</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DynamicGlycosylationSimulator/DynamicGlycosylationSimulator.html">DynamicGlycosylationSimulator package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glycosylation Model Base Class</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GlycosylationModelBase/GlycosylationModelBase.html">GlycosylationModelBase package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Raman Spectropecty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RamanAnalytics/RamanAnalytics.html">RamanAnalytics package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">vLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Chromatography Modeling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/TrainingMaterial/MechanisticModel/chromatography.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>The downstream process of biopharma manufacturing typically has multiple purification unit operations, each with a slightly different mechanism and purpose, and end purity goal. Chromatography is arguably the most important unit operation in purification, and here we will introduce and explain a general mechanism model for the process of chromatography.
+<img alt="chromatography" src="../../_images/chromatography.png" /></p>
+<section id="chromatography-modeling">
+<h1>Chromatography Modeling<a class="headerlink" href="#chromatography-modeling" title="Permalink to this headline"></a></h1>
+<p>In chromatography, mechanistic modeling can be used to simulate elution profiles under different conditions such as column dimensions, load ratio, flow rate and conductivity.
+Simulations can be performed for both major and minor sample components. The output can then be used to optimize the separation. The following  image shows the elution profiles of capture column
+in three steps.</p>
+<p><img alt="capture" src="../../_images/capture.png" /></p>
+<p><strong>Chromatography simulation model</strong> is built on mechanistic model combining SMA adsorption kinetic models and mass transport models (such as GRM, Thomas model, Transport model).</p>
+<p>General rate model (GRM) is the most comprehensive rate model to date. The solution of GRM requires solving a set of PDEs including mass balance, mass transfer, and adsorption kinetic equations in the column and in the stationary phase. The general rate model of chromatography uses two mass balance equations, <strong>one in the mobile phase outside the particle</strong> and <strong>the other in the stagnant mobile phase inside a particle</strong>, and two kinetic equations, one relating the two mobile phase concentrations (<strong>mass transfer kinetics</strong>) and the other relating the stagnant mobile phase and the stationary phase concentrations (<strong>kinetics of adsorption-desorption</strong>).</p>
+</section>
+<section id="a-mechanistic-model">
+<h1>A Mechanistic Model<a class="headerlink" href="#a-mechanistic-model" title="Permalink to this headline"></a></h1>
+<p>We provide a state-of-the-art chromatography modeling example that used the steric mass action (SMA) isotherm with a nonideal transport model.</p>
+<section id="mobile-phase-mass-transfer-kinetics">
+<h2>Mobile phase (<strong>Mass Transfer Kinetics</strong>)<a class="headerlink" href="#mobile-phase-mass-transfer-kinetics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Nonideal transport model for the concentration of <span class="math notranslate nohighlight">\(i\)</span>th species. The first term on the right-hand side describes the convective transport through the column, the second term the dispersive transport and the third term the interaction between mobile and absorbed phase</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C_i}{\partial t}\varepsilon_{tot}=-\frac{\partial C_i}{\partial z}+\frac{1}{Pe}\frac{\partial^2 C_i}{\partial z^2}-\frac{q_i}{\partial t}\varepsilon_{pore}
+\]</div>
+<ul class="simple">
+<li><p>The mass balance of salt whose concentration is denoted by <span class="math notranslate nohighlight">\(C_{salt}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C_{salt}}{\partial t}\varepsilon_{tot}=-\frac{\partial C_{salt}}{\partial z}+\frac{1}{Pe}\frac{\partial^2 C_{saltt}}{\partial z^2}
+\]</div>
+</section>
+<section id="absored-stationary-phase-kinetics-of-adsorption-desorption">
+<h2>Absored/Stationary Phase (<strong>kinetics of adsorption-desorption</strong>)<a class="headerlink" href="#absored-stationary-phase-kinetics-of-adsorption-desorption" title="Permalink to this headline"></a></h2>
+<p>The time dependent change of the concentration of species <span class="math notranslate nohighlight">\(i\)</span> on the adsorbent surface</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial q_i}{dt}=k_{ads,i}C_i \bar{Q}^{v_i}-k_{des,i}q_iC^{v_i}_{salt}
+\]</div>
+<p><strong>Notations</strong>: <span class="math notranslate nohighlight">\(C_i\)</span> is the concentration of species <span class="math notranslate nohighlight">\(i\)</span> in the liquid phase, <span class="math notranslate nohighlight">\(t\)</span> is the time, <span class="math notranslate nohighlight">\(\varepsilon_{tot}\)</span> is the total porosity, <span class="math notranslate nohighlight">\(z\in[0, 1]\)</span> is the dimensionless length, <span class="math notranslate nohighlight">\(Pe\)</span> is the Peclet number, <span class="math notranslate nohighlight">\(q_i\)</span> is the concentration of species <span class="math notranslate nohighlight">\(i\)</span> in the adsorbed phase, and <span class="math notranslate nohighlight">\(\varepsilon_{pore}\)</span> is the particle porosity. <span class="math notranslate nohighlight">\(k_{ads,i}\)</span> is the rate constant of adsorption for component <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(Q\)</span> is the number of ligands available for adsorption and desorption, <span class="math notranslate nohighlight">\(v_i\)</span> is the characteristic charge of component <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(k_{des,i}\)</span> is the rate constant of desorption for component <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Reference</strong>: Sejergaard, L., Karkov, H. S., Krarup, J. K., Hagel, A. B. B., &amp; Cramer, S. M. (2014). Model‐based process development for the purification of a modified human growth hormone using multimodal chromatography. Biotechnology Progress,30(5), 1057-1064.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, NIIMBL PC4.1-206 .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
